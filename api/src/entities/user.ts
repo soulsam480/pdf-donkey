@@ -14,7 +14,7 @@ export class User extends BaseEntity {
   id: string;
 
   @OneToMany(() => TemplateEntity, (templates) => templates.user)
-  templates: TemplateEntity;
+  templates: TemplateEntity[];
 
   @Column({ type: 'text', nullable: false })
   name: string;
