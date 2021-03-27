@@ -21,7 +21,7 @@ export class TemplateEntity extends BaseEntity {
   style: string;
 
   @Column({ type: 'simple-json', nullable: true })
-  data: object;
+  data: Record<string, string | number>;
 
   @Column({ type: 'simple-json', nullable: true, default: '{}' })
   meta: Record<string, string | number>;

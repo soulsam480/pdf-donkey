@@ -6,11 +6,14 @@ import {
   Param,
   Post,
   Put,
+  UseBefore,
 } from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
+import { authMiddleware } from 'src/middlewares/auth.middleware';
 import { getRepository } from 'typeorm';
 
 @Controller('/template')
+@UseBefore(authMiddleware)
 export class userController {
   private readonly templateRepo = getRepository(TemplateEntity);
   @Get('/')
