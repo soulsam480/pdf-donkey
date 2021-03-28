@@ -11,7 +11,7 @@ export const Global = createGlobalStyle`
   }
   .content {
     width:100%;
-    padding:70px 5px 0 5px;
+    padding:60px 5px 0 5px;
   }
   .btn {
     background-color: ${colors.prd};

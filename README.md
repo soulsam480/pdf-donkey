@@ -13,9 +13,11 @@ api:
 - Typeorm
 - Typescript
 - Route Controllers
-- Auth (not finalized yet)
+- Auth (JWT)
 
 app:
-- React (may be)
+- React 
+- React router
+- Shoyo
 
 Any contributions are welcome. Reach me on [soulsam480@hotmail.com](mailto:soulsam480@hotmail.com)
