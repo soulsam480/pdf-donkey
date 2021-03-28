@@ -25,6 +25,15 @@ export const Global = createGlobalStyle`
       color: black !important;
     }
   }
+  .center{
+    text-align:center;
+  }
+  .text-right{
+    text-align: right;
+  }
+  .pointer{
+    cursor: pointer;
+  }
   .input{
     background-color: ${colors.prd};
     border:none;

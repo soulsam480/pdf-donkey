@@ -46,9 +46,15 @@ const AppNavbar: React.FC<Props> = () => {
           <NavLink to="/template/all">My templates</NavLink>
         )}
       </div>
-      <div className="right">
-        <NavLink to="/login">Login/Register</NavLink>
-      </div>
+      {!userState?.userState.isLoggedIn ? (
+        <div className="right">
+          <NavLink to="/login">Login/Register</NavLink>
+        </div>
+      ) : (
+        <div className="right">
+          <NavLink to="/user">{userState.userState.user.username}</NavLink>
+        </div>
+      )}
     </Nav>
   );
 };

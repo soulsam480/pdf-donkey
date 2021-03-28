@@ -5,6 +5,8 @@ export interface User {
   email?: string;
   username?: string;
   templates?: string[];
+  password?: string;
+  accessToken?: string;
 }
 
 export interface UserState {

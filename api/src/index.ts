@@ -5,12 +5,14 @@ import { join } from 'path';
 import express from 'express';
 import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
+import cors from 'cors';
 const PORT = process.env.PORT || 3000;
 
 async function main() {
   const server = express();
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
+  server.use(cors({ origin: '*' }));
   await createConnection({
     database: './db.sqlite',
     type: 'sqlite',
