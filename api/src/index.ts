@@ -24,7 +24,7 @@ async function main() {
   }).then((conn) => {
     useExpressServer(server, {
       routePrefix: '/api/v1',
-      controllers: [__dirname + '/controllers/*.ts'],
+      controllers: [__dirname + '/controllers/*{.ts,.js}'],
       currentUserChecker: async (action: Action) => {
         const accessToken = action.request.headers['access-token'] as string;
         const data = <{ userId: string }>(
