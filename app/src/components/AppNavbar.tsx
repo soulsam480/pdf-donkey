@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { userContext } from '../store/userContext';
 import { colors } from '../styles/variables';
 
-interface Props {}
+interface Props {
+  //todo this is an optional prop, for an optional prop, the type is undefined or your specified type.
+  //todo e.g color has an assigned type string but also a optional prop, so the type will be string or undefined.
+  color?: string;
+}
 const Nav = styled.div`
   width: 100%;
   top: 0;
@@ -33,6 +37,8 @@ const Nav = styled.div`
     font-size: 20px;
   }
 `;
+//todo to use a prop you can destructure it like this
+//todo const AppNavbar: React.FC<Props> = ({color})
 
 const AppNavbar: React.FC<Props> = () => {
   const userState = useContext(userContext);
