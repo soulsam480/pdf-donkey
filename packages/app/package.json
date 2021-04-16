@@ -1,6 +1,8 @@
 {
   "name": "@pdf-donkey/app",
+  "author": "soulsam480 <soulsam480@hotmail.com>",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

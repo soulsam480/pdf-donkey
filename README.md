@@ -22,24 +22,20 @@ app:
 
 ### Run it locally
 
+> **Pre-requisites** You need to have `yarn` installed on your machine as this is monorepo and uses `[yarn woorkspaces](https://classic.yarnpkg.com/en/docs/workspaces/)`.
+> create a `.env` file in packages/app and add `VITE_API=http://localhost:3000`
+> crate a `.env` file in packages/api and add `REFRESH_TOKEN_SECRET`,`ACCESS_TOKEN_SECRET` with any random value.
+
 - clone `git clone https://github.com/soulsam480/pdf-donkey.git`
-- go to `/api` and create `.env` file with two variables `REFRESH_TOKEN_SECRET` and `ACCESS_TOKEN_SECRET` with any value.
 - install deps
 ```bash
-cd api
 yarn
 
-cd app
-yarn
+# start server
+yarn start
 
-```
-- start servers and open preview
-```bash
-cd app
-yarn dev
-
-cd api
-yarn serve
+# build for deployment
+yarn build
 
 ```
 
