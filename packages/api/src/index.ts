@@ -6,6 +6,7 @@ import express from 'express';
 import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
 import cors from 'cors';
+require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
 
 async function main() {

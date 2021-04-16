@@ -1,14 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { userContext } from '../store/userContext';
+import { useUser } from '../store/userContext';
 import { colors } from '../styles/variables';
 
-interface Props {
-  //todo this is an optional prop, for an optional prop, the type is undefined or your specified type.
-  //todo e.g color has an assigned type string but also a optional prop, so the type will be string or undefined.
-  color?: string;
-}
+interface Props {}
 const Nav = styled.div`
   width: 100%;
   top: 0;
@@ -37,28 +33,27 @@ const Nav = styled.div`
     font-size: 20px;
   }
 `;
-//todo to use a prop you can destructure it like this
-//todo const AppNavbar: React.FC<Props> = ({color})
 
 const AppNavbar: React.FC<Props> = () => {
-  const userState = useContext(userContext);
+  const { isLoggedIn, user } = useUser();
+  useEffect(() => {
+    console.log(isLoggedIn);
+  });
   return (
     <Nav>
       <div className="left">
         <NavLink to="/" className="brand">
           {`PDF Donkey 🦙`}
         </NavLink>
-        {userState?.userState.isLoggedIn && (
-          <NavLink to="/template/all">My templates</NavLink>
-        )}
+        {isLoggedIn && <NavLink to="/template/all">My templates</NavLink>}
       </div>
-      {!userState?.userState.isLoggedIn ? (
+      {!isLoggedIn ? (
         <div className="right">
           <NavLink to="/login">Login/Register</NavLink>
         </div>
       ) : (
         <div className="right">
-          <NavLink to="/user">{userState.userState.user.username}</NavLink>
+          <NavLink to="/user">{user.username}</NavLink>
         </div>
       )}
     </Nav>

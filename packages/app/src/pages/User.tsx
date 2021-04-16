@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { userContext } from '../store/userContext';
+import { useUser } from '../store/userContext';
 
 interface Props {}
 
 const User: React.FC<Props> = () => {
-  const userState = useContext(userContext);
+  const userState = useUser();
   return <div></div>;
 };
 

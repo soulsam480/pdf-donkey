@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import create, { State } from 'zustand';
 
 export interface User {
   name?: string;
@@ -9,12 +9,16 @@ export interface User {
   accessToken?: string;
 }
 
-export interface UserState {
+export interface UserState extends State {
   isLoggedIn: boolean;
   user: User;
+  setLogin: (load: boolean) => void;
+  setUser: (load: User) => void;
 }
 
-export const userContext = createContext<{
-  userState: UserState;
-  setUser: React.Dispatch<React.SetStateAction<UserState>>;
-} | null>(null);
+export const useUser = create<UserState>((set, get) => ({
+  isLoggedIn: false,
+  user: {},
+  setLogin: (load) => set(() => ({ isLoggedIn: load })),
+  setUser: (load) => set(() => ({ user: { ...load } })),
+}));

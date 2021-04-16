@@ -13,13 +13,7 @@ export class userController {
   }
 
   @Post('/login')
-  loginUser(
-    @Body() loginDto: { password: string; email?: string; username?: string },
-  ) {
-    return this.authService.login(
-      loginDto.password,
-      loginDto.email,
-      loginDto.password,
-    );
+  loginUser(@Body() loginDto: { password: string; email: string }) {
+    return this.authService.login(loginDto.password, loginDto.email);
   }
 }

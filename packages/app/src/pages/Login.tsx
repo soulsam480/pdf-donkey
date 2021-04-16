@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { colors } from 'src/styles/variables';
 import styled from 'styled-components';
-import { User, userContext } from 'src/store/userContext';
+import { User, useUser } from 'src/store/userContext';
 
 interface Props {}
 
@@ -27,38 +27,44 @@ const LoginContainer = styled.div`
 const Login: React.FC<Props> = () => {
   const router = useHistory();
   const [opType, setOpType] = useState<'login' | 'signup'>('login');
-  const userState = useContext(userContext);
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    setUser({
-      ...user,
-      [target.name]: target.value,
-    });
-  };
-
-  const [user, setUser] = useState<User>({
+  const { setUser, setLogin, isLoggedIn } = useUser();
+  const [user, setLoginUser] = useState<User>({
     email: '',
     name: '',
     password: '',
     username: '',
   });
-  async function Login(user: User) {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    setLoginUser({
+      ...user,
+      [target.name]: target.value,
+    });
+  };
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
+  const Login = async (user: User) => {
     await axios({
       baseURL: import.meta.env.VITE_API as string,
-      url: '/auth/login',
+      url: '/auth/login/',
       method: 'post',
       data: {
         ...user,
       },
     })
       .then((res) => {
-        localStorage.setItem('r=token', res.data.refreshToken);
-        userState?.setUser({ isLoggedIn: true, user: { ...res.data } });
+        localStorage.setItem('rtoken', res.data.refreshToken);
+        setUser({
+          ...res.data,
+        });
         router.push('/user');
       })
-      .catch((err) => console.log(err));
-  }
-  async function Register(user: User) {
+      .catch((err) => console.log(err.response));
+  };
+
+  const Register = async (user: User) => {
     await axios({
       baseURL: import.meta.env.VITE_API as string,
       url: '/auth/register/',
@@ -68,12 +74,15 @@ const Login: React.FC<Props> = () => {
       },
     })
       .then((res) => {
-        localStorage.setItem('r=token', res.data.refreshToken);
-        userState?.setUser({ isLoggedIn: true, user: { ...res.data } });
+        localStorage.setItem('rtoken', res.data.refreshToken);
+        setLogin(true);
+        setUser({
+          ...res.data,
+        });
         router.push('/user');
       })
       .catch((err) => console.log(err));
-  }
+  };
   return (
     <div className="container">
       <br />
@@ -84,7 +93,7 @@ const Login: React.FC<Props> = () => {
             <h2 className="center">🦙</h2>
             <br />
             {opType === 'login' ? (
-              <form onSubmit={(e) => (e.preventDefault(), Login(user))}>
+              <div>
                 <div className="form-group">
                   <input
                     name="email"
@@ -109,12 +118,12 @@ const Login: React.FC<Props> = () => {
                 <p className="muted text-right">
                   <small className="pointer">Forgot password ?</small>
                 </p>
-                <button className="btn block" type="submit">
+                <button className="btn block" onClick={(e) => Login(user)}>
                   Login
                 </button>
-              </form>
+              </div>
             ) : (
-              <form onSubmit={(e) => (e.preventDefault(), Register(user))}>
+              <div>
                 <div className="form-group">
                   <input
                     name="name"
@@ -156,9 +165,8 @@ const Login: React.FC<Props> = () => {
                     onKeyDown={(e) => e.key === 'Enter' && Register(user)}
                   />
                 </div>
-
                 <button className="btn block">Sign Up</button>
-              </form>
+              </div>
             )}
             <br />
 

@@ -5,7 +5,8 @@ import Index from './pages/Index';
 import Login from './pages/Login';
 import Template from './pages/Template';
 import User from './pages/User';
-import { userContext, UserState } from './store/userContext';
+import { useUser } from './store/userContext';
+
 interface Props {}
 
 interface PrivateRouteProps extends RouteProps {
@@ -35,12 +36,9 @@ const PrivateRoute = (props: PrivateRouteProps) => {
 };
 
 const App: React.FC<Props> = () => {
-  const [userState, setUser] = useState<UserState>({
-    isLoggedIn: false,
-    user: {},
-  });
+  const userState = useUser();
   return (
-    <userContext.Provider value={{ userState, setUser }}>
+    <div>
       <AppNavbar />
       <div className="content">
         <Switch>
@@ -66,7 +64,7 @@ const App: React.FC<Props> = () => {
           ></PrivateRoute>
         </Switch>
       </div>
-    </userContext.Provider>
+    </div>
   );
 };
 

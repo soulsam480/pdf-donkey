@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "repository": "git@github.com-soulsam480:soulsam480/pdf-donkey.git",
+  "license": "MIT",
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "scripts": {
     "client": "yarn workspace @pdf-donkey/app dev",
@@ -12,7 +13,6 @@
     "start": "concurrently --kill-others-on-fail \"yarn client\"  \"yarn server\"",
     "build": "concurrently --kill-others-on-fail \"yarn build-client\"  \"yarn build-server\""
   },
-  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
