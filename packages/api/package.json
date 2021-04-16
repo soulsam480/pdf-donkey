@@ -1,10 +1,10 @@
 {
-  "name": "pdf-donkey-api",
+  "name": "@pdf-donkey/api",
   "author": {
     "email": "soulsam480@hotmail.com",
     "name": "soulsam480"
   },
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
