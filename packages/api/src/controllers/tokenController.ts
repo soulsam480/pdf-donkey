@@ -13,7 +13,7 @@ export class tokenController {
   async sendAccessToken(@Req() request: Request) {
     const refreshToken = request.headers['refresh-token'] as string;
     if (typeof refreshToken !== 'string')
-      return new HttpError(401, 'refresh token not found !');
+      throw new HttpError(401, 'refresh token not found !');
 
     let data;
     try {
@@ -21,7 +21,7 @@ export class tokenController {
         verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string)
       );
     } catch {
-      return new HttpError(401, 'Token is expired or invalid !');
+      throw new HttpError(401, 'Token is expired or invalid !');
     }
     const user = await this.userRepo.findOne({ id: data.userId });
     return this.authService.createTokens(user as User);

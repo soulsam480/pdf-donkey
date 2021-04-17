@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect, Route, RouteProps, Switch } from 'react-router-dom';
+import { authState } from './helpers/authstate';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Template from './pages/Template';
 import User from './pages/User';
 import { useUser } from './store/userContext';
-
+authState();
 interface Props {}
 
 interface PrivateRouteProps extends RouteProps {

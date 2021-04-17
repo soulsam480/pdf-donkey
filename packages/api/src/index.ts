@@ -6,6 +6,7 @@ import express from 'express';
 import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
 import cors from 'cors';
+import chalk from 'chalk';
 require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
 
@@ -33,6 +34,15 @@ async function main() {
         );
         return conn.getRepository(User).findOne({ id: data.userId });
       },
+    });
+    server._router.stack.forEach(function (r: any) {
+      if (r.route && r.route.path && r.route.methods) {
+        console.log(
+          chalk.blue(r.route.path),
+          '||',
+          chalk.red(...Object.keys(r.route.methods)),
+        );
+      }
     });
     server.listen(PORT, () => console.log(`Listening on ${PORT}`));
   });
