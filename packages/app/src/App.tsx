@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Redirect, Route, RouteProps, Switch } from 'react-router-dom';
-import AppNavbar from './components/AppNavbar';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Template from './pages/Template';
@@ -39,7 +38,6 @@ const App: React.FC<Props> = () => {
   const userState = useUser();
   return (
     <div>
-      <AppNavbar />
       <div className="content">
         <Switch>
           <Route exact path="/" component={Index}></Route>

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { colors } from 'src/styles/variables';
+import { colors } from '../styles/variables';
 import styled from 'styled-components';
-import { User, useUser } from 'src/store/userContext';
+import { User, useUser } from '../store/userContext';
 
 interface Props {}
 
@@ -56,6 +56,7 @@ const Login: React.FC<Props> = () => {
     })
       .then((res) => {
         localStorage.setItem('rtoken', res.data.refreshToken);
+        setLogin(true);
         setUser({
           ...res.data,
         });

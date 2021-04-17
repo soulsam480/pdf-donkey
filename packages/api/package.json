@@ -10,7 +10,7 @@
   "scripts": {
     "start": "cd dist & node index.js",
     "serve": "ts-node-dev --respawn -- src/index.ts",
-    "build": "tsc src/index.ts"
+    "build": "tsc"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
