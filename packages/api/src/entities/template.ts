@@ -17,6 +17,9 @@ export class TemplateEntity extends BaseEntity {
   @Column({ type: 'text', nullable: false })
   markup: string;
 
+  @Column({ type: 'text', nullable: false })
+  title: string;
+
   @Column({ type: 'text', nullable: true })
   style: string;
 

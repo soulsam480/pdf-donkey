@@ -42,7 +42,7 @@ const AppNavbar: React.FC<Props> = () => {
         <NavLink to="/" className="brand">
           {`PDF Donkey 🦙`}
         </NavLink>
-        {isLoggedIn && <NavLink to="/template/all">My templates</NavLink>}
+        {/* {isLoggedIn && <NavLink to="/template/all">My templates</NavLink>} */}
       </div>
       {!isLoggedIn ? (
         <div className="right">

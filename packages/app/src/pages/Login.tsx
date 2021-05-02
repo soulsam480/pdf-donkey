@@ -27,7 +27,7 @@ const LoginContainer = styled.div`
 const Login: React.FC<Props> = () => {
   const router = useHistory();
   const [opType, setOpType] = useState<'login' | 'signup'>('login');
-  const { setUser, setLogin, isLoggedIn } = useUser();
+  const { setUser, setLogin } = useUser();
   const [user, setLoginUser] = useState<User>({
     email: '',
     name: '',
@@ -41,9 +41,6 @@ const Login: React.FC<Props> = () => {
       [target.name]: target.value,
     });
   };
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
 
   const Login = async (user: User) => {
     await axios({

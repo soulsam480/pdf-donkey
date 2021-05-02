@@ -7,5 +7,4 @@ const Index: React.FC<Props> = () => {
   const { user } = useUser();
   return <div>{user.name}</div>;
 };
-
 export default Index;

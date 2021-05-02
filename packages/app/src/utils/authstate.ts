@@ -1,5 +1,5 @@
-import { User, useUser } from '../store/userContext';
-import { useToken } from '../store/useToken';
+import { User, useUser } from 'src/store/userContext';
+import { useToken } from 'src/store/useToken';
 import Axios, { AxiosResponse } from 'axios';
 
 export const authState = async () => {
@@ -25,7 +25,7 @@ export const authState = async () => {
           url: '/user',
           method: 'get',
           headers: {
-            'access-token': useToken.getState().token,
+            'access-token': tok,
           },
         });
 

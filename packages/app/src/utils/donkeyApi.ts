@@ -8,9 +8,9 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 export class DonkeyApi<T> {
   constructor(readonly path: string, readonly token: string) {}
   private readonly AxiosApi = axios.create({
-    baseURL: process.env.APP_API,
+    baseURL: import.meta.env.VITE_API as string,
     headers: {
-      Authorization: `Bearer ${this.token}`,
+      'access-token': `${this.token}`,
     },
   });
   /**

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect, Route, RouteProps, Switch } from 'react-router-dom';
-import { authState } from './helpers/authstate';
+import { authState } from './utils/authstate';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Template from './pages/Template';
@@ -10,7 +10,7 @@ authState();
 interface Props {}
 
 interface PrivateRouteProps extends RouteProps {
-  component: any;
+  component: React.FC<any>;
   isSignedIn: boolean;
 }
 const PrivateRoute = (props: PrivateRouteProps) => {
@@ -41,8 +41,38 @@ const App: React.FC<Props> = () => {
     <div>
       <div className="content">
         <Switch>
-          <Route exact path="/" component={Index}></Route>
-          <Route exact path="/login" component={Login}></Route>
+          <Route
+            exact
+            path="/"
+            render={(routeProps) =>
+              !userState.isLoggedIn ? (
+                <Index {...routeProps} />
+              ) : (
+                <Redirect
+                  to={{
+                    pathname: '/user',
+                    state: { from: routeProps.location },
+                  }}
+                />
+              )
+            }
+          ></Route>
+          <Route
+            exact
+            path="/login"
+            render={(routeProps) =>
+              !userState.isLoggedIn ? (
+                <Login {...routeProps} />
+              ) : (
+                <Redirect
+                  to={{
+                    pathname: '/user',
+                    state: { from: routeProps.location },
+                  }}
+                />
+              )
+            }
+          ></Route>
           <PrivateRoute
             exact
             path="/user"
@@ -55,12 +85,12 @@ const App: React.FC<Props> = () => {
             component={Template}
             isSignedIn={userState.isLoggedIn}
           ></PrivateRoute>
-          <PrivateRoute
+          {/* <PrivateRoute
             exact
             path="/template/all"
             component={Template}
             isSignedIn={userState.isLoggedIn}
-          ></PrivateRoute>
+          ></PrivateRoute> */}
         </Switch>
       </div>
     </div>

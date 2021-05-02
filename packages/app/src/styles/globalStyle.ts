@@ -13,6 +13,9 @@ export const Global = createGlobalStyle`
     width:100%;
     padding:60px 5px 0 5px;
   }
+  p {
+    margin-bottom: 6px;
+  }
   .btn {
     background-color: ${colors.prd};
     color: black !important;
@@ -21,7 +24,7 @@ export const Global = createGlobalStyle`
       color: black !important;
     }
     &:disabled{
-      background-color: ${colors.prdisabled};
+       background-color: ${colors.prdisabled};
       color: black !important;
     }
   }
