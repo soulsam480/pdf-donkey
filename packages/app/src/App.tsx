@@ -8,7 +8,6 @@ import User from './pages/User';
 import { useUser } from './store/userContext';
 authState();
 interface Props {}
-
 interface PrivateRouteProps extends RouteProps {
   component: React.FC<any>;
   isSignedIn: boolean;

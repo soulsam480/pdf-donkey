@@ -7,7 +7,9 @@ export const Global = createGlobalStyle`
     font-size: 16px;
     padding:0;
     margin:0;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing:1px;
+
   }
   .content {
     width:100%;
@@ -17,7 +19,7 @@ export const Global = createGlobalStyle`
     margin-bottom: 6px;
   }
   .btn {
-    background-color: ${colors.prd};
+    background-color: ${colors.prb};
     color: black !important;
     &:hover {
       background-color: ${colors.pr};

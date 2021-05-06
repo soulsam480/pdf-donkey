@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { colors } from '../styles/variables';
 import styled from 'styled-components';
 import { User, useUser } from '../store/userContext';
+import { useToken } from 'src/store/useToken';
 
 interface Props {}
 
@@ -28,6 +29,7 @@ const Login: React.FC<Props> = () => {
   const router = useHistory();
   const [opType, setOpType] = useState<'login' | 'signup'>('login');
   const { setUser, setLogin } = useUser();
+  const { setToken } = useToken();
   const [user, setLoginUser] = useState<User>({
     email: '',
     name: '',
@@ -53,6 +55,7 @@ const Login: React.FC<Props> = () => {
     })
       .then((res) => {
         localStorage.setItem('rtoken', res.data.refreshToken);
+        setToken(res.data.accessToken);
         setLogin(true);
         setUser({
           ...res.data,
@@ -73,6 +76,7 @@ const Login: React.FC<Props> = () => {
     })
       .then((res) => {
         localStorage.setItem('rtoken', res.data.refreshToken);
+        setToken(res.data.accessToken);
         setLogin(true);
         setUser({
           ...res.data,

@@ -14,7 +14,7 @@ const TemplateCardStyle = styled.div`
     color: inherit;
   }
   .template-card {
-    background-color: ${colors.prd};
+    background-color: ${colors.prb};
     padding: 12px;
     border-radius: 6px;
   }
