@@ -1,0 +1,3 @@
+[build]
+  publish = "packages/app/dist"
+  command = "yarn build:client"
