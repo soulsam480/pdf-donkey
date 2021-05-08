@@ -36,7 +36,8 @@ export class authService {
 
   async register(user: User) {
     if (await this.userRepo.findOne({ email: user.email }))
-      throw new HttpError(400, 'Email already in use !');
+      // throw new HttpError(400, 'Email already in use !');
+      return;
 
     try {
       const createdUser = await this.userRepo
@@ -46,15 +47,17 @@ export class authService {
       (createdUser.password as any) = undefined;
       return { ...createdUser, ...this.createTokens(createdUser) };
     } catch (error) {
-      throw new HttpError(500, 'Something went wrong.');
+      return;
+      // throw new HttpError(500, 'Something went wrong.');
     }
   }
 
   async login(password: string, email: string) {
     const user = await this.userRepo.findOne({ email: email });
-    if (!user) throw new HttpError(400, "user doesn't exist !");
-    if (!(await this.comparePassword(password, user.password)))
-      throw new HttpError(400, 'Wrong credentials provided !');
+    if (!user) return;
+    if (!(await this.comparePassword(password, user.password))) {
+      return;
+    }
 
     (user.password as any) = undefined;
 

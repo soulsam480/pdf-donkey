@@ -29,8 +29,8 @@ async function main() {
     type: 'sqlite',
     entities: [join(__dirname, './entities/*')],
     // migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
-    logger: process.env.PROD ? undefined : 'simple-console',
-    logging: process.env.PROD ? false : true,
+    logger: /*process.env.PROD ? undefined : */ 'simple-console',
+    logging: /*process.env.PROD ? false :*/ true,
     synchronize: true,
   }).then((conn) => {
     useExpressServer(server, {
