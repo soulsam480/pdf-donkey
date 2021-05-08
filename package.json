@@ -10,8 +10,9 @@
     "server": "yarn workspace @pdf-donkey/api serve",
     "build:client": "yarn workspace @pdf-donkey/app build",
     "build:server": "yarn workspace @pdf-donkey/api build",
-    "start": "concurrently --kill-others-on-fail \"yarn client\"  \"yarn server\"",
-    "build": "concurrently --kill-others-on-fail \"yarn build-client\"  \"yarn build-server\""
+    "serve": "concurrently --kill-others-on-fail \"yarn client\"  \"yarn server\"",
+    "build": "concurrently --kill-others-on-fail \"yarn build-client\"  \"yarn build-server\"",
+    "start:server": "yarn workspace @pdf-donkey/api start"
   },
   "workspaces": [
     "packages/*"

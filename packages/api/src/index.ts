@@ -9,19 +9,28 @@ import cors from 'cors';
 import chalk from 'chalk';
 require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
-
+import rateLimiter from 'express-rate-limit';
 async function main() {
   const server = express();
+  // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+  // see https://expressjs.com/en/guide/behind-proxies.html
+  // app.set('trust proxy', 1);
+
+  const limiter = rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  });
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
   server.use(cors({ origin: '*' }));
+  server.use('/api/v1/auth/', limiter);
   await createConnection({
     database: './db.sqlite',
     type: 'sqlite',
     entities: [join(__dirname, './entities/*')],
     // migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
-    logger: 'simple-console',
-    logging: true,
+    logger: process.env.PROD ? undefined : 'simple-console',
+    logging: process.env.PROD ? false : true,
     synchronize: true,
   }).then((conn) => {
     useExpressServer(server, {
@@ -35,15 +44,17 @@ async function main() {
         return conn.getRepository(User).findOne({ id: data.userId });
       },
     });
-    server._router.stack.forEach(function (r: any) {
-      if (r.route && r.route.path && r.route.methods) {
-        console.log(
-          chalk.blue(r.route.path),
-          '||',
-          chalk.red(...Object.keys(r.route.methods)),
-        );
-      }
-    });
+    if (!process.env.PROD) {
+      server._router.stack.forEach(function (r: any) {
+        if (r.route && r.route.path && r.route.methods) {
+          console.log(
+            chalk.blue(r.route.path),
+            '||',
+            chalk.red(...Object.keys(r.route.methods)),
+          );
+        }
+      });
+    }
     server.listen(PORT, () => console.log(`Listening on ${PORT}`));
   });
 }
