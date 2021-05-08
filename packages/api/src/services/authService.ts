@@ -1,10 +1,9 @@
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcrypt';
 import { User } from 'src/entities/user';
-import { HttpError } from 'routing-controllers';
 import { sign } from 'jsonwebtoken';
-import { response, Response } from 'express';
-require('dotenv').config();
+import { Response } from 'express';
+
 export class authService {
   private readonly userRepo = getRepository(User);
 

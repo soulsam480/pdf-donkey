@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { Action, useExpressServer } from 'routing-controllers';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
