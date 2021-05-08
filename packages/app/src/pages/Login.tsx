@@ -167,7 +167,9 @@ const Login: React.FC<Props> = () => {
                     onKeyDown={(e) => e.key === 'Enter' && Register(user)}
                   />
                 </div>
-                <button className="btn block">Sign Up</button>
+                <button className="btn block" onClick={(e) => Register(user)}>
+                  Sign Up
+                </button>
               </div>
             )}
             <br />

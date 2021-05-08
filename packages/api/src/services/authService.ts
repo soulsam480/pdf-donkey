@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { User } from 'src/entities/user';
 import { HttpError } from 'routing-controllers';
 import { sign } from 'jsonwebtoken';
+import { response, Response } from 'express';
 require('dotenv').config();
 export class authService {
   private readonly userRepo = getRepository(User);
@@ -34,10 +35,9 @@ export class authService {
     return await bcrypt.compare(password, hashedPass);
   }
 
-  async register(user: User) {
+  async register(user: User, res: Response) {
     if (await this.userRepo.findOne({ email: user.email }))
-      // throw new HttpError(400, 'Email already in use !');
-      return;
+      return res.status(400).send('Email already in use !');
 
     try {
       const createdUser = await this.userRepo
@@ -47,16 +47,16 @@ export class authService {
       (createdUser.password as any) = undefined;
       return { ...createdUser, ...this.createTokens(createdUser) };
     } catch (error) {
-      return;
-      // throw new HttpError(500, 'Something went wrong.');
+      return res.status(400).send('Something went wrong.');
     }
   }
 
-  async login(password: string, email: string) {
+  async login(password: string, email: string, res: Response) {
     const user = await this.userRepo.findOne({ email: email });
-    if (!user) return;
+    if (!user)
+      return res.status(400).send('Username/Email or password is incorrect !');
     if (!(await this.comparePassword(password, user.password))) {
-      return;
+      return res.status(400).send('Username/Email or password is incorrect !');
     }
 
     (user.password as any) = undefined;
