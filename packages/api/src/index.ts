@@ -11,8 +11,6 @@ import chalk from 'chalk';
 dotenv.config({
   path: join(__dirname, '../.env'),
 });
-console.log(__dirname);
-console.log(process.env.PROD);
 require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
 import rateLimiter from 'express-rate-limit';
