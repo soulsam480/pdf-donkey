@@ -8,7 +8,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cd dist && PROD=false node index.js",
+    "start": "cd dist && PROD=true node index.js",
     "serve": "ts-node-dev --respawn -- src/index.ts",
     "build": "rm -rf dist && tsc && tsc-alias && cp ./.env ./dist/.env"
   },

@@ -1,4 +1,4 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
 import { Action, useExpressServer } from 'routing-controllers';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
@@ -8,6 +8,11 @@ import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
 import cors from 'cors';
 import chalk from 'chalk';
+dotenv.config({
+  path: join(__dirname, '../.env'),
+});
+console.log(__dirname);
+console.log(process.env.PROD);
 require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
 import rateLimiter from 'express-rate-limit';
@@ -49,9 +54,11 @@ async function main() {
       server._router.stack.forEach(function (r: any) {
         if (r.route && r.route.path && r.route.methods) {
           console.log(
-            chalk.blue(r.route.path),
+            chalk.blue(r.route.path.toUpperCase()),
             '||',
-            chalk.red(...Object.keys(r.route.methods)),
+            chalk.red(
+              Object.keys(r.route.methods).map((el) => el.toUpperCase()),
+            ),
           );
         }
       });
