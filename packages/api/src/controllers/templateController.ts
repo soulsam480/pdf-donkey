@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  CurrentUser,
   Delete,
   Get,
   Param,
@@ -9,6 +10,7 @@ import {
   UseBefore,
 } from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
+import { User } from 'src/entities/user';
 import { authMiddleware } from 'src/middlewares/auth.middleware';
 import { getRepository } from 'typeorm';
 
@@ -27,8 +29,16 @@ export class userController {
   }
 
   @Post('/')
-  async createTemplate(@Body() template: TemplateEntity) {
-    return this.templateRepo.create(template).save();
+  async createTemplate(
+    @Body() template: TemplateEntity,
+    @CurrentUser() user: User,
+  ) {
+    return this.templateRepo
+      .create({
+        ...template,
+        user: { id: user.id },
+      })
+      .save();
   }
 
   @Put('/:id')

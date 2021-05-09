@@ -44,4 +44,7 @@ export const Global = createGlobalStyle`
     border:none;
     font-family: 'Quicksand', sans-serif;
   }
+  .float-right{
+    float:right
+  }
 `;

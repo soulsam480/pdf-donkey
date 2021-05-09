@@ -61,7 +61,9 @@ async function main() {
         }
       });
     }
-    server.listen(PORT, () => console.log(`Listening on ${PORT}`));
+    server.listen(PORT, () =>
+      console.log(`Listening on http://localhost:${PORT}`),
+    );
   });
 }
 
