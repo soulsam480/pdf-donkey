@@ -8,23 +8,6 @@ import { useToken } from 'src/store/useToken';
 
 interface Props {}
 
-const LoginContainer = styled.div`
-  .login {
-    .head {
-      font-size: 40px;
-    }
-    .login_card {
-      padding: 40px 15px;
-      border-radius: 20px;
-      background-color: ${colors.prl};
-    }
-    .signup-button {
-      font-weight: bold;
-      cursor: pointer;
-    }
-  }
-`;
-
 const Login: React.FC<Props> = () => {
   const router = useHistory();
   const [opType, setOpType] = useState<'login' | 'signup'>('login');
@@ -89,85 +72,82 @@ const Login: React.FC<Props> = () => {
     <div className="container">
       <br />
       <br />
-      <LoginContainer className="row center-xs">
-        <div className="login col-xs-12 col-md-7 col-sm-8 col-lg-4">
-          <div className="login_card">
-            <h2 className="center">🦙</h2>
+      <div className="flex flex-row justify-center ">
+        <div className="login sm:w-4/5 lg:w-2/5 w-full">
+          <div className="login_card bg-gray-100 p-4 rounded-xl">
+            <p className="center text-4xl">🦙</p>
             <br />
             {opType === 'login' ? (
-              <div>
-                <div className="form-group">
-                  <input
-                    name="email"
-                    type="email"
-                    className="input"
-                    value={user.email}
-                    placeholder="Email"
-                    onChange={handleInput}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="password"
-                    type="password"
-                    className="input"
-                    value={user.password}
-                    placeholder="Password"
-                    onChange={handleInput}
-                    onKeyDown={(e) => e.key === 'Enter' && Login(user)}
-                  />
-                </div>
+              <div className="grid grid-cols-1 gap-6">
+                <input
+                  name="email"
+                  type="email"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.email}
+                  placeholder="Email"
+                  onChange={handleInput}
+                />
+                <input
+                  name="password"
+                  type="password"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.password}
+                  placeholder="Password"
+                  onChange={handleInput}
+                  onKeyDown={(e) => e.key === 'Enter' && Login(user)}
+                />
                 <p className="muted text-right">
                   <small className="pointer">Forgot password ?</small>
                 </p>
-                <button className="btn block" onClick={(e) => Login(user)}>
+                <button
+                  className="bg-indigo-500 p-3 text-white rounded-lg"
+                  onClick={(e) => Login(user)}
+                >
                   Login
                 </button>
               </div>
             ) : (
-              <div>
-                <div className="form-group">
-                  <input
-                    name="name"
-                    type="text"
-                    className="input"
-                    value={user.name}
-                    placeholder="Name"
-                    onChange={handleInput}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="email"
-                    type="email"
-                    className="input"
-                    value={user.email}
-                    placeholder="Email"
-                    onChange={handleInput}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="username"
-                    type="text"
-                    className="input"
-                    value={user.username}
-                    placeholder="Username"
-                    onChange={handleInput}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="password"
-                    type="password"
-                    className="input"
-                    value={user.password}
-                    placeholder="Password"
-                    onChange={handleInput}
-                    onKeyDown={(e) => e.key === 'Enter' && Register(user)}
-                  />
-                </div>
-                <button className="btn block" onClick={(e) => Register(user)}>
+              <div className="grid grid-cols-1 gap-6">
+                <input
+                  name="name"
+                  type="text"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.name}
+                  placeholder="Name"
+                  onChange={handleInput}
+                />
+
+                <input
+                  name="email"
+                  type="email"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.email}
+                  placeholder="Email"
+                  onChange={handleInput}
+                />
+
+                <input
+                  name="username"
+                  type="text"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.username}
+                  placeholder="Username"
+                  onChange={handleInput}
+                />
+
+                <input
+                  name="password"
+                  type="password"
+                  className="input bg-gray-300 rounded-md"
+                  value={user.password}
+                  placeholder="Password"
+                  onChange={handleInput}
+                  onKeyDown={(e) => e.key === 'Enter' && Register(user)}
+                />
+                <button
+                  className="bg-indigo-500 p-3 text-white rounded-lg"
+                  onClick={(e) => Register(user)}
+                >
                   Sign Up
                 </button>
               </div>
@@ -179,7 +159,7 @@ const Login: React.FC<Props> = () => {
                 <small>
                   Don't have an account ?{' '}
                   <span
-                    className="blue signup-button"
+                    className="blue signup-button cursor-pointer"
                     onClick={() => setOpType('signup')}
                   >
                     Sign Up
@@ -191,7 +171,7 @@ const Login: React.FC<Props> = () => {
                 <small>
                   Already an user ?{' '}
                   <span
-                    className="blue signup-button"
+                    className="blue signup-button cursor-pointer"
                     onClick={() => setOpType('login')}
                   >
                     Login
@@ -201,7 +181,7 @@ const Login: React.FC<Props> = () => {
             )}
           </div>
         </div>
-      </LoginContainer>
+      </div>
     </div>
   );
 };

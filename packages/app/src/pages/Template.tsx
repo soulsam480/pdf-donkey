@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 import { useParams } from 'react-router';
+import PrismHighlight from 'src/components/PrismHighlight';
 import { useToken } from 'src/store/useToken';
 import { Template as TemplateModel } from 'src/utils/constants';
 import useSWR from 'swr';
-
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -27,7 +27,16 @@ const Template: React.FC<Props> = () => {
   const { data: TemplateData } = useSWR(`/template/${id}`, fetcher, {
     refreshInterval: 60000,
   });
-  return <div className="container">{TemplateData?.id}</div>;
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          <PrismHighlight code={TemplateData?.markup} language={'html'} />
+        </div>
+        <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">d</div>
+      </div>
+    </div>
+  );
 };
 
 export default Template;

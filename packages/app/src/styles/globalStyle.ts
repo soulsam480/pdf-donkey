@@ -39,9 +39,13 @@ export const Global = createGlobalStyle`
   .pointer{
     cursor: pointer;
   }
+  .btn-red{
+    color: white !important;
+    &:hover {
+      color: white !important;
+    }
+  }
   .input{
-    background-color: ${colors.prd};
-    border:none;
     font-family: 'Quicksand', sans-serif;
   }
   .float-right{

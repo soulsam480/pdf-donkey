@@ -1,59 +1,128 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import { useUser } from '../store/userContext';
-import { colors } from '../styles/variables';
 
 interface Props {}
-const Nav = styled.div`
-  width: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  padding: 10px 0;
-  background-color: ${colors.pr};
-  z-index: 999;
-  box-shadow: 0 1px 6px 0.5px rgba(145, 145, 145, 0.301);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  a {
-    display: inline-block;
-    padding: 0 5px;
-    color: #000 !important;
-    text-decoration: none;
-    &:last-child {
-      padding-right: 15px;
-    }
-  }
-  .brand {
-    padding: 0 15px;
-    font-weight: bold;
-    font-size: 20px;
-  }
-`;
-
 const AppNavbar: React.FC<Props> = () => {
   const { isLoggedIn, user } = useUser();
+  const [isOpen, setOpen] = useState(false);
   return (
-    <Nav>
-      <div className="left">
-        <NavLink to="/" className="brand">
-          {`PDF Donkey 🦙`}
-        </NavLink>
-        {/* {isLoggedIn && <NavLink to="/template/all">My templates</NavLink>} */}
+    <nav className="bg-gray-800 sticky top-0 z-50">
+      <div className="max-w-screen-2xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between h-16">
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none "
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              onClick={() => setOpen(!isOpen)}
+            >
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? (
+                <>
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </>
+              )}
+            </button>
+          </div>
+          <div className="flex-1 flex items-center sm:items-stretch justify-start">
+            <NavLink
+              to="/"
+              className="flex-shrink-0 flex items-center text-white font-bold ml-10 sm:ml-0"
+            >
+              🦙 PDF Donkey
+            </NavLink>
+            <div className="hidden sm:block sm:ml-6">
+              <div className="flex space-x-4">
+                {isLoggedIn && (
+                  <NavLink
+                    to="/user"
+                    className="hover:bg-gray-600 text-white px-3 py-2 rounded-md font-medium"
+                    aria-current="page"
+                  >
+                    User
+                  </NavLink>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="ml-3 relative">
+              <div>
+                {isLoggedIn ? (
+                  <>
+                    <NavLink
+                      to="/user"
+                      className="hover:bg-gray-600 text-white font-bold px-3 py-2 rounded-md"
+                      id="user-menu-button"
+                    >
+                      {user.name}
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/login"
+                      className="hover:bg-gray-600 text-white font-bold px-3 py-2 rounded-md"
+                      id="user-menu-button"
+                    >
+                      Login/ Signup
+                    </NavLink>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      {!isLoggedIn ? (
-        <div className="right">
-          <NavLink to="/login">Login/Register</NavLink>
+
+      <div className={isOpen ? 'sm:hidden' : 'hidden'} id="mobile-menu">
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {isLoggedIn && (
+            <NavLink
+              to="/user"
+              className=" text-white block px-3 py-2 rounded-md text-base font-medium"
+              aria-current="page"
+            >
+              User
+            </NavLink>
+          )}
         </div>
-      ) : (
-        <div className="right">
-          <NavLink to="/user">{user.username}</NavLink>
-        </div>
-      )}
-    </Nav>
+      </div>
+    </nav>
   );
 };
 

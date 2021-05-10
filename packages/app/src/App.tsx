@@ -6,7 +6,18 @@ import Login from './pages/Login';
 import Template from './pages/Template';
 import User from './pages/User';
 import { useUser } from './store/userContext';
+import './index.css';
 authState();
+
+// document.addEventListener('keyup', (e) => {
+//   if (e.key !== 'Escape') return;
+//   if (!document.getElementById('donkey-modal')) return;
+//   if (document.getElementById('donkey-modal')?.classList.contains('show')) {
+//     (document.getElementById('donkey-modal') as HTMLElement).classList.toggle(
+//       'show',
+//     );
+//   }
+// });
 interface Props {}
 interface PrivateRouteProps extends RouteProps {
   component: React.FC<any>;
@@ -38,7 +49,7 @@ const App: React.FC<Props> = () => {
   const userState = useUser();
   return (
     <div>
-      <div className="content">
+      <div className="container mx-auto px-4 py-4">
         <Switch>
           <Route
             exact

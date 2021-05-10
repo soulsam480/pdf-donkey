@@ -16,6 +16,9 @@ const StyledModal = styled.div`
   left: 0;
   z-index: 1000;
   transition: all 0.3s;
+  &.show {
+    display: block;
+  }
   & > div {
     max-width: 600px;
     margin: 4em auto;
@@ -72,7 +75,7 @@ const User: React.FC<Props> = () => {
   }
   return (
     <div className="container">
-      <StyledModal style={{ display: isModal ? 'block' : 'none' }}>
+      {/* <StyledModal className={isModal ? 'show' : ''} id="donkey-modal">
         <div>
           <h3>Create a new template</h3>
           <form onSubmit={(e) => (e.preventDefault(), cerateTemplate())}>
@@ -98,7 +101,7 @@ const User: React.FC<Props> = () => {
             </div>
             <div className="text-right">
               <button
-                className="btn btn-red"
+                className="btn btn-red bg-red"
                 onClick={() => setModal(false)}
                 type="button"
               >
@@ -110,19 +113,17 @@ const User: React.FC<Props> = () => {
             </div>
           </form>
         </div>
-      </StyledModal>
+      </StyledModal> */}
 
-      <h2>
-        <b>Dashboard</b>
-        <button className="btn float-right" onClick={() => setModal(true)}>
-          Create
-        </button>
-      </h2>
-      <p>
+      <div>
+        <p className="text-3xl font-bold">Dashboard</p>
+      </div>
+      <p className="text-lg">
         {' '}
-        Hii <b>{user.name} </b> ! Welcome to PDF-Donkey.
+        Hii <span className="font-bold"> {user.name} </span> ! Welcome to
+        PDF-Donkey.
       </p>
-      <p>You can find all of your templates here.</p>
+      <p className="text-lg">You can find all of your templates here.</p>
       <TemplateCards />
     </div>
   );
