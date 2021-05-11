@@ -3,3 +3,6 @@
 @import 'tailwindcss/components';
 
 @import 'tailwindcss/utilities';
+.modal {
+  transition: opacity 0.25s ease;
+}

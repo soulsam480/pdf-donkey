@@ -25,7 +25,8 @@ const Template: React.FC<Props> = () => {
     });
   }
   const { data: TemplateData } = useSWR(`/template/${id}`, fetcher, {
-    refreshInterval: 60000,
+    refreshInterval: 1200000,
+    revalidateOnFocus: false,
   });
   return (
     <div className="container">
