@@ -11,8 +11,10 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
     "axios": "^0.21.1",
-    "prismjs": "^1.23.0",
+    "highlight.js": "^10.7.2",
+    "liquidjs": "^9.25.0",
     "react": "^17.0.0",
+    "react-codejar": "^1.0.2",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
     "shoyo": "^0.1.4-alpha",
@@ -24,7 +26,6 @@
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
     "@types/node": "^14.14.37",
-    "@types/prismjs": "^1.16.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",

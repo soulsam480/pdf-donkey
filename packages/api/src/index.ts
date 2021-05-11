@@ -29,7 +29,7 @@ async function main() {
   server.use(cors({ origin: '*' }));
   server.use('/api/v1/auth/', limiter);
   await createConnection({
-    database: './db.sqlite',
+    database: join(__dirname, '../db.sqlite'),
     type: 'sqlite',
     entities: [join(__dirname, './entities/*')],
     // migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
@@ -52,9 +52,9 @@ async function main() {
       server._router.stack.forEach(function (r: any) {
         if (r.route && r.route.path && r.route.methods) {
           console.log(
-            chalk.blue(r.route.path.toUpperCase()),
+            chalk.yellow(r.route.path.toUpperCase()),
             '||',
-            chalk.red(
+            chalk.greenBright(
               Object.keys(r.route.methods).map((el) => el.toUpperCase()),
             ),
           );

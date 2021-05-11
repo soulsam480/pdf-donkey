@@ -51,7 +51,11 @@ export class authService {
   }
 
   async login(password: string, email: string, res: Response) {
-    const user = await this.userRepo.findOne({ email: email });
+    const user = await this.userRepo.findOne(
+      email.includes('@')
+        ? { where: { email: email } }
+        : { where: { username: email } },
+    );
     if (!user)
       return res.status(400).send('Username/Email or password is incorrect !');
     if (!(await this.comparePassword(password, user.password))) {

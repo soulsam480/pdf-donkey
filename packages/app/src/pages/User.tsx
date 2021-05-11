@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import AppModal from 'src/components/AppModal';
 import TemplateCards from 'src/components/TemplateCards';
@@ -23,6 +23,14 @@ const User: React.FC<Props> = () => {
       [target.name]: target.value,
     });
   };
+  useEffect(() => {
+    if (!isModal) {
+      setTemplate({
+        markup: '',
+        title: '',
+      });
+    }
+  }, [isModal]);
 
   async function cerateTemplate() {
     axios({
@@ -62,6 +70,7 @@ const User: React.FC<Props> = () => {
             value={newTemplate.title}
             placeholder="Title"
             onChange={handleInput}
+            className="rounded-md"
           />
 
           <textarea
@@ -69,18 +78,26 @@ const User: React.FC<Props> = () => {
             value={newTemplate.markup}
             placeholder="Markup"
             onChange={handleInput}
+            className="rounded-md"
           />
           <div className="flex justify-end">
             <button
-              className="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white ml-1"
+              className="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white ml-1  transition duration-200 ease-in-out"
               onClick={() => setModal(false)}
               type="button"
             >
               Cancel
             </button>
             <button
-              className="p-2 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white ml-1"
+              className={`p-2 rounded-md bg-indigo-500  text-white ml-1  transition duration-200 ease-in-out ${
+                newTemplate.markup.length < 1 || newTemplate.title.length < 1
+                  ? 'disabled:opacity-50 cursor-not-allowed'
+                  : 'hover:bg-indigo-600'
+              }`}
               type="submit"
+              disabled={
+                newTemplate.markup.length < 1 || newTemplate.title.length < 1
+              }
             >
               Submit
             </button>
@@ -90,7 +107,7 @@ const User: React.FC<Props> = () => {
 
       <div>
         <button
-          className="bg-indigo-500 p-2 hover:bg-indigo-600 float-right text-white rounded-md"
+          className="bg-indigo-500 p-2 hover:bg-indigo-600 float-right text-white rounded-md  transition duration-200 ease-in-out"
           onClick={() => setModal(true)}
         >
           Create

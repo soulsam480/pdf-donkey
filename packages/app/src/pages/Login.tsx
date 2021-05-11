@@ -47,6 +47,10 @@ const Login: React.FC<Props> = () => {
   };
 
   const Register = async (user: User) => {
+    if (user.username?.includes('@')) {
+      console.error("username can't contain @");
+      return;
+    }
     await axios({
       baseURL: import.meta.env.VITE_API as string,
       url: '/auth/register/',
@@ -80,15 +84,15 @@ const Login: React.FC<Props> = () => {
                 <input
                   name="email"
                   type="email"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.email}
-                  placeholder="Email"
+                  placeholder="Email or Username"
                   onChange={handleInput}
                 />
                 <input
                   name="password"
                   type="password"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.password}
                   placeholder="Password"
                   onChange={handleInput}
@@ -98,7 +102,7 @@ const Login: React.FC<Props> = () => {
                   <small className="pointer">Forgot password ?</small>
                 </p>
                 <button
-                  className="bg-indigo-500 p-3 text-white rounded-lg"
+                  className="bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg"
                   onClick={(e) => Login(user)}
                 >
                   Login
@@ -109,7 +113,7 @@ const Login: React.FC<Props> = () => {
                 <input
                   name="name"
                   type="text"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.name}
                   placeholder="Name"
                   onChange={handleInput}
@@ -118,7 +122,7 @@ const Login: React.FC<Props> = () => {
                 <input
                   name="email"
                   type="email"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.email}
                   placeholder="Email"
                   onChange={handleInput}
@@ -127,7 +131,7 @@ const Login: React.FC<Props> = () => {
                 <input
                   name="username"
                   type="text"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.username}
                   placeholder="Username"
                   onChange={handleInput}
@@ -136,14 +140,14 @@ const Login: React.FC<Props> = () => {
                 <input
                   name="password"
                   type="password"
-                  className="input bg-gray-300 rounded-md"
+                  className="bg-gray-300 rounded-md"
                   value={user.password}
                   placeholder="Password"
                   onChange={handleInput}
                   onKeyDown={(e) => e.key === 'Enter' && Register(user)}
                 />
                 <button
-                  className="bg-indigo-500 p-3 text-white rounded-lg"
+                  className="bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg"
                   onClick={(e) => Register(user)}
                 >
                   Sign Up

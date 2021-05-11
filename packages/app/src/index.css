@@ -6,3 +6,6 @@
 .modal {
   transition: opacity 0.25s ease;
 }
+.Code {
+  max-height: 100vh;
+}

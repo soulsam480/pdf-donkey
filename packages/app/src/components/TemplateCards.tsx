@@ -46,7 +46,8 @@ const TemplateCard: React.FC<Props> = () => {
               </p>
               <p className="text-black dark:text-gray-100 text-justify text-sm">
                 <span className="font-semibold">Last updated :</span>{' '}
-                {getDDMMYY(template.updatedAt)}
+                {getDDMMYY(template.updatedAt).time} ,{' '}
+                {getDDMMYY(template.updatedAt).date}
               </p>
             </NavLink>
           </div>

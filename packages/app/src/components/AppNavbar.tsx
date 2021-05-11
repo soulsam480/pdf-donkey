@@ -13,7 +13,7 @@ const AppNavbar: React.FC<Props> = () => {
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none "
+              className="inline-flex items-center justify-center p-1 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none "
               aria-controls="mobile-menu"
               aria-expanded="false"
               onClick={() => setOpen(!isOpen)}
@@ -63,11 +63,23 @@ const AppNavbar: React.FC<Props> = () => {
               to="/"
               className="flex-shrink-0 flex items-center text-white font-bold ml-10 sm:ml-0"
             >
-              🦙 PDF Donkey
+              <img
+                src="/donkey.png"
+                alt="Donkey Icon"
+                style={{ width: '40px' }}
+              />{' '}
+              <span className="sm:block hidden">PDF Donkey</span>
             </NavLink>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                {isLoggedIn && (
+                <a
+                  className="hover:bg-gray-600 text-white px-3 py-2 rounded-md font-medium"
+                  href="https://github.com/soulsam480/pdf-donkey"
+                  target="_blank"
+                >
+                  GitHub
+                </a>
+                {/* {isLoggedIn && (
                   <NavLink
                     to="/user"
                     className="hover:bg-gray-600 text-white px-3 py-2 rounded-md font-medium"
@@ -75,7 +87,7 @@ const AppNavbar: React.FC<Props> = () => {
                   >
                     User
                   </NavLink>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -111,7 +123,14 @@ const AppNavbar: React.FC<Props> = () => {
 
       <div className={isOpen ? 'sm:hidden' : 'hidden'} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {isLoggedIn && (
+          <a
+            className="hover:bg-gray-600 text-white px-3 py-2 rounded-md font-medium"
+            href="https://github.com/soulsam480/pdf-donkey"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          {/* {isLoggedIn && (
             <NavLink
               to="/user"
               className=" text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -119,7 +138,7 @@ const AppNavbar: React.FC<Props> = () => {
             >
               User
             </NavLink>
-          )}
+          )} */}
         </div>
       </div>
     </nav>
