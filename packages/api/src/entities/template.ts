@@ -33,8 +33,8 @@ export class TemplateEntity extends BaseEntity {
   user: User;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt?: Date;
 
-  @UpdateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt?: Date;
 }

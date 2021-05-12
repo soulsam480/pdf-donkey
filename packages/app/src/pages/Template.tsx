@@ -53,12 +53,15 @@ const Template: React.FC<Props> = () => {
       },
       data: {
         ...TemplateData,
+        createdAt: undefined,
+        updatedAt: undefined,
         markup: codePayload,
       },
     })
-      .then((res: AxiosResponse<TemplateModel>) => {
+      .then(async (res: AxiosResponse<TemplateModel>) => {
         running.current = false;
         console.log(res);
+        await getTemplate();
       })
       .catch((err) => {
         console.log(err);

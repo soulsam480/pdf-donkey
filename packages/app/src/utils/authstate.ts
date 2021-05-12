@@ -41,9 +41,9 @@ export const authState = async () => {
     setTimeout(async () => {
       try {
         Axios({
-          baseURL: import.meta.env.VITE_API as string,
+          baseURL: import.meta.env.VITE_API,
           method: 'get',
-          url: '/token/refresh',
+          url: '/token/refresh/',
           headers: {
             'refresh-token': token,
           },

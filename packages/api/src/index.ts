@@ -27,7 +27,7 @@ async function main() {
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
   server.use(cors({ origin: '*' }));
-  server.use('/api/v1/auth/', limiter);
+  server.use('/donkey/v1/auth/', limiter);
   await createConnection({
     database: join(__dirname, '../db.sqlite'),
     type: 'sqlite',
@@ -38,7 +38,7 @@ async function main() {
     synchronize: true,
   }).then((conn) => {
     useExpressServer(server, {
-      routePrefix: '/api/v1',
+      routePrefix: '/donkey/v1',
       controllers: [__dirname + '/controllers/*{.ts,.js}'],
       currentUserChecker: async (action: Action) => {
         const accessToken = action.request.headers['access-token'] as string;
