@@ -1,7 +1,6 @@
 import React from 'react';
 import { highlight as Highlight } from 'highlight.js';
 import 'highlight.js/styles/dracula.css';
-
 import { ReactCodeJar } from 'react-codejar';
 interface Props {
   language: string;

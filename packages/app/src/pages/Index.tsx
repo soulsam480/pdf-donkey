@@ -1,10 +1,8 @@
 import React from 'react';
-import { useUser } from '../store/userContext';
 
 interface Props {}
 
 const Index: React.FC<Props> = () => {
-  const { user } = useUser();
-  return <div>{user.name}</div>;
+  return <div>Welcome to PDF Donkey</div>;
 };
 export default Index;

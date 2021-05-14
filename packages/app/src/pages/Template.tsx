@@ -1,10 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
-import PrismHighlight from 'src/components/PrismHighlight';
+const PrismHighlight = React.lazy(
+  () => import('src/components/PrismHighlight'),
+);
 import { useToken } from 'src/store/useToken';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { getDDMMYY } from 'src/utils/helpers';
+import { getDDMMYY, parseToHtmlDoc } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 interface Props {}
 
@@ -34,6 +36,7 @@ const Template: React.FC<Props> = () => {
       .then(async (res: AxiosResponse<TemplateModel>) => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
+        parseToHtmlDoc(res.data.markup as string);
         await renderTemplate(res.data.markup as string);
       })
       .catch((err: AxiosError) => {
@@ -41,7 +44,6 @@ const Template: React.FC<Props> = () => {
       });
   }
   async function setTemplate(codePayload: string = code) {
-    console.log(running.current);
     if (running.current) return;
     running.current = true;
     await axios({
@@ -134,10 +136,16 @@ const Template: React.FC<Props> = () => {
             borderRadius: '0.5rem',
           }}
         >
-          <div
+          {/* <div
             style={{ all: 'revert' }}
             dangerouslySetInnerHTML={{ __html: renderedTemplate }}
-          ></div>
+          ></div> */}
+          <iframe
+            srcDoc={renderedTemplate}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          ></iframe>
         </div>
       </div>
     </div>

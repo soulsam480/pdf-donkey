@@ -1,23 +1,14 @@
 import React from 'react';
 import { Redirect, Route, RouteProps, Switch } from 'react-router-dom';
 import { authState } from './utils/authstate';
-import Index from './pages/Index';
-import Login from './pages/Login';
-import Template from './pages/Template';
-import User from './pages/User';
 import { useUser } from './store/userContext';
 import './index.css';
+const Index = React.lazy(() => import('./pages/Index'));
+const Login = React.lazy(() => import('./pages/Login'));
+const User = React.lazy(() => import('./pages/User'));
+const Template = React.lazy(() => import('./pages/Template'));
 authState();
 
-// document.addEventListener('keyup', (e) => {
-//   if (e.key !== 'Escape') return;
-//   if (!document.getElementById('donkey-modal')) return;
-//   if (document.getElementById('donkey-modal')?.classList.contains('show')) {
-//     (document.getElementById('donkey-modal') as HTMLElement).classList.toggle(
-//       'show',
-//     );
-//   }
-// });
 interface Props {}
 interface PrivateRouteProps extends RouteProps {
   component: React.FC<any>;
@@ -95,12 +86,6 @@ const App: React.FC<Props> = () => {
             component={Template}
             isSignedIn={userState.isLoggedIn}
           ></PrivateRoute>
-          {/* <PrivateRoute
-            exact
-            path="/template/all"
-            component={Template}
-            isSignedIn={userState.isLoggedIn}
-          ></PrivateRoute> */}
         </Switch>
       </div>
     </div>

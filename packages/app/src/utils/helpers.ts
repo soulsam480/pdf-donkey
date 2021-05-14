@@ -14,3 +14,8 @@ export function getDDMMYY(date?: string) {
     }),
   };
 }
+
+export function parseToHtmlDoc(doc: string) {
+  if (!doc) return;
+  if (doc.match(/^<html>(.*?)<body>(.*?)<\/body>(.*?)<\/html>/)) return;
+}

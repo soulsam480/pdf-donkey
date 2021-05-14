@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import AppModal from 'src/components/AppModal';
-import TemplateCards from 'src/components/TemplateCards';
+const AppModal = React.lazy(() => import('src/components/AppModal'));
+const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
 import { useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
 

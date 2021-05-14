@@ -30,7 +30,7 @@ async function main() {
   server.use('/donkey/v1/auth/', limiter);
   await createConnection({
     database: join(__dirname, '../db.sqlite'),
-    type: 'sqlite',
+    type: 'better-sqlite3',
     entities: [join(__dirname, './entities/*')],
     // migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
     logger: /*process.env.PROD ? undefined : */ 'simple-console',
