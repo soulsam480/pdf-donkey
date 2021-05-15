@@ -32,11 +32,12 @@ async function main() {
     database: join(__dirname, '../db.sqlite'),
     type: 'better-sqlite3',
     entities: [join(__dirname, './entities/*')],
-    // migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
+    migrations: [join(__dirname, './migrations/*')],
     logger: /*process.env.PROD ? undefined : */ 'simple-console',
     logging: /*process.env.PROD ? false :*/ true,
-    synchronize: true,
-  }).then((conn) => {
+    // synchronize: true,
+  }).then(async (conn) => {
+    await conn.runMigrations();
     useExpressServer(server, {
       routePrefix: '/donkey/v1',
       controllers: [__dirname + '/controllers/*{.ts,.js}'],
@@ -49,6 +50,7 @@ async function main() {
       },
     });
     if (!process.env.PROD) {
+      console.log(chalk.black.bgGreen('ROUTES'));
       server._router.stack.forEach(function (r: any) {
         if (r.route && r.route.path && r.route.methods) {
           console.log(

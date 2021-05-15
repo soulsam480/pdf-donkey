@@ -28,6 +28,9 @@ export class User extends BaseEntity {
   @Column({ type: 'text', nullable: false, unique: false })
   password: string;
 
+  @Column({ type: 'boolean', nullable: true, unique: false })
+  is_active: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 }

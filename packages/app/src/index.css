@@ -9,3 +9,7 @@
 .Code {
   max-height: 100vh;
 }
+.jodit-container {
+  max-height: 100% !important;
+  overflow: auto;
+}

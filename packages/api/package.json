@@ -10,7 +10,8 @@
   "scripts": {
     "start": "cd dist && PROD=true node index.js",
     "serve": "ts-node-dev --respawn -- src/index.ts",
-    "build": "rm -rf dist && tsc && tsc-alias && cp ./.env ./dist/.env"
+    "build": "rm -rf dist && yarn && tsc && tsc-alias",
+    "typeorm": "ts-node-dev ../../node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

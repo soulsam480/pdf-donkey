@@ -104,7 +104,6 @@ const User: React.FC<Props> = () => {
           </div>
         </form>
       </AppModal>
-
       <div>
         <button
           className="bg-indigo-500 p-2 hover:bg-indigo-600 float-right text-white rounded-md  transition duration-200 ease-in-out"

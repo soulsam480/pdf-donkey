@@ -4,20 +4,24 @@ import { useParams } from 'react-router';
 const PrismHighlight = React.lazy(
   () => import('src/components/PrismHighlight'),
 );
+const RichTextEditor = React.lazy(() => import('src/components/RichText'));
 import { useToken } from 'src/store/useToken';
 import { Template as TemplateModel } from 'src/utils/constants';
 import { getDDMMYY, parseToHtmlDoc } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
+import { useScreenWidth } from 'src/utils/hooks';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();
   const { token } = useToken();
   const [code, setCode] = useState('');
+  const [richMode, setRichMode] = useState<'code' | 'rich'>('code');
   const [TemplateData, setTemplateData] = useState<TemplateModel>({
     title: '',
   });
   const [renderedTemplate, setRenderTemplate] = useState('');
+  const { width } = useScreenWidth();
   const firstUpdate = useRef(0);
   const liquid = new Liquid();
   const running = useRef(false);
@@ -85,7 +89,7 @@ const Template: React.FC<Props> = () => {
     if (firstUpdate.current > 2) {
       timeout = setTimeout(async () => {
         await renderTemplate(code), await setTemplate(code);
-      }, 2000);
+      }, 1000);
     }
     return () => clearTimeout(timeout);
   }, [code]);
@@ -96,39 +100,61 @@ const Template: React.FC<Props> = () => {
 
   return (
     <div className="container">
-      <div>
-        <input
-          name="password"
-          type="text"
-          className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
-          value={TemplateData.title}
-          placeholder="Untitled"
-          onChange={(e) =>
-            setTemplateData({ ...TemplateData, title: e.target.value })
-          }
-          onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
-        />{' '}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
+        <div>
+          <input
+            name="password"
+            type="text"
+            className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
+            value={TemplateData.title}
+            placeholder="Untitled"
+            onChange={(e) =>
+              setTemplateData({ ...TemplateData, title: e.target.value })
+            }
+            onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
+          />{' '}
+          <p className="text-sm">
+            <span className="font-semibold">Last updated : </span>
+            {getDDMMYY(TemplateData?.updatedAt).time} ,{' '}
+            {getDDMMYY(TemplateData?.updatedAt).date}{' '}
+          </p>
+        </div>
+        <div className="text-left lg:text-right">
+          <button
+            className="bg-indigo-500 w-full lg:w-auto hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
+            onClick={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
+          >
+            {richMode !== 'rich' ? 'Rich' : 'Code'} mode
+          </button>
+        </div>
       </div>
-      <p className="text-sm">
-        <span className="font-semibold">Last updated : </span>
-        {getDDMMYY(TemplateData?.updatedAt).time} ,{' '}
-        {getDDMMYY(TemplateData?.updatedAt).date}{' '}
-      </p>
       <div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3"
-        style={{ height: `${getHeight()}px`, maxHeight: `${getHeight()}px` }}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max grid-flow-row relative pt-3"
+        style={{
+          height: width >= 1024 ? `${getHeight()}px` : '100%',
+          maxHeight: width >= 1024 ? `${getHeight()}px` : undefined,
+        }}
       >
         <>
-          <PrismHighlight
-            code={code}
-            onCode={(code) => setCode(code)}
-            language={'html'}
-            minHeight={getHeight()}
-          />
+          {richMode === 'rich' ? (
+            <RichTextEditor
+              code={code}
+              setRichCode={(code) => setCode(code)}
+              minHeight={width >= 1024 ? getHeight() : 650}
+            />
+          ) : (
+            <PrismHighlight
+              code={code}
+              onCode={(code) => setCode(code)}
+              language={'html'}
+              minHeight={width >= 1024 ? getHeight() : 650}
+            />
+          )}
         </>
         <div
           style={{
-            maxHeight: `${getHeight()}px`,
+            maxHeight: width >= 1024 ? `${getHeight()}px` : '650px',
+            height: width >= 1024 ? undefined : '650px',
             msOverflowY: 'auto',
             overflowY: 'auto',
             padding: '10px',
@@ -136,10 +162,6 @@ const Template: React.FC<Props> = () => {
             borderRadius: '0.5rem',
           }}
         >
-          {/* <div
-            style={{ all: 'revert' }}
-            dangerouslySetInnerHTML={{ __html: renderedTemplate }}
-          ></div> */}
           <iframe
             srcDoc={renderedTemplate}
             width="100%"

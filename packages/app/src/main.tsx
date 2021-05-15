@@ -6,6 +6,7 @@ import App from './App';
 // import 'shoyo/dist/main.css';
 import { Global } from './styles/globalStyle';
 import AppNavbar from './components/AppNavbar';
+import AppLoader from './components/AppLoader';
 
 registerSW({
   immediate: true,
@@ -15,7 +16,7 @@ ReactDOM.render(
     <Global />
     <Router>
       <AppNavbar />
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<AppLoader />}>
         <App />
       </Suspense>
     </Router>
