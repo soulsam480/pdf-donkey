@@ -11,7 +11,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 *.sqlite
-*.sqlite3
+*.sqlite3-shm
+*.sqlite-wal
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -130,3 +131,5 @@ tmp/
 temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+packages/api/db.sqlite-shm
+packages/api/db.sqlite-wal
