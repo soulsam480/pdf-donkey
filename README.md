@@ -1,9 +1,24 @@
 ## PDF Donkey
 
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/soulsam480/pdf-donkey/master?style=for-the-badge) ![GitHub](https://img.shields.io/github/license/soulsam480/pdf-donkey?style=for-the-badge)![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fdonkey.sambitsahoo.com)
 PDF monkey but open-souce.
 
 Purely hobby project. Don't know if it'll make it to a real server or not.
 
+
+## Status
+
+App url https://donkey.sambitsahoo.com
+
+Features:
+- Google OAuth2 login/ JWT Auth
+- Template CRUD
+- Rich template editing
+- Template preview
+
+Projected:
+- PDF Generation
+- more..
 ### Stack
 
 api:
