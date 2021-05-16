@@ -31,6 +31,9 @@ export class User extends BaseEntity {
   @Column({ type: 'boolean', nullable: true, unique: false })
   is_active: boolean;
 
+  @Column({ type: 'text', nullable: true, unique: true })
+  ga_id: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }

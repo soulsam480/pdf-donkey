@@ -1,19 +1,69 @@
 import * as dotenv from 'dotenv';
+import { join } from 'path';
+dotenv.config({
+  path: join(__dirname, '../.env'),
+});
 import { Action, useExpressServer } from 'routing-controllers';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-import { join } from 'path';
+import { createConnection, getRepository } from 'typeorm';
 import express from 'express';
 import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
 import cors from 'cors';
 import chalk from 'chalk';
-dotenv.config({
-  path: join(__dirname, '../.env'),
-});
+import { Strategy } from 'passport-google-oauth2';
 require('tsconfig-paths/register');
 const PORT = process.env.PORT || 3000;
 import rateLimiter from 'express-rate-limit';
+import passport from 'passport';
+import bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
+passport.use(
+  new Strategy(
+    {
+      clientID: process.env.GCLIENT_ID as string,
+      clientSecret: process.env.GCLIENT_SECRET as string,
+      callbackURL: 'http://localhost:3000/donkey/v1/auth/google/redirect',
+      passReqToCallback: true,
+    },
+    async (
+      request: any,
+      accessToken: any,
+      refreshToken: any,
+      profile: any,
+      done: any,
+    ) => {
+      const userRepo = getRepository(User);
+      const user = await userRepo.findOne({
+        where: [{ ga_id: profile.id }, { email: profile.email }],
+      });
+      if (!user) {
+        userRepo
+          .create({
+            name: profile.displayName,
+            email: profile.email,
+            ga_id: profile.id,
+            is_active: true,
+            username: profile.email.split('@')[0],
+            password: await bcrypt.hash(uuid(), 10),
+          })
+          .save()
+          .then((user) => done(null, user));
+        return;
+      }
+      done(null, user);
+    },
+  ),
+);
+passport.serializeUser((user, cb) => {
+  cb(null, (user as any).id);
+});
+
+passport.deserializeUser(async (id: string, cb) => {
+  const user = await getRepository(User).findOne({ where: { id: id } });
+  if (!user) return;
+  cb(null, user);
+});
 async function main() {
   const server = express();
   // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -28,6 +78,7 @@ async function main() {
   server.use(express.urlencoded({ extended: true }));
   server.use(cors({ origin: '*' }));
   server.use('/donkey/v1/auth/', limiter);
+  server.use(passport.initialize());
   await createConnection({
     database: join(__dirname, '../db.sqlite'),
     type: 'better-sqlite3',
@@ -35,9 +86,11 @@ async function main() {
     migrations: [join(__dirname, './migrations/*')],
     logger: /*process.env.PROD ? undefined : */ 'simple-console',
     logging: /*process.env.PROD ? false :*/ true,
-    // synchronize: true,
+    synchronize: false,
   }).then(async (conn) => {
+    await conn.query('PRAGMA foreign_keys=OFF;');
     await conn.runMigrations();
+    await conn.query('PRAGMA foreign_keys=ON;');
     useExpressServer(server, {
       routePrefix: '/donkey/v1',
       controllers: [__dirname + '/controllers/*{.ts,.js}'],

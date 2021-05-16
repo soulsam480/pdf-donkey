@@ -7,6 +7,7 @@ export interface User {
   templates?: string[];
   password?: string;
   accessToken?: string;
+  refreshToken?: string;
 }
 
 export interface UserState extends State {

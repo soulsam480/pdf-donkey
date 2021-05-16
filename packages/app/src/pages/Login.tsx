@@ -35,9 +35,11 @@ const Login: React.FC<Props> = () => {
       },
     })
       .then((res) => {
-        localStorage.setItem('rtoken', res.data.refreshToken);
+        localStorage.setItem('__token', res.data.refreshToken);
         setToken(res.data.accessToken);
         setLogin(true);
+        delete user.refreshToken;
+        delete user.accessToken
         setUser({
           ...res.data,
         });
@@ -60,9 +62,11 @@ const Login: React.FC<Props> = () => {
       },
     })
       .then((res) => {
-        localStorage.setItem('rtoken', res.data.refreshToken);
+        localStorage.setItem('__token', res.data.refreshToken);
         setToken(res.data.accessToken);
         setLogin(true);
+        delete user.refreshToken;
+        delete user.accessToken
         setUser({
           ...res.data,
         });

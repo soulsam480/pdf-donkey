@@ -3,7 +3,7 @@ import { useToken } from 'src/store/useToken';
 import Axios, { AxiosResponse } from 'axios';
 
 export const authState = async () => {
-  const token = localStorage.getItem('rtoken');
+  const token = localStorage.getItem('__token');
 
   if (token) {
     try {
@@ -18,7 +18,7 @@ export const authState = async () => {
 
       if (res.data) {
         const tok = res.data.accessToken;
-        localStorage.setItem('rtoken', res.data.refreshToken);
+        localStorage.setItem('__token', res.data.refreshToken);
         useToken.setState({ token: tok });
         const user: AxiosResponse<User> = await Axios({
           baseURL: import.meta.env.VITE_API as string,
@@ -28,14 +28,15 @@ export const authState = async () => {
             'access-token': tok,
           },
         });
-
-        user.data
-          ? useUser.setState({ user: user.data, isLoggedIn: true })
-          : useUser.setState({ user: {}, isLoggedIn: false });
+        if (!user.data)
+          return useUser.setState({ user: {}, isLoggedIn: false });
+        delete user.data.accessToken;
+        delete user.data.refreshToken;
+        useUser.setState({ user: user.data, isLoggedIn: true });
       }
     } catch (error) {
       console.log(error);
-      localStorage.removeItem('rtoken');
+      localStorage.removeItem('__token');
       useUser.setState({ user: {}, isLoggedIn: false });
     }
     setTimeout(async () => {
@@ -48,12 +49,12 @@ export const authState = async () => {
             'refresh-token': token,
           },
         }).then((res) => {
-          localStorage.setItem('rtoken', res.data.refreshToken);
+          localStorage.setItem('__token', res.data.refreshToken);
           useToken.setState({ token: res.data.accessToken });
         });
       } catch (err) {
         console.log(err);
-        localStorage.removeItem('rtoken');
+        localStorage.removeItem('__token');
         useUser.setState({ user: {}, isLoggedIn: false });
       }
     }, 830000);

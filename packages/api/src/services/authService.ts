@@ -11,7 +11,9 @@ export class authService {
     return bcrypt.hash(pass, 10);
   }
 
-  createTokens(user: User): { refreshToken: string; accessToken: string } {
+  createTokens(
+    user: Partial<User>,
+  ): { refreshToken: string; accessToken: string } {
     const refreshToken = sign(
       { userId: user.id },
       process.env.REFRESH_TOKEN_SECRET as string,
