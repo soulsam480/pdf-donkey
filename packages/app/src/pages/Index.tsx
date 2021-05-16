@@ -96,7 +96,7 @@ const Index: React.FC<Props> = () => {
       </div>
       <div className="w-full lg:w-1/2">
         <img
-          src="/donkey-bare.png"
+          src="/donkey-trans.png"
           className="max-w-full m-auto block"
           alt=""
         />

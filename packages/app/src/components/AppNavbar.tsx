@@ -74,7 +74,7 @@ const AppNavbar: React.FC<Props> = () => {
               className="flex-shrink-0 flex items-center text-white font-bold ml-10 sm:ml-0"
             >
               <img
-                src="/donkey.png"
+                src="/donkey-trans.png"
                 alt="Donkey Icon"
                 style={{ width: '40px' }}
               />{' '}

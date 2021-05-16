@@ -78,7 +78,15 @@ async function main() {
   });
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
-  server.use(cors({ origin: '*' }));
+  server.use(
+    cors({
+      origin: [
+        'http://localhost:4001',
+        'https://donkey.sambitsahoo.com',
+        'http://localhost:5000',
+      ],
+    }),
+  );
   server.use('/donkey/v1/auth/', limiter);
   server.use(passport.initialize());
   await createConnection({
@@ -86,7 +94,7 @@ async function main() {
     type: 'better-sqlite3',
     entities: [join(__dirname, './entities/*')],
     migrations: [join(__dirname, './migrations/*')],
-    logger: /*process.env.PROD ? undefined : */ 'simple-console',
+    logger: /*process.env.PROD ? undefined : */ 'advanced-console',
     logging: /*process.env.PROD ? false :*/ true,
     synchronize: false,
   }).then(async (conn) => {
@@ -109,9 +117,9 @@ async function main() {
       server._router.stack.forEach(function (r: any) {
         if (r.route && r.route.path && r.route.methods) {
           console.log(
-            chalk.yellow(r.route.path.toUpperCase()),
+            chalk.bgBlack.bold.yellow(r.route.path.toUpperCase()),
             '||',
-            chalk.greenBright(
+            chalk.bgBlack.bold.greenBright(
               Object.keys(r.route.methods).map((el) => el.toUpperCase()),
             ),
           );

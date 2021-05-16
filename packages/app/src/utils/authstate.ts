@@ -1,6 +1,7 @@
 import { User, useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
 import Axios, { AxiosResponse } from 'axios';
+import { DonkeyApi } from './helpers';
 
 export const authState = async () => {
   const token = localStorage.getItem('__token');
@@ -39,24 +40,54 @@ export const authState = async () => {
       localStorage.removeItem('__token');
       useUser.setState({ user: {}, isLoggedIn: false });
     }
-    setTimeout(async () => {
-      try {
-        Axios({
-          baseURL: import.meta.env.VITE_API,
-          method: 'get',
-          url: '/token/refresh/',
-          headers: {
-            'refresh-token': token,
-          },
-        }).then((res) => {
-          localStorage.setItem('__token', res.data.refreshToken);
-          useToken.setState({ token: res.data.accessToken });
-        });
-      } catch (err) {
-        console.log(err);
-        localStorage.removeItem('__token');
-        useUser.setState({ user: {}, isLoggedIn: false });
-      }
-    }, 830000);
+    DonkeyApi.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        const originalRequest = error.config;
+        if (
+          error.response.status === 401 &&
+          originalRequest.url.includes('/token/refresh')
+        ) {
+          localStorage.removeItem('__token');
+          useUser.setState({ user: {}, isLoggedIn: false });
+          return Promise.reject(error);
+        } else if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          await DonkeyApi({
+            method: 'get',
+            url: '/token/refresh/',
+            headers: {
+              'refresh-token': token,
+            },
+          }).then((res) => {
+            localStorage.setItem('__token', res.data.refreshToken);
+            useToken.setState({ token: res.data.accessToken });
+          });
+          return DonkeyApi(originalRequest);
+        }
+        return Promise.reject(error);
+      },
+    );
+    // setTimeout(async () => {
+    //   try {
+    //     Axios({
+    //       baseURL: import.meta.env.VITE_API,
+    //       method: 'get',
+    //       url: '/token/refresh/',
+    //       headers: {
+    //         'refresh-token': token,
+    //       },
+    //     }).then((res) => {
+    //       localStorage.setItem('__token', res.data.refreshToken);
+    //       useToken.setState({ token: res.data.accessToken });
+    //     });
+    //   } catch (err) {
+    //     console.log(err);
+    //     localStorage.removeItem('__token');
+    //     useUser.setState({ user: {}, isLoggedIn: false });
+    //   }
+    // }, 830000);
   }
 };

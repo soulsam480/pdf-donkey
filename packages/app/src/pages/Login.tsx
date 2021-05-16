@@ -83,7 +83,7 @@ const Login: React.FC<Props> = () => {
           <div className="login_card bg-gray-100 p-4 rounded-xl">
             <div className="text-center">
               <img
-                src="/donkey.png"
+                src="/donkey-trans.png"
                 alt="Donkey Icon"
                 style={{ width: '40px', margin: 'auto' }}
               />
@@ -133,7 +133,7 @@ const Login: React.FC<Props> = () => {
                       }
                     >
                       <img
-                        src="../glogo.webp"
+                        src="/glogo.webp"
                         className="w-6"
                         alt="Google logo"
                       />

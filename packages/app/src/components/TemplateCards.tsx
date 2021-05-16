@@ -1,24 +1,18 @@
 import React from 'react';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { useToken } from 'src/store/useToken';
 import useSwr from 'swr';
-import { getDDMMYY } from 'src/utils/helpers';
+import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { NavLink } from 'react-router-dom';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 
 interface Props {}
 
 const TemplateCard: React.FC<Props> = () => {
-  const { token } = useToken();
   async function fetcher(): Promise<TemplateModel[]> {
     return new Promise((resolve, reject) => {
-      axios({
-        baseURL: import.meta.env.VITE_API as string,
+      DonkeyApi({
         url: `/template/`,
         method: 'get',
-        headers: {
-          'access-token': token,
-        },
       })
         .then((res: AxiosResponse<TemplateModel[]>) => resolve(res.data))
         .catch((err: AxiosError) => reject(err));

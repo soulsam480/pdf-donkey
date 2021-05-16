@@ -9,7 +9,6 @@ import {
   Res,
   UseBefore,
 } from 'routing-controllers';
-import { getRepository } from 'typeorm';
 import { authService } from 'src/services/authService';
 import { Response } from 'express';
 import passport from 'passport';
@@ -18,7 +17,6 @@ import { sign } from 'jsonwebtoken';
 
 @Controller('/auth')
 export class userController {
-  private readonly userRepo = getRepository(User);
   private readonly authService = new authService();
   @Post('/register')
   registerUser(@Body() user: User, @Res() response: Response) {
