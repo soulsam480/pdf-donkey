@@ -23,7 +23,9 @@ passport.use(
     {
       clientID: process.env.GCLIENT_ID as string,
       clientSecret: process.env.GCLIENT_SECRET as string,
-      callbackURL: 'http://localhost:3000/donkey/v1/auth/google/redirect',
+      callbackURL: !process.env.PROD
+        ? 'http://localhost:3000/donkey/v1/auth/google/redirect'
+        : 'https://apis.sambitsahoo.com/donkey/v1/auth/google/redirect',
       passReqToCallback: true,
     },
     async (

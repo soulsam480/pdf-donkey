@@ -39,7 +39,7 @@ const Login: React.FC<Props> = () => {
         setToken(res.data.accessToken);
         setLogin(true);
         delete user.refreshToken;
-        delete user.accessToken
+        delete user.accessToken;
         setUser({
           ...res.data,
         });
@@ -66,7 +66,7 @@ const Login: React.FC<Props> = () => {
         setToken(res.data.accessToken);
         setLogin(true);
         delete user.refreshToken;
-        delete user.accessToken
+        delete user.accessToken;
         setUser({
           ...res.data,
         });
@@ -81,7 +81,13 @@ const Login: React.FC<Props> = () => {
       <div className="flex flex-row justify-center ">
         <div className="login sm:w-4/5 lg:w-2/5 w-full">
           <div className="login_card bg-gray-100 p-4 rounded-xl">
-            <p className="center text-4xl">🦙</p>
+            <div className="text-center">
+              <img
+                src="/donkey.png"
+                alt="Donkey Icon"
+                style={{ width: '40px', margin: 'auto' }}
+              />
+            </div>
             <br />
             {opType === 'login' ? (
               <div className="grid grid-cols-1 gap-6">
@@ -111,6 +117,29 @@ const Login: React.FC<Props> = () => {
                 >
                   Login
                 </button>
+                <small className="text-center text-gray-500">
+                  Or Login with
+                </small>
+                <div className="text-center">
+                  <button
+                    title="Login with google"
+                    className="border-indigo-500 border-2 hover:bg-indigo-100 transition duration-200 ease-in-out p-2 text-white rounded-lg"
+                  >
+                    <a
+                      href={
+                        import.meta.env.PROD
+                          ? 'https://apis.sambitsahoo.com/donkey/v1/auth/google'
+                          : 'http://localhost:3000/donkey/v1/auth/google'
+                      }
+                    >
+                      <img
+                        src="../glogo.webp"
+                        className="w-6"
+                        alt="Google logo"
+                      />
+                    </a>
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-6">

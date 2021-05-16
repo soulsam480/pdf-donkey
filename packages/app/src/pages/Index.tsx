@@ -14,26 +14,35 @@ const Index: React.FC<Props> = () => {
   useEffect(() => {
     const tok = search.split('?auth_success=')[1];
     if (!tok) return push('/login');
-    setToken(tok);
     (async () => {
-      const user: AxiosResponse<User> = await Axios({
-        baseURL: import.meta.env.VITE_API as string,
-        url: '/user',
-        method: 'get',
-        headers: {
-          'access-token': tok,
-        },
-      });
-      if (!user.data) {
+      try {
+        const user: AxiosResponse<User> = await Axios({
+          baseURL: import.meta.env.VITE_API as string,
+          url: '/user',
+          method: 'get',
+          headers: {
+            'access-token': tok,
+          },
+        });
+        if (!user.data) {
+          setUser({});
+          setLogin(false);
+          push('/login');
+          return;
+        }
+        localStorage.setItem('__token', user.data?.refreshToken as string);
+        setToken(user.data.accessToken as string);
+        delete user.data.accessToken;
+        delete user.data.refreshToken;
+        setLogin(true);
+        setUser({ ...user.data });
+        push('/user');
+      } catch (error) {
+        console.log(error);
         setUser({});
         setLogin(false);
-        return;
+        push('/login');
       }
-      localStorage.setItem('__token', user.data?.refreshToken as string);
-      delete user.data.accessToken;
-      setLogin(true);
-      setUser({ ...user.data });
-      push('/user');
     })();
   }, []);
   return <div>Welcome to PDF Donkey</div>;

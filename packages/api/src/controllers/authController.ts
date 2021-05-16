@@ -48,6 +48,8 @@ export class userController {
         expiresIn: '15min',
       },
     );
-    return `http://localhost:4001/?auth_success=${token}`;
+    return !process.env.PROD
+      ? `http://localhost:4001/?auth_success=${token}`
+      : `https://donkey.sambitsahoo.com/?auth_success=${token}`;
   }
 }
