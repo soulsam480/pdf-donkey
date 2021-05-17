@@ -9,6 +9,8 @@ Purely hobby project. Don't know if it'll make it to a real server or not.
 
 ## Status
 
+> Donkey is pre-alpha.
+
 App url https://donkey.sambitsahoo.com
 
 Features:

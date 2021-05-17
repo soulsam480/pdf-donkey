@@ -18,14 +18,15 @@ export function getDDMMYY(date?: string) {
   };
 }
 
-export function parseToHtmlDoc(doc: string) {
-  if (!doc) return;
-  if (doc.match(/^<html>(.*?)<body>(.*?)<\/body>(.*?)<\/html>/)) return;
-}
-
 export const DonkeyApi = axios.create({
   baseURL: import.meta.env.VITE_API,
-  headers: {
-    'access-token': useToken.getState().token,
-  },
 });
+
+export function registerDonkey() {
+  useToken.subscribe(
+    (tokenState: { token: string }) => {
+      DonkeyApi.defaults.headers['access-token'] = tokenState.token;
+    },
+    (token) => token,
+  );
+}

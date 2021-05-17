@@ -1,20 +1,18 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 const PrismHighlight = React.lazy(
   () => import('src/components/PrismHighlight'),
 );
 const RichTextEditor = React.lazy(() => import('src/components/RichText'));
-import { useToken } from 'src/store/useToken';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { getDDMMYY, parseToHtmlDoc } from 'src/utils/helpers';
+import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();
-  const { token } = useToken();
   const [code, setCode] = useState('');
   const [richMode, setRichMode] = useState<'code' | 'rich'>('code');
   const [TemplateData, setTemplateData] = useState<TemplateModel>({
@@ -29,18 +27,10 @@ const Template: React.FC<Props> = () => {
     return window.innerHeight - 170;
   }
   async function getTemplate() {
-    axios({
-      baseURL: import.meta.env.VITE_API,
-      url: `/template/${id}`,
-      method: 'get',
-      headers: {
-        'access-token': token,
-      },
-    })
+    DonkeyApi.get(`/template/${id}`)
       .then(async (res: AxiosResponse<TemplateModel>) => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
-        parseToHtmlDoc(res.data.markup as string);
         await renderTemplate(res.data.markup as string);
       })
       .catch((err: AxiosError) => {
@@ -50,19 +40,11 @@ const Template: React.FC<Props> = () => {
   async function setTemplate(codePayload: string = code) {
     if (running.current) return;
     running.current = true;
-    await axios({
-      baseURL: import.meta.env.VITE_API,
-      url: `/template/${id}/`,
-      method: 'PUT',
-      headers: {
-        'access-token': token,
-      },
-      data: {
-        ...TemplateData,
-        createdAt: undefined,
-        updatedAt: undefined,
-        markup: codePayload,
-      },
+    await DonkeyApi.put(`/template/${id}/`, {
+      ...TemplateData,
+      createdAt: undefined,
+      updatedAt: undefined,
+      markup: codePayload,
     })
       .then(async (res: AxiosResponse<TemplateModel>) => {
         running.current = false;

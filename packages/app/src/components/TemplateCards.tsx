@@ -10,16 +10,13 @@ interface Props {}
 const TemplateCard: React.FC<Props> = () => {
   async function fetcher(): Promise<TemplateModel[]> {
     return new Promise((resolve, reject) => {
-      DonkeyApi({
-        url: `/template/`,
-        method: 'get',
-      })
+      DonkeyApi.get('/template/')
         .then((res: AxiosResponse<TemplateModel[]>) => resolve(res.data))
         .catch((err: AxiosError) => reject(err));
     });
   }
   const { data: Templates } = useSwr('/template/', () => fetcher(), {
-    refreshInterval: 1200000,
+    refreshInterval: 120000,
     revalidateOnFocus: false,
   });
 

@@ -1,14 +1,23 @@
 import React from 'react';
-import { Redirect, Route, RouteProps, Switch } from 'react-router-dom';
+import {
+  Redirect,
+  Route,
+  RouteProps,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import { authState } from './utils/authstate';
 import { useUser } from './store/userContext';
 import './index.css';
+import { registerDonkey } from './utils/helpers';
+import { useLoader } from './store/useLoader';
+const AppLoader = React.lazy(() => import('./components/AppLoader'));
 const Index = React.lazy(() => import('./pages/Index'));
 const Login = React.lazy(() => import('./pages/Login'));
 const User = React.lazy(() => import('./pages/User'));
 const Template = React.lazy(() => import('./pages/Template'));
 authState();
-
+registerDonkey();
 interface Props {}
 interface PrivateRouteProps extends RouteProps {
   component: React.FC<any>;
@@ -38,8 +47,11 @@ const PrivateRoute = (props: PrivateRouteProps) => {
 
 const App: React.FC<Props> = () => {
   const userState = useUser();
+  const { isLader } = useLoader();
+  const { location } = useHistory();
   return (
     <div>
+      {isLader && <AppLoader />}
       <div className="container mx-auto px-4 py-4">
         <Switch>
           <Route

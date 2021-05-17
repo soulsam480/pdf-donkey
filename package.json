@@ -13,12 +13,17 @@
     "serve": "concurrently --kill-others-on-fail \"yarn client\"  \"yarn server\"",
     "build": "concurrently --kill-others-on-fail \"yarn build:client\"  \"yarn build:server\"",
     "start:server": "yarn workspace @pdf-donkey/api start",
-    "start:client": " yarn workspace @pdf-donkey/app serve"
+    "start:client": " yarn workspace @pdf-donkey/app serve",
+    "changelog": "node ./changelog.js"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
     "concurrently": "^6.0.2"
+  },
+  "devDependencies": {
+    "generate-changelog": "^1.8.0",
+    "husky": "^6.0.0"
   }
 }
