@@ -83,7 +83,7 @@ const Login: React.FC<Props> = () => {
           <div className="login_card bg-gray-100 p-4 rounded-xl">
             <div className="text-center">
               <img
-                src="/donkey.png"
+                src="/donkey-trans.png"
                 alt="Donkey Icon"
                 style={{ width: '40px', margin: 'auto' }}
               />
@@ -121,24 +121,22 @@ const Login: React.FC<Props> = () => {
                   Or Login with
                 </small>
                 <div className="text-center">
-                  <button
+                  <a
                     title="Login with google"
+                    type="button"
                     className="border-indigo-500 border-2 hover:bg-indigo-100 transition duration-200 ease-in-out p-2 text-white rounded-lg"
+                    href={
+                      import.meta.env.PROD
+                        ? 'https://apis.sambitsahoo.com/donkey/v1/auth/google'
+                        : 'http://localhost:3000/donkey/v1/auth/google'
+                    }
                   >
-                    <a
-                      href={
-                        import.meta.env.PROD
-                          ? 'https://apis.sambitsahoo.com/donkey/v1/auth/google'
-                          : 'http://localhost:3000/donkey/v1/auth/google'
-                      }
-                    >
-                      <img
-                        src="../glogo.webp"
-                        className="w-6"
-                        alt="Google logo"
-                      />
-                    </a>
-                  </button>
+                    <img
+                      src="/glogo.webp"
+                      className="w-6 block m-auto"
+                      alt="Google logo"
+                    />
+                  </a>
                 </div>
               </div>
             ) : (

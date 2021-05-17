@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
 const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
 import { useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
+import { DonkeyApi } from 'src/utils/helpers';
 
 interface Props {}
 
@@ -33,16 +33,8 @@ const User: React.FC<Props> = () => {
   }, [isModal]);
 
   async function cerateTemplate() {
-    axios({
-      baseURL: import.meta.env.VITE_API as string,
-      url: `/template/`,
-      method: 'post',
-      headers: {
-        'access-token': token,
-      },
-      data: {
-        ...newTemplate,
-      },
+    DonkeyApi.post(`/template/`, {
+      ...newTemplate,
     })
       .then(
         (res) => (
