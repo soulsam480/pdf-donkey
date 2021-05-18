@@ -27,7 +27,7 @@ const Index: React.FC<Props> = () => {
           url: '/user',
           method: 'get',
           headers: {
-            'access-token': tok,
+            'access-token': `Bearer ${tok}`,
           },
         });
         if (!user.data) {

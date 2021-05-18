@@ -11,6 +11,9 @@ Purely hobby project. Don't know if it'll make it to a real server or not.
 
 > Donkey is pre-alpha.
 
+[Changelogs](./CHANGELOG.md)
+
+
 App url https://donkey.sambitsahoo.com
 
 Features:

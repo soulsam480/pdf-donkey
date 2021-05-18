@@ -16,10 +16,15 @@ export class userController {
       return response
         .status(401)
         .send(new HttpError(401, 'access token not found !'));
+    const token = accessToken.split('Bearer ')[1];
+    if (!token)
+      return response
+        .status(401)
+        .send(new HttpError(401, 'access token not found !'));
     let data: any;
     try {
       data = <{ userId: string }>(
-        verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
+        verify(token, process.env.ACCESS_TOKEN_SECRET as string)
       );
     } catch {
       return response

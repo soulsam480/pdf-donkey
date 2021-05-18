@@ -25,6 +25,7 @@
 ##### New Features
 
 * **app:**
+  *  add full page loader, added reactive donkey APi ([3246ddb5](https://github.com/soulsam480/pdf-donkey/commit/3246ddb594f3720cd3cf887ba9bca481669ebcd2))
   *  added basic landing page ([e944eb73](https://github.com/soulsam480/pdf-donkey/commit/e944eb736becc2a0259b7899bf0b074b5b695fe5))
   *  added google oauth2 ([0a28aac9](https://github.com/soulsam480/pdf-donkey/commit/0a28aac9fe974d7577e9303ff5b08f244a6aac44))
   *  moved to tailwindcss for styling ([972b9a80](https://github.com/soulsam480/pdf-donkey/commit/972b9a80ec8f265fcb61f881f1a47f1879f75e7f))

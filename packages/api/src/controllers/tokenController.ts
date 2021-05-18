@@ -14,11 +14,12 @@ export class tokenController {
     const refreshToken = request.headers['refresh-token'] as string;
     if (typeof refreshToken !== 'string')
       throw new HttpError(401, 'refresh token not found !');
-
+    const token = refreshToken.split('Bearer ')[1];
+    if (!token) throw new HttpError(401, 'refresh token not found !');
     let data;
     try {
       data = <{ userId: string }>(
-        verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string)
+        verify(token, process.env.REFRESH_TOKEN_SECRET as string)
       );
     } catch {
       throw new HttpError(401, 'Token is expired or invalid !');

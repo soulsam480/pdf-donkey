@@ -40,8 +40,6 @@ export class userController {
     @Body() template: TemplateEntity,
     @CurrentUser() user: User,
   ) {
-    console.log(template);
-
     return this.templateRepo
       .create({
         ...template,

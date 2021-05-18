@@ -25,7 +25,7 @@ export const DonkeyApi = axios.create({
 export function registerDonkey() {
   useToken.subscribe(
     (tokenState: { token: string }) => {
-      DonkeyApi.defaults.headers['access-token'] = tokenState.token;
+      DonkeyApi.defaults.headers['access-token'] = `Bearer ${tokenState.token}`;
     },
     (token) => token,
   );

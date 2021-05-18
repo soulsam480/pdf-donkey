@@ -3,7 +3,11 @@ import { join } from 'path';
 dotenv.config({
   path: join(__dirname, '../.env'),
 });
-import { Action, useExpressServer } from 'routing-controllers';
+import {
+  Action,
+  // getMetadataArgsStorage,
+  useExpressServer,
+} from 'routing-controllers';
 import 'reflect-metadata';
 import { createConnection, getRepository } from 'typeorm';
 import express from 'express';
@@ -18,6 +22,11 @@ import rateLimiter from 'express-rate-limit';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
+// import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
+// import { routingControllersToSpec } from 'routing-controllers-openapi';
+// const { defaultMetadataStorage } = require('class-transformer/cjs/storage');
+// import * as swaggerUiExpress from 'swagger-ui-express';
+// import { version } from '../../../package.json';
 passport.use(
   new Strategy(
     {
@@ -105,7 +114,9 @@ async function main() {
       routePrefix: '/donkey/v1',
       controllers: [__dirname + '/controllers/*{.ts,.js}'],
       currentUserChecker: async (action: Action) => {
-        const accessToken = action.request.headers['access-token'] as string;
+        const accessToken = action.request.headers['access-token'].split(
+          'Bearer ',
+        )[1] as string;
         const data = <{ userId: string }>(
           verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
         );
@@ -114,8 +125,8 @@ async function main() {
     });
     if (!process.env.PROD) {
       console.log(chalk.black.bgGreen('ROUTES'));
-      server._router.stack.forEach(function (r: any) {
-        if (r.route && r.route.path && r.route.methods) {
+      let routeData: string[] = server._router.stack.map((r: any) => {
+        if (r && r.route && r.route.path && r.route.methods) {
           console.log(
             chalk.bgBlack.bold.yellow(r.route.path.toUpperCase()),
             '||',
@@ -125,6 +136,45 @@ async function main() {
           );
         }
       });
+
+      // const schemas = validationMetadatasToSchemas({
+      //   classTransformerMetadataStorage: defaultMetadataStorage,
+      //   refPointerPrefix: '#/components/schemas/',
+      // });
+      // const storage = getMetadataArgsStorage();
+      // const spec = routingControllersToSpec(
+      //   storage,
+      //   {
+      //     routePrefix: '/donkey/v1',
+      //     controllers: [__dirname + '/controllers/*{.ts,.js}'],
+      //   },
+      //   {
+      //     components: {
+      //       schemas,
+      //       securitySchemes: {
+      //         basicAuth: {
+      //           scheme: 'Api Key',
+      //           type: 'apiKey',
+      //         },
+      //       },
+      //     },
+      //     info: {
+      //       description: 'Generated with `routing-controllers-openapi`',
+      //       title: 'PDF Donkey API',
+      //       version: version,
+      //       license: {
+      //         name: 'MIT',
+      //       },
+      //       contact: {
+      //         email: 'soulsam480@hotmail.com',
+      //         name: 'Sambit Sahoo',
+      //         url: 'https://sambitsahoo.com',
+      //       },
+      //     },
+      //   },
+      // );
+
+      // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
     }
     server.listen(PORT, () =>
       console.log(`Listening on http://localhost:${PORT}`),

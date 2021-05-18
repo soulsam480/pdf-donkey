@@ -15,7 +15,7 @@ export const authState = async () => {
         url: '/token/refresh',
         method: 'get',
         headers: {
-          'refresh-token': token,
+          'refresh-token': `Bearer ${token}`,
         },
       });
 
@@ -47,7 +47,7 @@ export const authState = async () => {
           method: 'get',
           url: '/token/refresh/',
           headers: {
-            'refresh-token': token,
+            'refresh-token': `Bearer ${token}`,
           },
         }).then((res) => {
           localStorage.setItem('__token', res.data.refreshToken);
