@@ -22,7 +22,7 @@ import rateLimiter from 'express-rate-limit';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
-import { createWriteStream } from 'fs';
+import { logApiRoutes } from './utils';
 // import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
 // import { routingControllersToSpec } from 'routing-controllers-openapi';
 // const { defaultMetadataStorage } = require('class-transformer/cjs/storage');
@@ -125,36 +125,7 @@ async function main() {
       },
     });
     if (!process.env.PROD) {
-      console.log(chalk.black.bgGreen('ROUTES'));
-      let routeData: string[] = server._router.stack.map((r: any) => {
-        if (r && r.route && r.route.path && r.route.methods) {
-          console.log(
-            chalk.bgBlack.bold.yellow(r.route.path.toUpperCase()),
-            '||',
-            chalk.bgBlack.bold.greenBright(
-              Object.keys(r.route.methods).map((el) => el.toUpperCase()),
-            ),
-          );
-          return `PATH : **${r.route.path.toUpperCase()}** /\ METHOD: **${Object.keys(
-            r.route.methods,
-          ).map((el) => el.toUpperCase())}** 
-- Detailed:
-\`\`\`\json
- ${JSON.stringify(r)}
-\`\`\`
-          `;
-        }
-      });
-      routeData = routeData.filter((el) => el !== undefined);
-      var file = createWriteStream('./ROUTES.md');
-      file.on('error', (err) => {
-        console.log(err);
-      });
-      file.write('## ROUTES' + '\n\n');
-      routeData.forEach((v: string) => {
-        file.write(v + '\n');
-      });
-      file.end();
+      logApiRoutes(server._router.stack);
       // const schemas = validationMetadatasToSchemas({
       //   classTransformerMetadataStorage: defaultMetadataStorage,
       //   refPointerPrefix: '#/components/schemas/',
