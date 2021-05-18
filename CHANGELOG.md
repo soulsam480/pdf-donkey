@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-17)
+#### 0.1.1 (2021-05-18)
 
 ##### Build System / Dependencies
 
@@ -14,6 +14,8 @@
 
 ##### Documentation Changes
 
+* **api:**  update routes ([3b25faaf](https://github.com/soulsam480/pdf-donkey/commit/3b25faaf1b8f488ec1386073c072848cdebf9d06))
+*  update readme, add API routes listing ([fbaff82b](https://github.com/soulsam480/pdf-donkey/commit/fbaff82bc0c8215c538cb1f38b7aa5cf25e5e9a3))
 *  update readme ([5c8f6084](https://github.com/soulsam480/pdf-donkey/commit/5c8f60843e12326938ae01414dc17f5a7718727e))
 *  update readme ([febda93f](https://github.com/soulsam480/pdf-donkey/commit/febda93fc9c12253b345d57d9b948cb20c814ddc))
 *  update readme ([4573132c](https://github.com/soulsam480/pdf-donkey/commit/4573132cfe7fdefffacad4f225bc0dfb9edd80b2))
@@ -25,6 +27,7 @@
 ##### New Features
 
 * **app:**
+  *  add full page loader, added reactive donkey APi ([3246ddb5](https://github.com/soulsam480/pdf-donkey/commit/3246ddb594f3720cd3cf887ba9bca481669ebcd2))
   *  added basic landing page ([e944eb73](https://github.com/soulsam480/pdf-donkey/commit/e944eb736becc2a0259b7899bf0b074b5b695fe5))
   *  added google oauth2 ([0a28aac9](https://github.com/soulsam480/pdf-donkey/commit/0a28aac9fe974d7577e9303ff5b08f244a6aac44))
   *  moved to tailwindcss for styling ([972b9a80](https://github.com/soulsam480/pdf-donkey/commit/972b9a80ec8f265fcb61f881f1a47f1879f75e7f))
@@ -66,4 +69,8 @@
 ##### Other Changes
 
 * soulsam480/pdf-donkey merge ([5b594fd0](https://github.com/soulsam480/pdf-donkey/commit/5b594fd0b7c5ee1026f3debf202c7afd9adb0b1e))
+
+##### Refactors
+
+*  moved to semantic token headers **Bearer token** format ([fd6d7aa9](https://github.com/soulsam480/pdf-donkey/commit/fd6d7aa9d24774c06b52bc6a2216c33bb4a13fb7))
 
