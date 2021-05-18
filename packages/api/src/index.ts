@@ -135,11 +135,13 @@ async function main() {
               Object.keys(r.route.methods).map((el) => el.toUpperCase()),
             ),
           );
-          return `
-          - PATH : **${r.route.path.toUpperCase()}** /\ METHOD: **${Object.keys(
+          return `PATH : **${r.route.path.toUpperCase()}** /\ METHOD: **${Object.keys(
             r.route.methods,
           ).map((el) => el.toUpperCase())}** 
-            - Detailed: \`\`\`\json ${JSON.stringify(r)} \`\`\`
+- Detailed:
+\`\`\`\json
+ ${JSON.stringify(r)}
+\`\`\`
           `;
         }
       });
@@ -148,7 +150,7 @@ async function main() {
       file.on('error', (err) => {
         console.log(err);
       });
-      file.write('## ROUTES' + '\n');
+      file.write('## ROUTES' + '\n\n');
       routeData.forEach((v: string) => {
         file.write(v + '\n');
       });

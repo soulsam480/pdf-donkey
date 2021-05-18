@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-17)
+#### 0.1.1 (2021-05-18)
 
 ##### Build System / Dependencies
 
@@ -14,6 +14,7 @@
 
 ##### Documentation Changes
 
+*  update readme, add API routes listing ([fbaff82b](https://github.com/soulsam480/pdf-donkey/commit/fbaff82bc0c8215c538cb1f38b7aa5cf25e5e9a3))
 *  update readme ([5c8f6084](https://github.com/soulsam480/pdf-donkey/commit/5c8f60843e12326938ae01414dc17f5a7718727e))
 *  update readme ([febda93f](https://github.com/soulsam480/pdf-donkey/commit/febda93fc9c12253b345d57d9b948cb20c814ddc))
 *  update readme ([4573132c](https://github.com/soulsam480/pdf-donkey/commit/4573132cfe7fdefffacad4f225bc0dfb9edd80b2))
@@ -67,4 +68,8 @@
 ##### Other Changes
 
 * soulsam480/pdf-donkey merge ([5b594fd0](https://github.com/soulsam480/pdf-donkey/commit/5b594fd0b7c5ee1026f3debf202c7afd9adb0b1e))
+
+##### Refactors
+
+*  moved to semantic token headers **Bearer token** format ([fd6d7aa9](https://github.com/soulsam480/pdf-donkey/commit/fd6d7aa9d24774c06b52bc6a2216c33bb4a13fb7))
 
