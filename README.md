@@ -13,6 +13,7 @@ Purely hobby project. Don't know if it'll make it to a real server or not.
 
 [Changelogs](./CHANGELOG.md)
 
+[Donkey API routes (not perfect)](./packages/api/ROUTES.md)
 
 App url https://donkey.sambitsahoo.com
 
