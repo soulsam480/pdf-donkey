@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-18)
+#### 0.1.1 (2021-05-20)
 
 ##### Build System / Dependencies
 
@@ -29,6 +29,7 @@
 ##### New Features
 
 * **app:**
+  *  Moved to tinymce for wysiwyg editor ([9030ab35](https://github.com/soulsam480/pdf-donkey/commit/9030ab358526a21761fa2c6e45e5ae3fa6609f88))
   *  add full page loader, added reactive donkey APi ([3246ddb5](https://github.com/soulsam480/pdf-donkey/commit/3246ddb594f3720cd3cf887ba9bca481669ebcd2))
   *  added basic landing page ([e944eb73](https://github.com/soulsam480/pdf-donkey/commit/e944eb736becc2a0259b7899bf0b074b5b695fe5))
   *  added google oauth2 ([0a28aac9](https://github.com/soulsam480/pdf-donkey/commit/0a28aac9fe974d7577e9303ff5b08f244a6aac44))
