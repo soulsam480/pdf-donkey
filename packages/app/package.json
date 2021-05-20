@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
+    "@tinymce/tinymce-react": "^3.12.5",
     "axios": "^0.21.1",
     "highlight.js": "^10.7.2",
-    "jodit-react": "^1.0.86",
     "liquidjs": "^9.25.0",
     "react": "^17.0.0",
     "react-codejar": "^1.0.2",
