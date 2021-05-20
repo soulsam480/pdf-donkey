@@ -16,3 +16,6 @@
 .user-context {
   transition: opacity 0.25s ease;
 }
+.tox-notification {
+  display: none !important;
+}

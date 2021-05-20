@@ -14,10 +14,9 @@ import express from 'express';
 import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
 import cors from 'cors';
-import chalk from 'chalk';
 import { Strategy } from 'passport-google-oauth2';
 require('tsconfig-paths/register');
-const PORT = process.env.PORT || 3000;
+const PORT: string | number = process.env.PORT || 3000;
 import rateLimiter from 'express-rate-limit';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
@@ -125,7 +124,7 @@ async function main() {
       },
     });
     if (!process.env.PROD) {
-      logApiRoutes(server._router.stack);
+      logApiRoutes(server._router.stack, PORT);
       // const schemas = validationMetadatasToSchemas({
       //   classTransformerMetadataStorage: defaultMetadataStorage,
       //   refPointerPrefix: '#/components/schemas/',

@@ -1,12 +1,14 @@
 import chalk from 'chalk';
 import { createWriteStream } from 'fs';
 
-export function logApiRoutes(ServerRoutes: any[]) {
+export function logApiRoutes(ServerRoutes: any[], port: number | string) {
   console.log(chalk.black.bgGreen('ROUTES'));
   let routeData: any[] = ServerRoutes.map((r) => {
     if (r && r.route && r.route.path && r.route.methods) {
       console.log(
-        chalk.bgBlack.bold.yellow(r.route.path.toUpperCase()),
+        chalk.bgBlack.bold.yellow(
+          `http://localhost:${port}` + r.route.path.toUpperCase(),
+        ),
         '||',
         chalk.bgBlack.bold.greenBright(
           Object.keys(r.route.methods).map((el) => el.toUpperCase()),
