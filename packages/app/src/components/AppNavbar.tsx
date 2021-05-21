@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useUser } from '../store/userContext';
 import { clickOutsideToggle } from 'src/utils/hooks';
+import { useAlert } from 'src/store/useAlert';
 interface Props {}
 const AppNavbar: React.FC<Props> = () => {
   const { push } = useHistory();
@@ -9,10 +10,15 @@ const AppNavbar: React.FC<Props> = () => {
   const [isOpen, setOpen] = useState(false);
   const [isContext, setContext] = useState(false);
   const userContext = useRef<HTMLDivElement>(null);
+  const { setAlerts } = useAlert();
   function logout() {
     setUser({});
     setLogin(false);
     localStorage.removeItem('__token');
+    setAlerts({
+      message: 'Logged out successfully !',
+      type: 'success',
+    });
     push('/login');
   }
   clickOutsideToggle(userContext, isContext, setContext);
@@ -134,7 +140,7 @@ const AppNavbar: React.FC<Props> = () => {
                         id="user-menu-item-2"
                         onClick={(e) => (e.preventDefault(), logout())}
                       >
-                        Sign out
+                        Log out
                       </a>
                     </div>
                   </>

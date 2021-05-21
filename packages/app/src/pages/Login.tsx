@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { User, useUser } from '../store/userContext';
 import { useToken } from 'src/store/useToken';
+import { useAlert } from 'src/store/useAlert';
 
 interface Props {}
 
@@ -11,6 +12,7 @@ const Login: React.FC<Props> = () => {
   const [opType, setOpType] = useState<'login' | 'signup'>('login');
   const { setUser, setLogin } = useUser();
   const { setToken } = useToken();
+  const { setAlerts } = useAlert();
   const [user, setLoginUser] = useState<User>({
     email: '',
     name: '',
@@ -44,8 +46,20 @@ const Login: React.FC<Props> = () => {
           ...res.data,
         });
         router.push('/user');
+        setAlerts({
+          message: 'Logged in successfully !',
+          type: 'success',
+        });
       })
-      .catch((err) => console.log(err.response));
+      .catch(
+        (err) => (
+          console.log(err.response),
+          setAlerts({
+            message: err.response.data,
+            type: 'error',
+          })
+        ),
+      );
   };
 
   const Register = async (user: User) => {
@@ -71,8 +85,20 @@ const Login: React.FC<Props> = () => {
           ...res.data,
         });
         router.push('/user');
+        setAlerts({
+          message: 'Logged in successfully !',
+          type: 'success',
+        });
       })
-      .catch((err) => console.log(err));
+      .catch(
+        (err) => (
+          console.log(err),
+          setAlerts({
+            message: err.response.data,
+            type: 'error',
+          })
+        ),
+      );
   };
   return (
     <div className="container">
@@ -93,7 +119,7 @@ const Login: React.FC<Props> = () => {
               <div className="grid grid-cols-1 gap-6">
                 <input
                   name="email"
-                  type="email"
+                  type="text"
                   className="bg-gray-300 rounded-md"
                   value={user.email}
                   placeholder="Email or Username"

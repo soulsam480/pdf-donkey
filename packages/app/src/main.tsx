@@ -7,6 +7,7 @@ import App from './App';
 import { Global } from './styles/globalStyle';
 import AppNavbar from './components/AppNavbar';
 import AppLoader from './components/AppLoader';
+import AppAlertList from './components/AppAlertList';
 
 registerSW({
   immediate: true,
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Suspense fallback={<AppLoader />}>
         <App />
       </Suspense>
+      <AppAlertList />
     </Router>
   </React.StrictMode>,
   document.getElementById('root'),
