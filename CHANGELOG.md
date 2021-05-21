@@ -14,9 +14,7 @@
 
 ##### Documentation Changes
 
-* **api:**
-  *  move route generator to separate file ([fd0781ac](https://github.com/soulsam480/pdf-donkey/commit/fd0781ac19481f68ce7cf6cb3cb191ab20ff18c8))
-  *  update routes ([3b25faaf](https://github.com/soulsam480/pdf-donkey/commit/3b25faaf1b8f488ec1386073c072848cdebf9d06))
+*  add netlify build badge ([5d1a14be](https://github.com/soulsam480/pdf-donkey/commit/5d1a14beba8d2668f17e93d3fa527624aade9520))
 *  update readme, add API routes listing ([fbaff82b](https://github.com/soulsam480/pdf-donkey/commit/fbaff82bc0c8215c538cb1f38b7aa5cf25e5e9a3))
 *  update readme ([5c8f6084](https://github.com/soulsam480/pdf-donkey/commit/5c8f60843e12326938ae01414dc17f5a7718727e))
 *  update readme ([febda93f](https://github.com/soulsam480/pdf-donkey/commit/febda93fc9c12253b345d57d9b948cb20c814ddc))
@@ -25,6 +23,9 @@
 *  update README ([866addf2](https://github.com/soulsam480/pdf-donkey/commit/866addf2bff3653ea963ddd6ed903ded99f686fc))
 *  add small comments ([ca234008](https://github.com/soulsam480/pdf-donkey/commit/ca234008ae9b71a6bf6f5a76664a8114215db057))
 *  update ([fbe7b00c](https://github.com/soulsam480/pdf-donkey/commit/fbe7b00c45f9c59d026628c92d6698c1220ace87))
+* **api:**
+  *  move route generator to separate file ([fd0781ac](https://github.com/soulsam480/pdf-donkey/commit/fd0781ac19481f68ce7cf6cb3cb191ab20ff18c8))
+  *  update routes ([3b25faaf](https://github.com/soulsam480/pdf-donkey/commit/3b25faaf1b8f488ec1386073c072848cdebf9d06))
 
 ##### New Features
 

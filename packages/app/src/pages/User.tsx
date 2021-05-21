@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useAlert } from 'src/store/useAlert';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
 const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
 import { useUser } from 'src/store/userContext';
-import { useToken } from 'src/store/useToken';
 import { DonkeyApi } from 'src/utils/helpers';
 
 interface Props {}
 
 const User: React.FC<Props> = () => {
   const { user } = useUser();
-  const { token } = useToken();
   const { push } = useHistory();
   const [isModal, setModal] = useState(false);
   const [newTemplate, setTemplate] = useState({ title: '', markup: '' });
+  const { setAlerts } = useAlert();
   const handleInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -39,11 +39,20 @@ const User: React.FC<Props> = () => {
       .then(
         (res) => (
           setModal(false),
-          push(`/template/${res.data.id}`),
-          setTemplate({ markup: '', title: '' })
+          setAlerts({
+            message: `Template ${res.data.title} is created successfully !`,
+            type: 'success',
+          }),
+          setTemplate({ markup: '', title: '' }),
+          push(`/template/${res.data.id}`)
         ),
       )
-      .catch((err) => console.log(err));
+      .catch(
+        (err) => (
+          console.log(err),
+          setAlerts({ message: err.response.data, type: 'error' })
+        ),
+      );
   }
   return (
     <div className="container">

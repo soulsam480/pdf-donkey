@@ -19,3 +19,16 @@
 .tox-notification {
   display: none !important;
 }
+.alert-list {
+  z-index: 9500;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  margin-bottom: 10px;
+  position: fixed;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  bottom: 0;
+}

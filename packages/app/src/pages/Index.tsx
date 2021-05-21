@@ -2,6 +2,7 @@ import Axios, { AxiosResponse } from 'axios';
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { useAlert } from 'src/store/useAlert';
 import { useLoader } from 'src/store/useLoader';
 import { User, useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
@@ -15,6 +16,7 @@ const Index: React.FC<Props> = () => {
   const { setToken } = useToken();
   const { setLogin, setUser } = useUser();
   const { setLoader } = useLoader();
+  const { setAlerts } = useAlert();
   useEffect(() => {
     if (!search) return;
     const tok = search.split('?auth_success=')[1];
@@ -34,6 +36,10 @@ const Index: React.FC<Props> = () => {
           setUser({});
           setLogin(false);
           push('/login');
+          setAlerts({
+            message: 'Something went wrong !',
+            type: 'error',
+          });
           return;
         }
         localStorage.setItem('__token', user.data?.refreshToken as string);
@@ -44,12 +50,20 @@ const Index: React.FC<Props> = () => {
         setUser({ ...user.data });
         push('/user');
         setLoader(false);
+        setAlerts({
+          message: 'Logged in successfully !',
+          type: 'success',
+        });
       } catch (error) {
         console.log(error);
         setUser({});
         setLogin(false);
         push('/login');
         setLoader(false);
+        setAlerts({
+          message: error.response.data,
+          type: 'error',
+        });
       }
     })();
   }, []);
