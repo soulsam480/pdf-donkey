@@ -17,9 +17,13 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
     editor.innerHTML = Highlight(code, { language: language }).value;
     return {};
   };
+  function handleChangeCode(val: string) {
+    if (val === code) return;
+    onCode(html(val));
+  }
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    timeout = setTimeout(() => onCode(html(localCode)), 2000);
+    timeout = setTimeout(() => handleChangeCode(localCode), 2000);
     return () => clearTimeout(timeout);
   }, [localCode]);
   return (
