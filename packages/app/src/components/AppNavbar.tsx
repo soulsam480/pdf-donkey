@@ -126,7 +126,6 @@ const AppNavbar: React.FC<Props> = () => {
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
-                        activeClassName="bg-indigo-100"
                       >
                         Dashboard
                       </NavLink>

@@ -19,7 +19,11 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
   };
   function handleChangeCode(val: string) {
     if (val === code) return;
-    onCode(html(val));
+    onCode(
+      html(val, {
+        preserve_newlines: true,
+      }),
+    );
   }
   useEffect(() => {
     let timeout: NodeJS.Timeout;
