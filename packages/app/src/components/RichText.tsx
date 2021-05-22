@@ -8,7 +8,10 @@ interface Props {
 
 const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
   const editorRef = useRef<null | any>(null);
-
+  function handleEditorChange(val: string) {
+    if (val === code) return;
+    setRichCode(val);
+  }
   return (
     <div
       style={{
@@ -20,7 +23,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={code}
         tinymceScriptSrc="https://cdn.jsdelivr.net/gh/soulsam480/self_hosted/tinymce.min.js"
-        onEditorChange={(val, editor) => setRichCode(val)}
+        onEditorChange={(val, editor) => handleEditorChange(val)}
         init={{
           max_height: minHeight,
           height: minHeight,
@@ -44,6 +47,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
             'advlist autolink lists link image charmap print preview anchor',
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table paste code help wordcount',
+            'pagebreak',
           ],
           table_toolbar:
             'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
@@ -51,7 +55,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
             'undo redo | formatselect | tableinsertdialog' +
             'bold italic backcolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat',
+            'removeformat | pagebreak',
           content_style:
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}

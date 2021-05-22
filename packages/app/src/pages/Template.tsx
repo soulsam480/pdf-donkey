@@ -1,14 +1,13 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
-const PrismHighlight = React.lazy(
-  () => import('src/components/PrismHighlight'),
-);
+const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
 const RichTextEditor = React.lazy(() => import('src/components/RichText'));
 import { Template as TemplateModel } from 'src/utils/constants';
 import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
+import { useAlert } from 'src/store/useAlert';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -23,6 +22,7 @@ const Template: React.FC<Props> = () => {
   const firstUpdate = useRef(0);
   const liquid = new Liquid();
   const running = useRef(false);
+  const { setAlerts } = useAlert();
   function getHeight() {
     return window.innerHeight - 170;
   }
@@ -48,7 +48,10 @@ const Template: React.FC<Props> = () => {
     })
       .then(async (res: AxiosResponse<TemplateModel>) => {
         running.current = false;
-        console.log(res);
+        setAlerts({
+          type: 'success',
+          message: 'Saved successfully !',
+        });
         await getTemplate();
       })
       .catch((err) => {
@@ -70,8 +73,15 @@ const Template: React.FC<Props> = () => {
     firstUpdate.current++;
     if (firstUpdate.current > 2) {
       timeout = setTimeout(async () => {
-        await renderTemplate(code), await setTemplate(code);
-      }, 1000);
+        await renderTemplate(code)
+          .then(async () => await setTemplate(code))
+          .catch(() =>
+            setAlerts({
+              type: 'error',
+              message: 'Template error !',
+            }),
+          );
+      }, 2000);
     }
     return () => clearTimeout(timeout);
   }, [code]);
@@ -90,15 +100,12 @@ const Template: React.FC<Props> = () => {
             className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
             value={TemplateData.title}
             placeholder="Untitled"
-            onChange={(e) =>
-              setTemplateData({ ...TemplateData, title: e.target.value })
-            }
+            onChange={(e) => setTemplateData({ ...TemplateData, title: e.target.value })}
             onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
           />{' '}
           <p className="text-sm">
             <span className="font-semibold">Last updated : </span>
-            {getDDMMYY(TemplateData?.updatedAt).time} ,{' '}
-            {getDDMMYY(TemplateData?.updatedAt).date}{' '}
+            {getDDMMYY(TemplateData?.updatedAt).time} , {getDDMMYY(TemplateData?.updatedAt).date}{' '}
           </p>
         </div>
         <div className="text-left lg:text-right">
@@ -144,12 +151,7 @@ const Template: React.FC<Props> = () => {
             borderRadius: '0.5rem',
           }}
         >
-          <iframe
-            srcDoc={renderedTemplate}
-            width="100%"
-            height="100%"
-            frameBorder="0"
-          ></iframe>
+          <iframe srcDoc={renderedTemplate} width="100%" height="100%" frameBorder="0"></iframe>
         </div>
       </div>
     </div>

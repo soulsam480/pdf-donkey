@@ -23,11 +23,11 @@ export class TemplateEntity extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   style: string;
 
-  @Column({ type: 'simple-json', nullable: true })
-  data: Record<string, string | number>;
+  @Column({ type: 'simple-json', nullable: true, default: '{}' })
+  data: string;
 
   @Column({ type: 'simple-json', nullable: true, default: '{}' })
-  meta: Record<string, string | number>;
+  meta: string;
 
   @ManyToOne(() => User, (user) => user.templates)
   user: User;

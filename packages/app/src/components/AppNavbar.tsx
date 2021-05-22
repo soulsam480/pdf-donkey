@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useUser } from '../store/userContext';
 import { clickOutsideToggle } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
+import { version } from '../../../../package.json';
 interface Props {}
 const AppNavbar: React.FC<Props> = () => {
   const { push } = useHistory();
@@ -79,12 +80,10 @@ const AppNavbar: React.FC<Props> = () => {
               to="/"
               className="flex-shrink-0 flex items-center text-white font-bold ml-10 sm:ml-0"
             >
-              <img
-                src="/donkey-trans.png"
-                alt="Donkey Icon"
-                style={{ width: '40px' }}
-              />{' '}
-              <span className="sm:block hidden">PDF Donkey</span>
+              <img src="/donkey-trans.png" alt="Donkey Icon" style={{ width: '40px' }} />{' '}
+              <span className="sm:block hidden">
+                PDF Donkey <span style={{ fontSize: '10px' }}>v{version}</span>{' '}
+              </span>
             </NavLink>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
@@ -113,9 +112,7 @@ const AppNavbar: React.FC<Props> = () => {
 
                     <div
                       className={` ${
-                        !isContext
-                          ? 'opacity-0 hidden pointer-events-none'
-                          : 'opacity-100'
+                        !isContext ? 'opacity-0 hidden pointer-events-none' : 'opacity-100'
                       } user-context origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}
                       role="menu"
                       aria-orientation="vertical"
@@ -129,7 +126,6 @@ const AppNavbar: React.FC<Props> = () => {
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
-                        activeClassName="bg-indigo-100"
                       >
                         Dashboard
                       </NavLink>

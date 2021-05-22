@@ -25,20 +25,15 @@ const TemplateCard: React.FC<Props> = () => {
       {Templates?.map((template) => (
         <div
           key={template.id}
-          className="bg-blue-100 dark:bg-gray-800 bg-opacity-95 p-4 rounded-lg | cursor-pointer | dark:hover:bg-indigo-600  | transition-colors duration-500"
+          className="bg-indigo-100 bg-opacity-95 p-4 rounded-lg | cursor-pointer | hover:bg-indigo-200  | transition-colors duration-500"
         >
           <div className="flex flex-col justify-center">
             <NavLink to={`/template/${template.id}`}>
-              <p className="text-gray-900 dark:text-gray-300 text-xl font-bold">
-                {template.title}
-              </p>
-              <p className="text-black dark:text-gray-100 text-justify text-sm">
-                {template.id}
-              </p>
+              <p className="text-gray-900 dark:text-gray-300 text-xl font-bold">{template.title}</p>
+              <p className="text-black dark:text-gray-100 text-justify text-sm">{template.id}</p>
               <p className="text-black dark:text-gray-100 text-justify text-sm">
                 <span className="font-semibold">Last updated :</span>{' '}
-                {getDDMMYY(template.updatedAt).time} ,{' '}
-                {getDDMMYY(template.updatedAt).date}
+                {getDDMMYY(template.updatedAt).time} , {getDDMMYY(template.updatedAt).date}
               </p>
             </NavLink>
           </div>

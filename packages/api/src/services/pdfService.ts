@@ -10,9 +10,6 @@ export class pdfService {
   async previewTemplate(id: string) {
     const template = await this.templateRepo.findOne(id);
     if (!template) return new HttpError(400, 'Template not found !');
-    return await this.engine.parseAndRender(
-      template?.markup as string,
-      template?.data,
-    );
+    return await this.engine.parseAndRender(template?.markup as string, JSON.parse(template?.data));
   }
 }
