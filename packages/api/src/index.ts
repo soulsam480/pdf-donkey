@@ -62,6 +62,8 @@ passport.use(
           .then((user) => done(null, user));
         return;
       }
+      if (!user.ga_id)
+        await userRepo.update({ email: user.email }, { ga_id: profile.id });
       done(null, user);
     },
   ),

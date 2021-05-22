@@ -8,7 +8,10 @@ interface Props {
 
 const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
   const editorRef = useRef<null | any>(null);
-
+  function handleEditorChange(val: string) {
+    if (val === code) return;
+    setRichCode(val);
+  }
   return (
     <div
       style={{
@@ -20,7 +23,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={code}
         tinymceScriptSrc="https://cdn.jsdelivr.net/gh/soulsam480/self_hosted/tinymce.min.js"
-        onEditorChange={(val, editor) => setRichCode(val)}
+        onEditorChange={(val, editor) => handleEditorChange(val)}
         init={{
           max_height: minHeight,
           height: minHeight,
