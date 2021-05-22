@@ -9,23 +9,25 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "react": "^17.0.0",
-    "react-router-dom": "^5.2.0",
-    "react-dom": "^17.0.0",
-    "axios": "^0.21.1",
-    "tailwindcss": "^2.1.2",
-    "zustand": "^3.4.1",
     "@tailwindcss/forms": "^0.3.2",
-    "swr": "^0.5.5",
     "@tinymce/tinymce-react": "^3.12.5",
+    "axios": "^0.21.1",
     "highlight.js": "^10.7.2",
+    "js-beautify": "^1.13.13",
     "liquidjs": "^9.25.0",
+    "react": "^17.0.0",
     "react-codejar": "^1.0.2",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^5.2.0",
     "shoyo": "^0.1.4-alpha",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "swr": "^0.5.5",
+    "tailwindcss": "^2.1.2",
+    "zustand": "^3.4.1"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
+    "@types/js-beautify": "^1.13.1",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
