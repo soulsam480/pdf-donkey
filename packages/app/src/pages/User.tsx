@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { useAlert } from 'src/store/useAlert';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
 const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
+const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
 import { useUser } from 'src/store/userContext';
 import { DonkeyApi } from 'src/utils/helpers';
 
@@ -14,9 +15,7 @@ const User: React.FC<Props> = () => {
   const [isModal, setModal] = useState(false);
   const [newTemplate, setTemplate] = useState({ title: '', markup: '' });
   const { setAlerts } = useAlert();
-  const handleInput = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const target = e.target;
     setTemplate({
       ...newTemplate,
@@ -47,12 +46,7 @@ const User: React.FC<Props> = () => {
           push(`/template/${res.data.id}`)
         ),
       )
-      .catch(
-        (err) => (
-          console.log(err),
-          setAlerts({ message: err.response.data, type: 'error' })
-        ),
-      );
+      .catch((err) => (console.log(err), setAlerts({ message: err.response.data, type: 'error' })));
   }
   return (
     <div className="container">
@@ -73,13 +67,11 @@ const User: React.FC<Props> = () => {
             onChange={handleInput}
             className="rounded-md"
           />
-
-          <textarea
-            name="markup"
-            value={newTemplate.markup}
-            placeholder="Markup"
-            onChange={handleInput}
-            className="rounded-md"
+          <PrismHighlight
+            code={newTemplate.markup}
+            minHeight={300}
+            language={'html'}
+            onCode={(e) => setTemplate({ ...newTemplate, markup: e })}
           />
           <div className="flex justify-end">
             <button
@@ -96,9 +88,7 @@ const User: React.FC<Props> = () => {
                   : 'hover:bg-indigo-600'
               }`}
               type="submit"
-              disabled={
-                newTemplate.markup.length < 1 || newTemplate.title.length < 1
-              }
+              disabled={newTemplate.markup.length < 1 || newTemplate.title.length < 1}
             >
               Submit
             </button>
@@ -116,8 +106,7 @@ const User: React.FC<Props> = () => {
       </div>
       <p className="text-lg">
         {' '}
-        Hii <span className="font-bold"> {user.name} </span> ! Welcome to
-        PDF-Donkey.
+        Hii <span className="font-bold"> {user.name} </span> ! Welcome to PDF-Donkey.
       </p>
       <p className="text-lg">You can find all of your templates here.</p>
       <TemplateCards />
