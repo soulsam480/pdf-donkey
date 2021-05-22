@@ -134,18 +134,13 @@ const Login: React.FC<Props> = () => {
                   onChange={handleInput}
                   onKeyDown={(e) => e.key === 'Enter' && Login(user)}
                 />
-                <p className="muted text-right">
-                  <small className="pointer">Forgot password ?</small>
-                </p>
                 <button
                   className="bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg"
                   onClick={(e) => Login(user)}
                 >
                   Login
                 </button>
-                <small className="text-center text-gray-500">
-                  Or Login with
-                </small>
+                <small className="text-center text-gray-500">Or Login with</small>
                 <div className="text-center">
                   <a
                     title="Login with google"
@@ -157,11 +152,7 @@ const Login: React.FC<Props> = () => {
                         : 'http://localhost:3000/donkey/v1/auth/google'
                     }
                   >
-                    <img
-                      src="/glogo.webp"
-                      className="w-6 block m-auto"
-                      alt="Google logo"
-                    />
+                    <img src="/glogo.webp" className="w-6 block m-auto" alt="Google logo" />
                   </a>
                 </div>
               </div>

@@ -37,13 +37,7 @@ passport.use(
         : 'https://apis.sambitsahoo.com/donkey/v1/auth/google/redirect',
       passReqToCallback: true,
     },
-    async (
-      request: any,
-      accessToken: any,
-      refreshToken: any,
-      profile: any,
-      done: any,
-    ) => {
+    async (request: any, accessToken: any, refreshToken: any, profile: any, done: any) => {
       const userRepo = getRepository(User);
       const user = await userRepo.findOne({
         where: [{ ga_id: profile.id }, { email: profile.email }],
@@ -62,8 +56,7 @@ passport.use(
           .then((user) => done(null, user));
         return;
       }
-      if (!user.ga_id)
-        await userRepo.update({ email: user.email }, { ga_id: profile.id });
+      if (!user.ga_id) await userRepo.update({ email: user.email }, { ga_id: profile.id });
       done(null, user);
     },
   ),
@@ -91,11 +84,7 @@ async function main() {
   server.use(express.urlencoded({ extended: true }));
   server.use(
     cors({
-      origin: [
-        'http://localhost:4001',
-        'https://donkey.sambitsahoo.com',
-        'http://localhost:5000',
-      ],
+      origin: ['http://localhost:4001', 'https://donkey.sambitsahoo.com', 'http://localhost:5000'],
     }),
   );
   server.use('/donkey/v1/auth/', limiter);
@@ -116,9 +105,7 @@ async function main() {
       routePrefix: '/donkey/v1',
       controllers: [__dirname + '/controllers/*{.ts,.js}'],
       currentUserChecker: async (action: Action) => {
-        const accessToken = action.request.headers['access-token'].split(
-          'Bearer ',
-        )[1] as string;
+        const accessToken = action.request.headers['access-token'].split('Bearer ')[1] as string;
         const data = <{ userId: string }>(
           verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
         );
@@ -166,9 +153,7 @@ async function main() {
 
       // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
     }
-    server.listen(PORT, () =>
-      console.log(`Listening on http://localhost:${PORT}`),
-    );
+    server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
   });
 }
 

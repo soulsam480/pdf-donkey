@@ -30,19 +30,23 @@ export class userController {
 
   @Get('/:id')
   async getById(@Param('id') id: string, @CurrentUser() user: User) {
-    return await this.templateRepo.findOne({
+    const template = await this.templateRepo.findOne({
       where: { id: id, user: user.id },
     });
+    return {
+      ...template,
+      data: template?.data ? JSON.parse(template?.data) : {},
+      meta: template?.data ? JSON.parse(template?.meta) : {},
+    };
   }
 
   @Post('/')
-  async createTemplate(
-    @Body() template: TemplateEntity,
-    @CurrentUser() user: User,
-  ) {
+  async createTemplate(@Body() template: TemplateEntity, @CurrentUser() user: User) {
     return this.templateRepo
       .create({
         ...template,
+        data: template.data ? JSON.stringify(template.data) : '{}',
+        meta: template.data ? JSON.stringify(template.meta) : '{}',
         user: { id: user.id },
       })
       .save();
@@ -56,7 +60,7 @@ export class userController {
   ) {
     return await this.templateRepo.update(
       { id: id, user: user },
-      { ...template },
+      { ...template, data: JSON.stringify(template.data), meta: JSON.stringify(template.meta) },
     );
   }
 
