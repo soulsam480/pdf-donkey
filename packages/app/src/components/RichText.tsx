@@ -44,6 +44,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
             'advlist autolink lists link image charmap print preview anchor',
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table paste code help wordcount',
+            'pagebreak',
           ],
           table_toolbar:
             'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
@@ -51,7 +52,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
             'undo redo | formatselect | tableinsertdialog' +
             'bold italic backcolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat',
+            'removeformat | pagebreak',
           content_style:
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}

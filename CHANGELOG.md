@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-20)
+#### 0.1.1 (2021-05-21)
 
 ##### Build System / Dependencies
 
@@ -30,6 +30,7 @@
 ##### New Features
 
 * **app:**
+  *  added notifications, classname helper minor UI updates ([3712836a](https://github.com/soulsam480/pdf-donkey/commit/3712836ac51fb56b0a547bdc5ff435b3e5c18892))
   *  Moved to tinymce for wysiwyg editor ([9030ab35](https://github.com/soulsam480/pdf-donkey/commit/9030ab358526a21761fa2c6e45e5ae3fa6609f88))
   *  add full page loader, added reactive donkey APi ([3246ddb5](https://github.com/soulsam480/pdf-donkey/commit/3246ddb594f3720cd3cf887ba9bca481669ebcd2))
   *  added basic landing page ([e944eb73](https://github.com/soulsam480/pdf-donkey/commit/e944eb736becc2a0259b7899bf0b074b5b695fe5))
@@ -72,6 +73,7 @@
 
 ##### Other Changes
 
+*  merge master ([20a83571](https://github.com/soulsam480/pdf-donkey/commit/20a83571cb6d028ff8cfd45af95a48391793df69))
 * soulsam480/pdf-donkey merge ([5b594fd0](https://github.com/soulsam480/pdf-donkey/commit/5b594fd0b7c5ee1026f3debf202c7afd9adb0b1e))
 
 ##### Refactors
