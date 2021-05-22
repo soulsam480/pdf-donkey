@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-21)
+#### 0.1.1 (2021-05-22)
 
 ##### Build System / Dependencies
 
@@ -30,6 +30,9 @@
 ##### New Features
 
 * **app:**
+  *  added auto formatting in code mode while editing templates ([67fae7de](https://github.com/soulsam480/pdf-donkey/commit/67fae7debcb0f90e2fb9e02b8cc09c36bdfccd93))
+  *  split vendor chunks and module chunks ([3282a4ce](https://github.com/soulsam480/pdf-donkey/commit/3282a4ce5f2aed5cf9d37231f576ed237dde4a04))
+  *  added pagebreak ([8adea77c](https://github.com/soulsam480/pdf-donkey/commit/8adea77cf8bb1dec13be0c74f3f944ac5892c2dd))
   *  added notifications, classname helper minor UI updates ([3712836a](https://github.com/soulsam480/pdf-donkey/commit/3712836ac51fb56b0a547bdc5ff435b3e5c18892))
   *  Moved to tinymce for wysiwyg editor ([9030ab35](https://github.com/soulsam480/pdf-donkey/commit/9030ab358526a21761fa2c6e45e5ae3fa6609f88))
   *  add full page loader, added reactive donkey APi ([3246ddb5](https://github.com/soulsam480/pdf-donkey/commit/3246ddb594f3720cd3cf887ba9bca481669ebcd2))
@@ -42,17 +45,18 @@
   *  add login, register, user state, feat(api): add refresh token endpoint ([ce5c0e92](https://github.com/soulsam480/pdf-donkey/commit/ce5c0e922ece0ea77c494f7ea592a6e950f8ca02))
   *  add path, state, navbar ([066c5222](https://github.com/soulsam480/pdf-donkey/commit/066c5222c50e99c1bd188ca352ea2bdb3c278d01))
   *  react app init ([e551c20f](https://github.com/soulsam480/pdf-donkey/commit/e551c20fb8d17a6ef316a6499e88c910c9065fc1))
-*  change label ([fd2f90fd](https://github.com/soulsam480/pdf-donkey/commit/fd2f90fd272352eeebc190d87208b56f5edb8973))
-*  add user dropdown menu ([621fb894](https://github.com/soulsam480/pdf-donkey/commit/621fb89440065ea66e049e270cd12dc6918478f2))
-*  add PWA caching ([83d5dd82](https://github.com/soulsam480/pdf-donkey/commit/83d5dd8285d640377e194e34196bf7ec806e58e8))
-*  port modal to twcss ([b2c5c8c7](https://github.com/soulsam480/pdf-donkey/commit/b2c5c8c742cb93f2f7a1b49240749030c7a893a0))
-*  add template creation ([7a869cd4](https://github.com/soulsam480/pdf-donkey/commit/7a869cd481eefe5ef09d2cbc1c95f1a2d009b886))
 * **api:**
+  *  set user ga_id if existing user uses google auth ([edc8bc63](https://github.com/soulsam480/pdf-donkey/commit/edc8bc63da5410eb2ff28d44dd19b3214d2dc04d))
   *  added google oauth2 ([d2795956](https://github.com/soulsam480/pdf-donkey/commit/d2795956940dcb3e8f7aca30fd6a908bf64edd75))
   *  user persisted, feat(api): log paths ([e5b0274b](https://github.com/soulsam480/pdf-donkey/commit/e5b0274b0b2d395ef9d3039091e9daa0c0cfd841))
   *  user auth, middleware ([86624c07](https://github.com/soulsam480/pdf-donkey/commit/86624c07b97462adf4a4ac82746b555f4bd4d3eb))
   *  template controllers, pdf preview service, liquidjs, ([46a63cdc](https://github.com/soulsam480/pdf-donkey/commit/46a63cdc28d6278ffe96ab801080f6052244d799))
   *  added controllers, basic entities ([095c7ca6](https://github.com/soulsam480/pdf-donkey/commit/095c7ca6d1a25e968cb9e1f7aca39c393ff0defa))
+*  change label ([fd2f90fd](https://github.com/soulsam480/pdf-donkey/commit/fd2f90fd272352eeebc190d87208b56f5edb8973))
+*  add user dropdown menu ([621fb894](https://github.com/soulsam480/pdf-donkey/commit/621fb89440065ea66e049e270cd12dc6918478f2))
+*  add PWA caching ([83d5dd82](https://github.com/soulsam480/pdf-donkey/commit/83d5dd8285d640377e194e34196bf7ec806e58e8))
+*  port modal to twcss ([b2c5c8c7](https://github.com/soulsam480/pdf-donkey/commit/b2c5c8c742cb93f2f7a1b49240749030c7a893a0))
+*  add template creation ([7a869cd4](https://github.com/soulsam480/pdf-donkey/commit/7a869cd481eefe5ef09d2cbc1c95f1a2d009b886))
 * **app,api:**
   *  add typeorm migrations, added rich text editor ([26549ab0](https://github.com/soulsam480/pdf-donkey/commit/26549ab0964070a1fad00fae9aaa8403282e9885))
   *  add code splitting, change sqlite driver to better-sqlite3 ([f0c0ed48](https://github.com/soulsam480/pdf-donkey/commit/f0c0ed483e942c176ffae04845e1779dbea20bbf))
