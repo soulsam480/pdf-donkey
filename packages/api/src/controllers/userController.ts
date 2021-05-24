@@ -4,7 +4,7 @@ import { Body, Controller, Get, HttpError, Put, Req, Res, UseBefore } from 'rout
 import { User } from 'src/entities/user';
 import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
 import { authService } from 'src/services/authService';
-import { ERROR_MESSAGES } from 'src/utils/ocnstants';
+import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 
 @Controller('/user')
@@ -52,7 +52,16 @@ export class userController {
   @UseBefore(authMiddleware)
   @Get('/key')
   async getApiKey(@Req() { userId }: RequestWithUser) {
-    const userFromDb = await this.userRepo.findOne({ where: { id: userId } });
-    if (!userFromDb) return new HttpError(400, ERROR_MESSAGES.user_not_found);
+    try {
+      const userFromDb = await this.userRepo.findOne({ where: { id: userId } });
+      if (!userFromDb) return new HttpError(400, ERROR_MESSAGES.user_not_found);
+      const { api_key } = userFromDb;
+      if (api_key) return api_key;
+      return await this.authService.generateApiKey(userId);
+    } catch (error) {
+      console.log(error);
+
+      return new HttpError(500, error);
+    }
   }
 }

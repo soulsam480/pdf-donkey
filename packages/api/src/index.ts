@@ -50,7 +50,7 @@ passport.use(
             ga_id: profile.id,
             is_active: true,
             username: profile.email.split('@')[0],
-            password: await bcrypt.hash(uuid(), 10),
+            password: await bcrypt.hash(uuid(), parseInt(process.env.HASH_SALT as string)),
           })
           .save()
           .then((user) => done(null, user));

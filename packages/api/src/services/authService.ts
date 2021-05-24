@@ -3,13 +3,13 @@ import bcrypt from 'bcrypt';
 import { User } from 'src/entities/user';
 import { sign } from 'jsonwebtoken';
 import { Response } from 'express';
-import { ERROR_MESSAGES } from 'src/utils/ocnstants';
+import { ERROR_MESSAGES } from 'src/utils/constants';
 
 export class authService {
   private readonly userRepo = getRepository(User);
 
   async hashPassword(pass: string) {
-    return bcrypt.hash(pass, 10);
+    return await bcrypt.hash(pass, parseInt(process.env.HASH_SALT as string));
   }
 
   createTokens(user: Partial<User>): { refreshToken: string; accessToken: string } {
@@ -21,6 +21,17 @@ export class authService {
     });
 
     return { refreshToken, accessToken };
+  }
+
+  async generateApiKey(userId: string) {
+    try {
+      const apiKey = await bcrypt.hash(userId, parseInt(process.env.HASH_SALT as string));
+      await this.userRepo.update({ id: userId }, { api_key: apiKey });
+      const user = await this.userRepo.findOne({ where: { id: userId } });
+      return user?.api_key;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async comparePassword(password: string, hashedPass: string) {

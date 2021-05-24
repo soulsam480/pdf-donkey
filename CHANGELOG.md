@@ -30,6 +30,7 @@
 ##### New Features
 
 * **api:**
+  *  add error messages as constants ([11220db5](https://github.com/soulsam480/pdf-donkey/commit/11220db5f690e88d965b382db1a6189d3d389446))
   *  add user profile update ([e4d42355](https://github.com/soulsam480/pdf-donkey/commit/e4d42355567e034edd51a079fcf9549cb93969e5))
   *  add support for tenplate data and meta ([a757b4fd](https://github.com/soulsam480/pdf-donkey/commit/a757b4fd30631b66f40277adcd78b218bc286224))
   *  set user ga_id if existing user uses google auth ([edc8bc63](https://github.com/soulsam480/pdf-donkey/commit/edc8bc63da5410eb2ff28d44dd19b3214d2dc04d))

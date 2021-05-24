@@ -4,7 +4,7 @@ import { authService } from 'src/services/authService';
 import { User } from 'src/entities/user';
 import { verify } from 'jsonwebtoken';
 import { Request } from 'express';
-import { ERROR_MESSAGES } from 'src/utils/ocnstants';
+import { ERROR_MESSAGES } from 'src/utils/constants';
 
 @Controller('/token')
 export class tokenController {
