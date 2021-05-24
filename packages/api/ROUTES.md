@@ -84,3 +84,9 @@ PATH : **/DONKEY/V1/USER/** **||** METHOD: **PUT**
  {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"}],"methods":{"put":true}}}
 ```
           
+PATH : **/DONKEY/V1/USER/KEY** **||** METHOD: **GET** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/key","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
+```
+          

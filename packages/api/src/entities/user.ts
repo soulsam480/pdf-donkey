@@ -34,6 +34,9 @@ export class User extends BaseEntity {
   @Column({ type: 'text', nullable: true, unique: true })
   ga_id: string;
 
+  @Column({ type: 'text', nullable: true, unique: true })
+  api_key: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }
