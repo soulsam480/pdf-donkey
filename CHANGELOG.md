@@ -30,6 +30,7 @@
 ##### New Features
 
 * **app:**
+  *  added syntax highlighting and auto formatting to create template modal ([768acb35](https://github.com/soulsam480/pdf-donkey/commit/768acb3557cacbeecbc42f0f5b29339d52b55555))
   *  minor UI updates ([2fc78612](https://github.com/soulsam480/pdf-donkey/commit/2fc78612fc68fe75417d815c28eb2ed8c4fcd6f4))
   *  add Donkey version to navBar ([8194d788](https://github.com/soulsam480/pdf-donkey/commit/8194d78860b4f670a5d167c40bb346be837ceb33))
   *  added auto formatting in code mode while editing templates ([67fae7de](https://github.com/soulsam480/pdf-donkey/commit/67fae7debcb0f90e2fb9e02b8cc09c36bdfccd93))

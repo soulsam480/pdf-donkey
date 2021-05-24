@@ -150,7 +150,6 @@ async function main() {
       //     },
       //   },
       // );
-
       // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
     }
     server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
