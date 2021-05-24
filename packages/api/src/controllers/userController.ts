@@ -60,7 +60,6 @@ export class userController {
       return await this.authService.generateApiKey(userId);
     } catch (error) {
       console.log(error);
-
       return new HttpError(500, error);
     }
   }

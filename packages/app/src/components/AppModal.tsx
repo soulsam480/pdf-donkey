@@ -6,18 +6,13 @@ interface Props {
   heading: string;
 }
 
-const AppModal: React.FC<Props> = ({
-  isModal,
-  closeModal,
-  heading,
-  children,
-}) => {
+const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children }) => {
   return (
     <div>
       <div
         className={`modal ${
           !isModal ? 'opacity-0 pointer-events-none' : ''
-        }  fixed w-full h-full top-0 left-0 flex items-center justify-center`}
+        }  fixed w-full h-full top-0 left-0 flex items-center justify-center z-40`}
       >
         <div
           className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
@@ -28,10 +23,7 @@ const AppModal: React.FC<Props> = ({
           <div className="modal-content py-4 text-left px-6">
             <div className="flex justify-between items-center pb-3 ">
               <p className="text-2xl font-bold">{heading}</p>
-              <div
-                className="modal-close cursor-pointer z-50"
-                onClick={() => closeModal()}
-              >
+              <div className="modal-close cursor-pointer z-50" onClick={() => closeModal()}>
                 <svg
                   className="fill-current text-black"
                   xmlns="http://www.w3.org/2000/svg"

@@ -7,5 +7,6 @@ export interface Template {
   meta?: Record<string, string | number>;
   user?: string;
   createdAt?: string;
+  api_key?: string;
   updatedAt?: string;
 }
