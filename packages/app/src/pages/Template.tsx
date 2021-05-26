@@ -1,13 +1,14 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
-const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
-const RichTextEditor = React.lazy(() => import('src/components/RichText'));
 import { Template as TemplateModel } from 'src/utils/constants';
-import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
+import { classNames, DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
+import AppModal from 'src/components/AppModal';
+import PrismHighlight from 'src/components/PrismHighlight';
+import RichTextEditor from 'src/components/RichText';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -18,8 +19,9 @@ const Template: React.FC<Props> = () => {
     title: '',
   });
   const [renderedTemplate, setRenderTemplate] = useState('');
+  const [isModal, setModal] = useState(false);
+  const [TemplateTestData, setTemplateTest] = useState('');
   const { width } = useScreenWidth();
-  const firstUpdate = useRef(0);
   const liquid = new Liquid();
   const running = useRef(false);
   const { setAlerts } = useAlert();
@@ -31,13 +33,17 @@ const Template: React.FC<Props> = () => {
       .then(async (res: AxiosResponse<TemplateModel>) => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
-        await renderTemplate(res.data.markup as string);
+        setTemplateTest(JSON.stringify(res.data.data));
+        await renderTemplate(res.data.markup as string, res.data?.data);
       })
       .catch((err: AxiosError) => {
         console.log(err);
       });
   }
-  async function setTemplate(codePayload: string = code) {
+  async function setTemplate(
+    codePayload: string = code,
+    data: Record<string, any> = JSON.parse(TemplateTestData),
+  ) {
     if (running.current) return;
     running.current = true;
     await DonkeyApi.put(`/template/${id}/`, {
@@ -45,8 +51,9 @@ const Template: React.FC<Props> = () => {
       createdAt: undefined,
       updatedAt: undefined,
       markup: codePayload,
+      data: data,
     })
-      .then(async (res: AxiosResponse<TemplateModel>) => {
+      .then(async () => {
         running.current = false;
         setAlerts({
           type: 'success',
@@ -56,43 +63,83 @@ const Template: React.FC<Props> = () => {
       })
       .catch((err) => {
         console.log(err);
+        setAlerts({
+          type: 'error',
+          message: 'Some error occured !',
+        });
       });
   }
-  async function renderTemplate(code: string) {
-    return await liquid.parseAndRender(code).then((res) => {
+  async function renderTemplate(code: string, data?: Record<string, any>) {
+    return await liquid.parseAndRender(code, data).then((res) => {
       setRenderTemplate(res);
     });
   }
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (firstUpdate.current === 0) {
-      firstUpdate.current = 1;
+  async function handleTemplateTestData() {
+    try {
+      const josnEd = JSON.parse(TemplateTestData);
+      await setTemplate(undefined, josnEd);
+    } catch (error) {
+      setAlerts({
+        type: 'error',
+        message: 'Error in data format !',
+      });
       return;
     }
-    firstUpdate.current++;
-    if (firstUpdate.current > 2) {
-      timeout = setTimeout(async () => {
-        await renderTemplate(code)
-          .then(async () => await setTemplate(code))
-          .catch(() =>
-            setAlerts({
-              type: 'error',
-              message: 'Template error !',
-            }),
-          );
-      }, 2000);
-    }
+  }
+  useEffect(() => {
+    if (code === TemplateData.markup) return;
+    let timeout: NodeJS.Timeout;
+    timeout = setTimeout(async () => {
+      await renderTemplate(code)
+        .then(async () => await setTemplate(code))
+        .catch(() =>
+          setAlerts({
+            type: 'error',
+            message: 'Template error !',
+          }),
+        );
+    }, 2000);
     return () => clearTimeout(timeout);
   }, [code]);
 
   useEffect(() => {
-    getTemplate();
+    (async () => {
+      await getTemplate();
+    })();
   }, []);
 
   return (
     <div className="container">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
+      <AppModal
+        closeModal={() => setModal(false)}
+        heading="Add test data for template"
+        isModal={isModal}
+      >
+        <div className="bg-gray-200 p-3 rounded-md text-xs text-gray-700">
+          <span className="font-bold">!</span> The should be in JSON format.
+        </div>
+        <div className="py-2">
+          <PrismHighlight
+            code={TemplateTestData}
+            language={'json'}
+            onCode={(e) => setTemplateTest(e)}
+          />
+        </div>
+        <div className="flex justify-end">
+          <button
+            className={classNames({
+              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ': true,
+              'disabled:opacity-50 cursor-not-allowed':
+                TemplateTestData === JSON.stringify(TemplateData.data),
+            })}
+            onClick={() => handleTemplateTestData()}
+            disabled={TemplateTestData === JSON.stringify(TemplateData.data)}
+          >
+            Submit
+          </button>
+        </div>
+      </AppModal>
+      <div className="grid grid-cols-1 lg:grid-cols-2  gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
         <div>
           <input
             name="password"
@@ -108,9 +155,15 @@ const Template: React.FC<Props> = () => {
             {getDDMMYY(TemplateData?.updatedAt).time} , {getDDMMYY(TemplateData?.updatedAt).date}{' '}
           </p>
         </div>
-        <div className="text-left lg:text-right">
+        <div className="text-left lg:text-right flex flex-row justify-end">
           <button
-            className="bg-indigo-500 w-full lg:w-auto hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
+            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
+            onClick={() => setModal(true)}
+          >
+            Test Data
+          </button>
+          <button
+            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
             onClick={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
           >
             {richMode !== 'rich' ? 'Rich' : 'Code'} mode

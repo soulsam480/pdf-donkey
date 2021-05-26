@@ -1,4 +1,4 @@
-## ROUTES 5/22/2021
+## ROUTES 5/26/2021
 
 PATH : **/DONKEY/V1/AUTH/REGISTER** **||** METHOD: **POST** 
 - Detailed:
@@ -75,6 +75,18 @@ PATH : **/DONKEY/V1/TOKEN/REFRESH** **||** METHOD: **GET**
 PATH : **/DONKEY/V1/USER/** **||** METHOD: **GET** 
 - Detailed:
 ```json
- {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
+```
+          
+PATH : **/DONKEY/V1/USER/** **||** METHOD: **PATCH** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"}],"methods":{"patch":true}}}
+```
+          
+PATH : **/DONKEY/V1/USER/KEY** **||** METHOD: **GET** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/key","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
 ```
           

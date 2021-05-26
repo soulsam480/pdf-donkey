@@ -50,7 +50,7 @@ passport.use(
             ga_id: profile.id,
             is_active: true,
             username: profile.email.split('@')[0],
-            password: await bcrypt.hash(uuid(), 10),
+            password: await bcrypt.hash(uuid(), parseInt(process.env.HASH_SALT as string)),
           })
           .save()
           .then((user) => done(null, user));
@@ -84,7 +84,7 @@ async function main() {
   server.use(express.urlencoded({ extended: true }));
   server.use(
     cors({
-      origin: ['http://localhost:4001', 'https://donkey.sambitsahoo.com', 'http://localhost:5000'],
+      origin: '*',
     }),
   );
   server.use('/donkey/v1/auth/', limiter);
@@ -150,7 +150,6 @@ async function main() {
       //     },
       //   },
       // );
-
       // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
     }
     server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

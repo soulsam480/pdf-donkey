@@ -116,11 +116,7 @@ const Index: React.FC<Props> = () => {
           </div>
         </div>
         <div className="w-full lg:w-1/2">
-          <img
-            src="/donkey-trans.png"
-            className="max-w-full m-auto block"
-            alt=""
-          />
+          <img src="/donkey-trans.png" className="max-w-full m-auto block" alt="" />
         </div>
       </div>
       <AppFooter />

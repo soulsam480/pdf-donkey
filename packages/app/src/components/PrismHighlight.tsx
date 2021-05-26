@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { highlight as Highlight } from 'highlight.js';
 import 'highlight.js/styles/dracula.css';
 import { ReactCodeJar } from 'react-codejar';
-import { html } from 'js-beautify';
+import { html, js } from 'js-beautify';
 interface Props {
   language: string;
   code: string;
   onCode: (code: string) => void;
-  minHeight: number;
+  minHeight?: number;
 }
 
 const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) => {
@@ -20,9 +20,13 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
   function handleChangeCode(val: string) {
     if (val === code) return;
     onCode(
-      html(val, {
-        preserve_newlines: true,
-      }),
+      language === 'html'
+        ? html(val, {
+            preserve_newlines: true,
+          })
+        : js(val, {
+            preserve_newlines: true,
+          }),
     );
   }
   useEffect(() => {
@@ -38,7 +42,7 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
         resize: 'none',
         padding: '10px',
         borderRadius: '0.5rem',
-        maxHeight: `${minHeight}px`,
+        maxHeight: minHeight ? `${minHeight}px` : 'auto',
       }}
       code={code}
       onUpdate={(e) => setLocalCode(e)}

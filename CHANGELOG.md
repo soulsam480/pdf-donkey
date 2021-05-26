@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-22)
+#### 0.1.1 (2021-05-26)
 
 ##### Build System / Dependencies
 
@@ -30,6 +30,10 @@
 ##### New Features
 
 * **app:**
+  *  add user API key generation ([4b07347f](https://github.com/soulsam480/pdf-donkey/commit/4b07347fe737ddd94ec2a6e0e930e033a1625bdd))
+  *  user profile update ([f668921b](https://github.com/soulsam480/pdf-donkey/commit/f668921b75fe31dc567c9b2d9b8840b4bdaca940))
+  *  added template test data input modal for testing the template ([5cc19609](https://github.com/soulsam480/pdf-donkey/commit/5cc1960958a2113c83d5ef46666ebcb5b48f6fdc))
+  *  added syntax highlighting and auto formatting to create template modal ([768acb35](https://github.com/soulsam480/pdf-donkey/commit/768acb3557cacbeecbc42f0f5b29339d52b55555))
   *  minor UI updates ([2fc78612](https://github.com/soulsam480/pdf-donkey/commit/2fc78612fc68fe75417d815c28eb2ed8c4fcd6f4))
   *  add Donkey version to navBar ([8194d788](https://github.com/soulsam480/pdf-donkey/commit/8194d78860b4f670a5d167c40bb346be837ceb33))
   *  added auto formatting in code mode while editing templates ([67fae7de](https://github.com/soulsam480/pdf-donkey/commit/67fae7debcb0f90e2fb9e02b8cc09c36bdfccd93))
@@ -48,6 +52,9 @@
   *  add path, state, navbar ([066c5222](https://github.com/soulsam480/pdf-donkey/commit/066c5222c50e99c1bd188ca352ea2bdb3c278d01))
   *  react app init ([e551c20f](https://github.com/soulsam480/pdf-donkey/commit/e551c20fb8d17a6ef316a6499e88c910c9065fc1))
 * **api:**
+  *  add user API key generation ([c46408e3](https://github.com/soulsam480/pdf-donkey/commit/c46408e33ea0eecd875e2183eb1cbdd13552e161))
+  *  add error messages as constants ([11220db5](https://github.com/soulsam480/pdf-donkey/commit/11220db5f690e88d965b382db1a6189d3d389446))
+  *  add user profile update ([e4d42355](https://github.com/soulsam480/pdf-donkey/commit/e4d42355567e034edd51a079fcf9549cb93969e5))
   *  add support for tenplate data and meta ([a757b4fd](https://github.com/soulsam480/pdf-donkey/commit/a757b4fd30631b66f40277adcd78b218bc286224))
   *  set user ga_id if existing user uses google auth ([edc8bc63](https://github.com/soulsam480/pdf-donkey/commit/edc8bc63da5410eb2ff28d44dd19b3214d2dc04d))
   *  added google oauth2 ([d2795956](https://github.com/soulsam480/pdf-donkey/commit/d2795956940dcb3e8f7aca30fd6a908bf64edd75))
@@ -67,7 +74,12 @@
 
 ##### Bug Fixes
 
-* **app:**  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
+* **app:**
+  *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
+  *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
+* **api:**
+  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
+  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
 *  remove index db ([eddd3439](https://github.com/soulsam480/pdf-donkey/commit/eddd3439723dca4c7b924205d9df5e286ded0a51))
 *  remove index db ([1fe186b4](https://github.com/soulsam480/pdf-donkey/commit/1fe186b4085f80c4ef10ea89cc60ccc1931520aa))
@@ -77,15 +89,16 @@
 *  runtime errors ([ae6ebc4e](https://github.com/soulsam480/pdf-donkey/commit/ae6ebc4eac459aa7444ca1d7f2b63c1a62c9315a))
 *  store ([0e6c643b](https://github.com/soulsam480/pdf-donkey/commit/0e6c643bef5b8e16b77fc13ece8f391b58164fdf))
 * **app,api:**  fix updatedAt error, scope requests to specific user ([7e9ecdf4](https://github.com/soulsam480/pdf-donkey/commit/7e9ecdf47c7f27b55c20f34365bf678b468f7a33))
-* **api:**  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
 
 ##### Other Changes
 
+* **api:**  better error handling ([1745e290](https://github.com/soulsam480/pdf-donkey/commit/1745e290b9b5c1ea4a466853489bc3ea9a5831ee))
 *  merge master ([20a83571](https://github.com/soulsam480/pdf-donkey/commit/20a83571cb6d028ff8cfd45af95a48391793df69))
 * soulsam480/pdf-donkey merge ([5b594fd0](https://github.com/soulsam480/pdf-donkey/commit/5b594fd0b7c5ee1026f3debf202c7afd9adb0b1e))
 
 ##### Refactors
 
+* **app,api:**  Better error handling in user endpoints ([c68b4538](https://github.com/soulsam480/pdf-donkey/commit/c68b453837edba1c22f6d22d36ebe98eb7328c6d))
 *  make husky run after commit ([6d77eb0b](https://github.com/soulsam480/pdf-donkey/commit/6d77eb0be75ef833d17a9c10513be2dd5db61303))
 *  moved to semantic token headers **Bearer token** format ([fd6d7aa9](https://github.com/soulsam480/pdf-donkey/commit/fd6d7aa9d24774c06b52bc6a2216c33bb4a13fb7))
 * **api:**  move template controller methods to try/catch blocks ([e2e2a0f2](https://github.com/soulsam480/pdf-donkey/commit/e2e2a0f221677479fff743f43e2077dae8ef57b0))

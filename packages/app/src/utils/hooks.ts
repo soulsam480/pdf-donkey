@@ -7,9 +7,7 @@ export function useScreenWidth() {
       width,
     };
   }
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions(),
-  );
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   useEffect(() => {
     function handleResize() {

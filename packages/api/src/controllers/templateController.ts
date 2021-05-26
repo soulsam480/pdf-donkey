@@ -1,18 +1,18 @@
 import {
   Body,
   Controller,
-  CurrentUser,
   Delete,
   Get,
-  HttpError,
+  InternalServerError,
   Param,
   Post,
   Put,
+  Req,
   UseBefore,
 } from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
-import { User } from 'src/entities/user';
-import { authMiddleware } from 'src/middlewares/auth.middleware';
+import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
+import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
@@ -21,27 +21,27 @@ import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity
 export class userController {
   private readonly templateRepo = getRepository(TemplateEntity);
   @Get('/')
-  async getAll(@CurrentUser() user: User) {
+  async getAll(@Req() { userId }: RequestWithUser) {
     try {
       return await this.templateRepo
         .find({
           where: {
-            user: user.id,
+            user: userId,
           },
         })
         .then((res) =>
           res.sort((a, b) => (b.updatedAt as Date).getTime() - (a.updatedAt as Date).getTime()),
         );
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
   @Get('/:id')
-  async getById(@Param('id') id: string, @CurrentUser() user: User) {
+  async getById(@Param('id') id: string, @Req() { userId }: RequestWithUser) {
     try {
       const template = await this.templateRepo.findOne({
-        where: { id: id, user: user.id },
+        where: { id: id, user: userId },
       });
       return {
         ...template,
@@ -49,23 +49,23 @@ export class userController {
         meta: template?.data ? JSON.parse(template?.meta) : {},
       };
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
   @Post('/')
-  async createTemplate(@Body() template: TemplateEntity, @CurrentUser() user: User) {
+  async createTemplate(@Body() template: TemplateEntity, @Req() { userId }: RequestWithUser) {
     try {
       return this.templateRepo
         .create({
           ...template,
           data: template.data ? JSON.stringify(template.data) : '{}',
           meta: template.data ? JSON.stringify(template.meta) : '{}',
-          user: { id: user.id },
+          user: { id: userId },
         })
         .save();
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
@@ -73,24 +73,24 @@ export class userController {
   async updateById(
     @Param('id') id: string,
     @Body() template: QueryDeepPartialEntity<TemplateEntity>,
-    @CurrentUser() user: User,
+    @Req() { userId }: RequestWithUser,
   ) {
     try {
       return await this.templateRepo.update(
-        { id: id, user: user },
+        { id: id, user: { id: userId } },
         { ...template, data: JSON.stringify(template.data), meta: JSON.stringify(template.meta) },
       );
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
   @Delete('/:id')
-  async deleteById(@Param('id') id: string, @CurrentUser() user: User) {
+  async deleteById(@Param('id') id: string, @Req() { userId }: RequestWithUser) {
     try {
-      return await this.templateRepo.delete({ id: id, user: user });
+      return await this.templateRepo.delete({ id: id, user: { id: userId } });
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
   @Get('/user/:id')
@@ -98,7 +98,7 @@ export class userController {
     try {
       return await this.templateRepo.find({ where: { user: id } });
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 }
