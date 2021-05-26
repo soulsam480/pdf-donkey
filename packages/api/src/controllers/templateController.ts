@@ -3,7 +3,7 @@ import {
   Controller,
   Delete,
   Get,
-  HttpError,
+  InternalServerError,
   Param,
   Post,
   Put,
@@ -12,6 +12,7 @@ import {
 } from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
 import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
+import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
@@ -32,7 +33,7 @@ export class userController {
           res.sort((a, b) => (b.updatedAt as Date).getTime() - (a.updatedAt as Date).getTime()),
         );
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
@@ -48,7 +49,7 @@ export class userController {
         meta: template?.data ? JSON.parse(template?.meta) : {},
       };
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
@@ -64,7 +65,7 @@ export class userController {
         })
         .save();
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
@@ -80,7 +81,7 @@ export class userController {
         { ...template, data: JSON.stringify(template.data), meta: JSON.stringify(template.meta) },
       );
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 
@@ -89,7 +90,7 @@ export class userController {
     try {
       return await this.templateRepo.delete({ id: id, user: { id: userId } });
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
   @Get('/user/:id')
@@ -97,7 +98,7 @@ export class userController {
     try {
       return await this.templateRepo.find({ where: { user: id } });
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 }

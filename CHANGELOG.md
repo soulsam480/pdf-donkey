@@ -92,6 +92,7 @@
 
 ##### Refactors
 
+* **app,api:**  Better error handling in user endpoints ([c68b4538](https://github.com/soulsam480/pdf-donkey/commit/c68b453837edba1c22f6d22d36ebe98eb7328c6d))
 *  make husky run after commit ([6d77eb0b](https://github.com/soulsam480/pdf-donkey/commit/6d77eb0be75ef833d17a9c10513be2dd5db61303))
 *  moved to semantic token headers **Bearer token** format ([fd6d7aa9](https://github.com/soulsam480/pdf-donkey/commit/fd6d7aa9d24774c06b52bc6a2216c33bb4a13fb7))
 * **api:**  move template controller methods to try/catch blocks ([e2e2a0f2](https://github.com/soulsam480/pdf-donkey/commit/e2e2a0f221677479fff743f43e2077dae8ef57b0))

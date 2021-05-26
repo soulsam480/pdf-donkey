@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { useUser } from 'src/store/userContext';
 import { classNames, diffMatcher, DonkeyApi } from 'src/utils/helpers';
