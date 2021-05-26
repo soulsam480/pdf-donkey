@@ -10,7 +10,6 @@ export interface User {
   password?: string;
   accessToken?: string;
   refreshToken?: string;
-  api_key?: string;
 }
 
 export interface UserState extends State {

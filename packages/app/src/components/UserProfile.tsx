@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { useUser } from 'src/store/userContext';
 import { classNames, diffMatcher, DonkeyApi } from 'src/utils/helpers';
@@ -11,6 +11,7 @@ interface Props {
 
 const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
   const { user, fetchUser } = useUser();
+  const [isKey, setKey] = useState('');
   const [updatedUser, setUpdatedUser] = useState<{
     email?: string;
     name?: string;
@@ -24,6 +25,19 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
       [target.name]: target.value,
     });
   };
+
+  async function getApiKey() {
+    try {
+      await DonkeyApi.get('/user/key').then(async (res) => {
+        setKey(res.data);
+      });
+    } catch (error) {
+      setAlerts({
+        type: 'error',
+        message: 'Something wen wrong !',
+      });
+    }
+  }
 
   async function UpdateUser() {
     const diffedData = diffMatcher(updatedUser, user);
@@ -47,7 +61,12 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
       });
     }
   }
-
+  useEffect(() => {
+    if (!isUserProfile) {
+      setUpdatedUser({ name: '', email: '', username: '' });
+      setKey('');
+    }
+  }, [isUserProfile]);
   return (
     <>
       <AppModal
@@ -87,7 +106,7 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
           <div className="flex justify-end">
             <button
               className={classNames({
-                'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ': true,
+                'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ': true,
               })}
               type="submit"
             >
@@ -95,6 +114,30 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
             </button>
           </div>
         </form>
+        <div>
+          <p className="text-2xl font-bold">API key</p>
+          <p className="text-sm text-gray-500 "> Your donkey API key to generate PDFs. </p>
+          <div className="grid grid-cols-1 gap-6 pt-2">
+            <div
+              className={classNames({
+                'rounded-md border-gray-400 border-2 p-2 flex-grow': true,
+                'text-gray-500': !isKey,
+              })}
+            >
+              {isKey ? isKey : 'Your API key xxxx.xxxx.xxx'}
+            </div>
+            <div className="flex justify-end">
+              <button
+                className={classNames({
+                  'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ': true,
+                })}
+                onClick={() => getApiKey()}
+              >
+                Get your Key
+              </button>
+            </div>
+          </div>
+        </div>
       </AppModal>
     </>
   );

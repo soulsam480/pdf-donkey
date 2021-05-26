@@ -87,6 +87,7 @@
 
 ##### Other Changes
 
+* **api:**  better error handling ([1745e290](https://github.com/soulsam480/pdf-donkey/commit/1745e290b9b5c1ea4a466853489bc3ea9a5831ee))
 *  merge master ([20a83571](https://github.com/soulsam480/pdf-donkey/commit/20a83571cb6d028ff8cfd45af95a48391793df69))
 * soulsam480/pdf-donkey merge ([5b594fd0](https://github.com/soulsam480/pdf-donkey/commit/5b594fd0b7c5ee1026f3debf202c7afd9adb0b1e))
 
