@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { useUser } from 'src/store/userContext';
 import { classNames, diffMatcher, DonkeyApi } from 'src/utils/helpers';
@@ -33,18 +33,21 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
         ...diffedData,
       }).then(async () => {
         await fetchUser();
+        setUpdatedUser({ name: '', email: '', username: '' });
         setAlerts({
           type: 'success',
           message: 'Profile updated successfully !',
         });
       });
     } catch (error) {
+      setUpdatedUser({ name: '', email: '', username: '' });
       setAlerts({
-        type: 'success',
-        message: error.response.message,
+        type: 'error',
+        message: 'User exists with same credentials !',
       });
     }
   }
+
   return (
     <>
       <AppModal

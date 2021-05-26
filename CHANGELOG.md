@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-24)
+#### 0.1.1 (2021-05-26)
 
 ##### Build System / Dependencies
 
@@ -30,6 +30,7 @@
 ##### New Features
 
 * **app:**
+  *  user profile update ([f668921b](https://github.com/soulsam480/pdf-donkey/commit/f668921b75fe31dc567c9b2d9b8840b4bdaca940))
   *  added template test data input modal for testing the template ([5cc19609](https://github.com/soulsam480/pdf-donkey/commit/5cc1960958a2113c83d5ef46666ebcb5b48f6fdc))
   *  added syntax highlighting and auto formatting to create template modal ([768acb35](https://github.com/soulsam480/pdf-donkey/commit/768acb3557cacbeecbc42f0f5b29339d52b55555))
   *  minor UI updates ([2fc78612](https://github.com/soulsam480/pdf-donkey/commit/2fc78612fc68fe75417d815c28eb2ed8c4fcd6f4))

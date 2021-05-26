@@ -1,14 +1,11 @@
-import { Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
+import { Response } from 'express';
 import {
   BadRequestError,
   Body,
   Controller,
   Get,
-  HttpError,
   InternalServerError,
   Patch,
-  Put,
   Req,
   Res,
   UseBefore,
@@ -19,26 +16,16 @@ import { authService } from 'src/services/authService';
 import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 
+@UseBefore(authMiddleware)
 @Controller('/user')
 export class userController {
   private readonly userRepo = getRepository(User);
   private readonly authService = new authService();
+
   @Get('/')
-  async getUserFromToken(@Req() request: Request, @Res() response: Response) {
-    const accessToken = request.headers['access-token'] as string;
-    if (typeof accessToken !== 'string')
-      return response.status(401).send(new HttpError(401, ERROR_MESSAGES.user_not_found));
-    const token = accessToken.split('Bearer ')[1];
-    if (!token)
-      return response.status(401).send(new HttpError(401, ERROR_MESSAGES.acccess_token_not_found));
-    let data: any;
-    try {
-      data = <{ userId: string }>verify(token, process.env.ACCESS_TOKEN_SECRET as string);
-    } catch {
-      return response.status(401).send(new HttpError(401, ERROR_MESSAGES.acccess_token_expired));
-    }
-    const user = await this.userRepo.findOne({ id: data.userId });
-    if (!user) return response.status(400).send(new HttpError(400, ERROR_MESSAGES.user_not_found));
+  async getUserFromToken(@Req() { userId }: RequestWithUser, @Res() response: Response) {
+    const user = await this.userRepo.findOne({ id: userId });
+    if (!user) return response.status(400).send(ERROR_MESSAGES.user_not_found);
 
     (user.password as any) = undefined;
     return {
@@ -46,24 +33,17 @@ export class userController {
       ...this.authService.createTokens(user),
     };
   }
-  @UseBefore(authMiddleware)
+
   @Patch('/')
   async updateUser(@Req() { userId }: RequestWithUser, @Body() user: Partial<User>) {
     try {
       const userFromDb = await this.userRepo.findOne({ where: { id: userId } });
       if (!userFromDb) throw new BadRequestError(ERROR_MESSAGES.user_not_found);
-      const { name, username, email } = user;
-      const isUserExistsWithCred = await this.userRepo.findOne({
-        where: [{ email }, { username }],
-      });
-      if (isUserExistsWithCred && isUserExistsWithCred.id !== userFromDb.id)
-        throw new BadRequestError(ERROR_MESSAGES.user_exists_with_credentials);
       return await this.userRepo.update({ id: userId }, { ...user });
     } catch (error) {
-      throw new InternalServerError(error);
+      throw new BadRequestError(ERROR_MESSAGES.user_exists_with_credentials);
     }
   }
-  @UseBefore(authMiddleware)
   @Get('/key')
   async getApiKey(@Req() { userId }: RequestWithUser) {
     try {
@@ -73,8 +53,7 @@ export class userController {
       if (api_key) return api_key;
       return await this.authService.generateApiKey(userId);
     } catch (error) {
-      console.log(error);
-      throw new InternalServerError(error);
+      throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
 }
