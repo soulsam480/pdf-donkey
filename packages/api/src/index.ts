@@ -84,7 +84,7 @@ async function main() {
   server.use(express.urlencoded({ extended: true }));
   server.use(
     cors({
-      origin: ['http://localhost:4001', 'https://donkey.sambitsahoo.com', 'http://localhost:5000'],
+      origin: '*',
     }),
   );
   server.use('/donkey/v1/auth/', limiter);
