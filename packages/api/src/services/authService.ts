@@ -48,6 +48,8 @@ export class authService {
         .save();
 
       (createdUser.password as any) = undefined;
+      (createdUser.api_key as any) = undefined;
+
       return { ...createdUser, ...this.createTokens(createdUser) };
     } catch (error) {
       return res.status(400).send(ERROR_MESSAGES.iss);
@@ -64,7 +66,7 @@ export class authService {
     }
 
     (user.password as any) = undefined;
-
+    (user.api_key as any) = undefined;
     return {
       ...user,
       ...this.createTokens(user),

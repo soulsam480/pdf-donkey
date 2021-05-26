@@ -28,6 +28,7 @@ export class userController {
     if (!user) return response.status(400).send(ERROR_MESSAGES.user_not_found);
 
     (user.password as any) = undefined;
+    (user.api_key as any) = undefined;
     return {
       ...user,
       ...this.authService.createTokens(user),
