@@ -133,6 +133,7 @@ const AppNavbar: React.FC<Props> = () => {
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
+                        onClick={() => setContext(false)}
                       >
                         Dashboard
                       </NavLink>
@@ -141,7 +142,9 @@ const AppNavbar: React.FC<Props> = () => {
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"
-                        onClick={(e) => (e.preventDefault(), setUserProfile(true))}
+                        onClick={(e) => (
+                          e.preventDefault(), setContext(false), setUserProfile(true)
+                        )}
                       >
                         My account
                       </a>
@@ -150,7 +153,7 @@ const AppNavbar: React.FC<Props> = () => {
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"
-                        onClick={(e) => (e.preventDefault(), logout())}
+                        onClick={(e) => (e.preventDefault(), setContext(false), logout())}
                       >
                         Log out
                       </a>

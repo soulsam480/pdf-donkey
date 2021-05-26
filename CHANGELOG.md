@@ -75,7 +75,7 @@
 ##### Bug Fixes
 
 * **api:**
-  *  don't send API key in user data ([659af2f2](https://github.com/soulsam480/pdf-donkey/commit/659af2f2e97dcf9fc0859a79a1d04f2ac9e19ee8))
+  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
   *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
 * **app:**  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
