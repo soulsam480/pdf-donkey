@@ -32,8 +32,22 @@ export function registerDonkey() {
 }
 
 export function classNames(classes: Record<string, boolean>) {
-  const toBeClasses = Object.keys(classes).map((key) =>
-    classes[key] === true ? key : '',
-  );
+  const toBeClasses = Object.keys(classes).map((key) => (classes[key] === true ? key : ''));
   return toBeClasses.join(' ');
+}
+
+/**
+ * A Diff matcher method to match diffs upto level 1 and retrun diffed data
+ * @param newData
+ * @param toMatch
+ */
+export function diffMatcher(
+  newData: Record<string, string | number | any>,
+  toMatch: Record<string, string | number | any>,
+) {
+  let diffedData: Record<string, any> = {};
+  Object.keys(newData).forEach((key) => {
+    newData[key] !== toMatch[key] && newData[key].length > 0 && (diffedData[key] = newData[key]);
+  });
+  return Object.entries(diffedData).length > 0 ? diffedData : null;
 }

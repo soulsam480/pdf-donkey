@@ -1,6 +1,18 @@
 import { Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
-import { Body, Controller, Get, HttpError, Put, Req, Res, UseBefore } from 'routing-controllers';
+import {
+  BadRequestError,
+  Body,
+  Controller,
+  Get,
+  HttpError,
+  InternalServerError,
+  Patch,
+  Put,
+  Req,
+  Res,
+  UseBefore,
+} from 'routing-controllers';
 import { User } from 'src/entities/user';
 import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
 import { authService } from 'src/services/authService';
@@ -35,18 +47,20 @@ export class userController {
     };
   }
   @UseBefore(authMiddleware)
-  @Put('/')
+  @Patch('/')
   async updateUser(@Req() { userId }: RequestWithUser, @Body() user: Partial<User>) {
     try {
       const userFromDb = await this.userRepo.findOne({ where: { id: userId } });
-      if (!userFromDb) return new HttpError(400, ERROR_MESSAGES.user_not_found);
+      if (!userFromDb) throw new BadRequestError(ERROR_MESSAGES.user_not_found);
       const { name, username, email } = user;
-      return await this.userRepo.update(
-        { id: userId },
-        { name: name, username: username, email: email },
-      );
+      const isUserExistsWithCred = await this.userRepo.findOne({
+        where: [{ email }, { username }],
+      });
+      if (isUserExistsWithCred && isUserExistsWithCred.id !== userFromDb.id)
+        throw new BadRequestError(ERROR_MESSAGES.user_exists_with_credentials);
+      return await this.userRepo.update({ id: userId }, { ...user });
     } catch (error) {
-      return new HttpError(500, error);
+      throw new InternalServerError(error);
     }
   }
   @UseBefore(authMiddleware)
@@ -54,13 +68,13 @@ export class userController {
   async getApiKey(@Req() { userId }: RequestWithUser) {
     try {
       const userFromDb = await this.userRepo.findOne({ where: { id: userId } });
-      if (!userFromDb) return new HttpError(400, ERROR_MESSAGES.user_not_found);
+      if (!userFromDb) throw new BadRequestError(ERROR_MESSAGES.user_not_found);
       const { api_key } = userFromDb;
       if (api_key) return api_key;
       return await this.authService.generateApiKey(userId);
     } catch (error) {
       console.log(error);
-      return new HttpError(500, error);
+      throw new InternalServerError(error);
     }
   }
 }

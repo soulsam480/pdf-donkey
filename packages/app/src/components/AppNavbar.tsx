@@ -1,15 +1,17 @@
 import React, { useRef, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { useUser } from '../store/userContext';
+import { useUser } from 'src/store/userContext';
 import { clickOutsideToggle } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
 import { version } from '../../../../package.json';
+import UserProfile from 'src/components/UserProfile';
 interface Props {}
 const AppNavbar: React.FC<Props> = () => {
   const { push } = useHistory();
   const { isLoggedIn, user, setUser, setLogin } = useUser();
   const [isOpen, setOpen] = useState(false);
   const [isContext, setContext] = useState(false);
+  const [userProfile, setUserProfile] = useState(false);
   const userContext = useRef<HTMLDivElement>(null);
   const { setAlerts } = useAlert();
   function logout() {
@@ -25,6 +27,11 @@ const AppNavbar: React.FC<Props> = () => {
   clickOutsideToggle(userContext, isContext, setContext);
   return (
     <nav className="bg-gray-800 sticky top-0 z-20">
+      <UserProfile
+        isUserProfile={userProfile}
+        closeModal={() => setUserProfile(false)}
+      ></UserProfile>
+
       <div className="max-w-screen-2xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -129,6 +136,15 @@ const AppNavbar: React.FC<Props> = () => {
                       >
                         Dashboard
                       </NavLink>
+                      <a
+                        className="block px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer"
+                        role="menuitem"
+                        tabIndex={-1}
+                        id="user-menu-item-2"
+                        onClick={(e) => (e.preventDefault(), setUserProfile(true))}
+                      >
+                        My account
+                      </a>
                       <a
                         className="block px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer"
                         role="menuitem"

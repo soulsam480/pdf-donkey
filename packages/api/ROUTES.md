@@ -1,4 +1,4 @@
-## ROUTES 5/24/2021
+## ROUTES 5/26/2021
 
 PATH : **/DONKEY/V1/AUTH/REGISTER** **||** METHOD: **POST** 
 - Detailed:
@@ -78,10 +78,10 @@ PATH : **/DONKEY/V1/USER/** **||** METHOD: **GET**
  {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
 ```
           
-PATH : **/DONKEY/V1/USER/** **||** METHOD: **PUT** 
+PATH : **/DONKEY/V1/USER/** **||** METHOD: **PATCH** 
 - Detailed:
 ```json
- {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"put"}],"methods":{"put":true}}}
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/user/","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"patch"}],"methods":{"patch":true}}}
 ```
           
 PATH : **/DONKEY/V1/USER/KEY** **||** METHOD: **GET** 

@@ -8,4 +8,5 @@ export const ERROR_MESSAGES = {
   email_in_use: 'Email already in use !',
   iss: 'Something went wrong !',
   email_pass_incorrect: 'Username/Email or password is incorrect !',
+  user_exists_with_credentials: 'User with same email or username exists !',
 };
