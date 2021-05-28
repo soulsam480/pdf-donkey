@@ -6,17 +6,13 @@ export function logApiRoutes(ServerRoutes: any[], port: number | string) {
   let routeData: any[] = ServerRoutes.map((r) => {
     if (r && r.route && r.route.path && r.route.methods) {
       console.log(
-        chalk.bgBlack.bold.yellow(
-          `http://localhost:${port}` + r.route.path.toUpperCase(),
-        ),
+        chalk.bgBlack.bold.yellow(`http://localhost:${port}` + r.route.path.toUpperCase()),
         '||',
-        chalk.bgBlack.bold.greenBright(
-          Object.keys(r.route.methods).map((el) => el.toUpperCase()),
-        ),
+        chalk.bgBlack.bold.greenBright(Object.keys(r.route.methods).map((el) => el.toUpperCase())),
       );
-      return `PATH : **${r.route.path.toUpperCase()}** **||** METHOD: **${Object.keys(
-        r.route.methods,
-      ).map((el) => el.toUpperCase())}** 
+      return `PATH : **\`${r.route.path}\`** **||** METHOD: **\`${Object.keys(r.route.methods).map(
+        (el) => el,
+      )}\`** 
 - Detailed:
 \`\`\`\json
  ${JSON.stringify(r)}
