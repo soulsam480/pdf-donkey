@@ -11,8 +11,9 @@ import {
   UseBefore,
 } from 'routing-controllers';
 import { User } from 'src/entities/user';
-import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
+import { authMiddleware } from 'src/middlewares/auth.middleware';
 import { authService } from 'src/services/authService';
+import { RequestWithUser } from 'src/types/types';
 import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 
@@ -45,6 +46,7 @@ export class userController {
       throw new BadRequestError(ERROR_MESSAGES.user_exists_with_credentials);
     }
   }
+
   @Get('/key')
   async getApiKey(@Req() { userId }: RequestWithUser) {
     try {

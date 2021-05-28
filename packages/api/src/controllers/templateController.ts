@@ -11,7 +11,8 @@ import {
   UseBefore,
 } from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
-import { authMiddleware, RequestWithUser } from 'src/middlewares/auth.middleware';
+import { authMiddleware } from 'src/middlewares/auth.middleware';
+import { RequestWithUser } from 'src/types/types';
 import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
