@@ -1,15 +1,29 @@
 import { Liquid } from 'liquidjs';
-import { HttpError } from 'routing-controllers';
+import { LiquidOptions } from 'liquidjs/dist/liquid-options';
 import { TemplateEntity } from 'src/entities/template';
-import { getRepository } from 'typeorm';
-
+import { create, CreateOptions } from 'html-pdf';
+import { ReadStream } from 'fs';
 export class pdfService {
-  private readonly templateRepo = getRepository(TemplateEntity);
   private readonly engine = new Liquid();
 
-  async previewTemplate(id: string) {
-    const template = await this.templateRepo.findOne(id);
-    if (!template) return new HttpError(400, 'Template not found !');
-    return await this.engine.parseAndRender(template?.markup as string, JSON.parse(template?.data));
+  async generatePdf(
+    template: TemplateEntity,
+    data: Record<string, string | number | any>,
+    renderOpts?: LiquidOptions,
+    pdfOpts?: CreateOptions,
+  ): Promise<ReadStream> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { markup } = template;
+        const renderedTemplate = await this.engine.parseAndRender(markup, { ...data }, renderOpts);
+        create(renderedTemplate, pdfOpts).toStream((err, stream) => {
+          if (err) return reject(err);
+          resolve(stream);
+        });
+      } catch (error) {
+        console.log(error);
+        reject(error);
+      }
+    });
   }
 }

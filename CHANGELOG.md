@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-26)
+#### 0.1.1 (2021-05-28)
 
 ##### Build System / Dependencies
 
@@ -29,6 +29,19 @@
 
 ##### New Features
 
+* **api:**
+  *  added rate-limiter to pdf generation endpoint ([17294eae](https://github.com/soulsam480/pdf-donkey/commit/17294eae2f3fd653b92d39f45b9ce505bc3e9367))
+  *  added pdf generation using API keys, ts types in a separate file. ([6f945edb](https://github.com/soulsam480/pdf-donkey/commit/6f945edb0a13c20bea6b81156ea83eae8d05e83a))
+  *  add user API key generation ([c46408e3](https://github.com/soulsam480/pdf-donkey/commit/c46408e33ea0eecd875e2183eb1cbdd13552e161))
+  *  add error messages as constants ([11220db5](https://github.com/soulsam480/pdf-donkey/commit/11220db5f690e88d965b382db1a6189d3d389446))
+  *  add user profile update ([e4d42355](https://github.com/soulsam480/pdf-donkey/commit/e4d42355567e034edd51a079fcf9549cb93969e5))
+  *  add support for tenplate data and meta ([a757b4fd](https://github.com/soulsam480/pdf-donkey/commit/a757b4fd30631b66f40277adcd78b218bc286224))
+  *  set user ga_id if existing user uses google auth ([edc8bc63](https://github.com/soulsam480/pdf-donkey/commit/edc8bc63da5410eb2ff28d44dd19b3214d2dc04d))
+  *  added google oauth2 ([d2795956](https://github.com/soulsam480/pdf-donkey/commit/d2795956940dcb3e8f7aca30fd6a908bf64edd75))
+  *  user persisted, feat(api): log paths ([e5b0274b](https://github.com/soulsam480/pdf-donkey/commit/e5b0274b0b2d395ef9d3039091e9daa0c0cfd841))
+  *  user auth, middleware ([86624c07](https://github.com/soulsam480/pdf-donkey/commit/86624c07b97462adf4a4ac82746b555f4bd4d3eb))
+  *  template controllers, pdf preview service, liquidjs, ([46a63cdc](https://github.com/soulsam480/pdf-donkey/commit/46a63cdc28d6278ffe96ab801080f6052244d799))
+  *  added controllers, basic entities ([095c7ca6](https://github.com/soulsam480/pdf-donkey/commit/095c7ca6d1a25e968cb9e1f7aca39c393ff0defa))
 * **app:**
   *  add user API key generation ([4b07347f](https://github.com/soulsam480/pdf-donkey/commit/4b07347fe737ddd94ec2a6e0e930e033a1625bdd))
   *  user profile update ([f668921b](https://github.com/soulsam480/pdf-donkey/commit/f668921b75fe31dc567c9b2d9b8840b4bdaca940))
@@ -51,17 +64,6 @@
   *  add login, register, user state, feat(api): add refresh token endpoint ([ce5c0e92](https://github.com/soulsam480/pdf-donkey/commit/ce5c0e922ece0ea77c494f7ea592a6e950f8ca02))
   *  add path, state, navbar ([066c5222](https://github.com/soulsam480/pdf-donkey/commit/066c5222c50e99c1bd188ca352ea2bdb3c278d01))
   *  react app init ([e551c20f](https://github.com/soulsam480/pdf-donkey/commit/e551c20fb8d17a6ef316a6499e88c910c9065fc1))
-* **api:**
-  *  add user API key generation ([c46408e3](https://github.com/soulsam480/pdf-donkey/commit/c46408e33ea0eecd875e2183eb1cbdd13552e161))
-  *  add error messages as constants ([11220db5](https://github.com/soulsam480/pdf-donkey/commit/11220db5f690e88d965b382db1a6189d3d389446))
-  *  add user profile update ([e4d42355](https://github.com/soulsam480/pdf-donkey/commit/e4d42355567e034edd51a079fcf9549cb93969e5))
-  *  add support for tenplate data and meta ([a757b4fd](https://github.com/soulsam480/pdf-donkey/commit/a757b4fd30631b66f40277adcd78b218bc286224))
-  *  set user ga_id if existing user uses google auth ([edc8bc63](https://github.com/soulsam480/pdf-donkey/commit/edc8bc63da5410eb2ff28d44dd19b3214d2dc04d))
-  *  added google oauth2 ([d2795956](https://github.com/soulsam480/pdf-donkey/commit/d2795956940dcb3e8f7aca30fd6a908bf64edd75))
-  *  user persisted, feat(api): log paths ([e5b0274b](https://github.com/soulsam480/pdf-donkey/commit/e5b0274b0b2d395ef9d3039091e9daa0c0cfd841))
-  *  user auth, middleware ([86624c07](https://github.com/soulsam480/pdf-donkey/commit/86624c07b97462adf4a4ac82746b555f4bd4d3eb))
-  *  template controllers, pdf preview service, liquidjs, ([46a63cdc](https://github.com/soulsam480/pdf-donkey/commit/46a63cdc28d6278ffe96ab801080f6052244d799))
-  *  added controllers, basic entities ([095c7ca6](https://github.com/soulsam480/pdf-donkey/commit/095c7ca6d1a25e968cb9e1f7aca39c393ff0defa))
 *  change label ([fd2f90fd](https://github.com/soulsam480/pdf-donkey/commit/fd2f90fd272352eeebc190d87208b56f5edb8973))
 *  add user dropdown menu ([621fb894](https://github.com/soulsam480/pdf-donkey/commit/621fb89440065ea66e049e270cd12dc6918478f2))
 *  add PWA caching ([83d5dd82](https://github.com/soulsam480/pdf-donkey/commit/83d5dd8285d640377e194e34196bf7ec806e58e8))
@@ -74,12 +76,13 @@
 
 ##### Bug Fixes
 
+* **api:**
+  *  change cors to allow all origins ([8684bcdc](https://github.com/soulsam480/pdf-donkey/commit/8684bcdc9e869fd197b6e769e8aab74cc35383f7))
+  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
+  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
 * **app:**
   *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
   *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
-* **api:**
-  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
-  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
 *  remove index db ([eddd3439](https://github.com/soulsam480/pdf-donkey/commit/eddd3439723dca4c7b924205d9df5e286ded0a51))
 *  remove index db ([1fe186b4](https://github.com/soulsam480/pdf-donkey/commit/1fe186b4085f80c4ef10ea89cc60ccc1931520aa))
