@@ -1,6 +1,6 @@
 {
   "name": "pdf-donkey",
-  "version": "0.1.0",
+  "version": "0.2.0-alpha",
   "private": true,
   "repository": "git@github.com-soulsam480:soulsam480/pdf-donkey.git",
   "license": "MIT",
