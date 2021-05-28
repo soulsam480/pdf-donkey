@@ -88,6 +88,7 @@ async function main() {
     }),
   );
   server.use('/donkey/v1/auth/', limiter);
+  server.use('/donkey/v1/pdf/generate', limiter);
   server.use(passport.initialize());
   await createConnection({
     database: join(__dirname, '../db.sqlite'),
