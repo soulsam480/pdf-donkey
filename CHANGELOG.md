@@ -1,4 +1,4 @@
-#### 0.2.1 (2021-05-28)
+#### 0.2.1 (2021-05-29)
 
 ##### Build System / Dependencies
 
@@ -78,13 +78,7 @@
 
 ##### Bug Fixes
 
-* **api:**
-  *  change cors to allow all origins ([8684bcdc](https://github.com/soulsam480/pdf-donkey/commit/8684bcdc9e869fd197b6e769e8aab74cc35383f7))
-  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
-  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
-* **app:**
-  *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
-  *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
+*  info banner in template test data ([b0bfc40e](https://github.com/soulsam480/pdf-donkey/commit/b0bfc40e6768b0d2f4a071c52b04f4f26f79c977))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
 *  remove index db ([eddd3439](https://github.com/soulsam480/pdf-donkey/commit/eddd3439723dca4c7b924205d9df5e286ded0a51))
 *  remove index db ([1fe186b4](https://github.com/soulsam480/pdf-donkey/commit/1fe186b4085f80c4ef10ea89cc60ccc1931520aa))
@@ -93,6 +87,13 @@
 *  something ([d45b32b4](https://github.com/soulsam480/pdf-donkey/commit/d45b32b4cefd8ffb5f3d320a4262017ea6090a2c))
 *  runtime errors ([ae6ebc4e](https://github.com/soulsam480/pdf-donkey/commit/ae6ebc4eac459aa7444ca1d7f2b63c1a62c9315a))
 *  store ([0e6c643b](https://github.com/soulsam480/pdf-donkey/commit/0e6c643bef5b8e16b77fc13ece8f391b58164fdf))
+* **api:**
+  *  change cors to allow all origins ([8684bcdc](https://github.com/soulsam480/pdf-donkey/commit/8684bcdc9e869fd197b6e769e8aab74cc35383f7))
+  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
+  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
+* **app:**
+  *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
+  *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
 * **app,api:**  fix updatedAt error, scope requests to specific user ([7e9ecdf4](https://github.com/soulsam480/pdf-donkey/commit/7e9ecdf47c7f27b55c20f34365bf678b468f7a33))
 
 ##### Other Changes
