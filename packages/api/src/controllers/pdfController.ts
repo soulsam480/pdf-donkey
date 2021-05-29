@@ -59,4 +59,34 @@ export class pdfController {
       response.status(500).send({ message: ERROR_MESSAGES.iss, error: error });
     }
   }
+
+  @UseBefore(authMiddleware)
+  @Post('/:id')
+  async getPdfFromApp(
+    @Body() { pdfOptions, renderOptions, templateData }: PdfBody,
+    @Param('id') id: string,
+    @Req() { userId }: RequestWithUser,
+    @Res() response: Response,
+  ) {
+    try {
+      if (!templateData) return response.status(404).send('Template data not found !');
+      const templateFromDb = await this.templateRepo.findOne({
+        where: { id: id, user: { id: userId } },
+      });
+      if (!templateFromDb)
+        return response.status(404).send('No template with the given ID was found !');
+      const data = await this.pdfService.generatePdf(
+        templateFromDb,
+        templateData,
+        renderOptions,
+        pdfOptions,
+      );
+      if (!data) return response.status(500).send(ERROR_MESSAGES.iss);
+      response.setHeader('Content-Type', 'application/pdf');
+      return data;
+    } catch (error) {
+      console.log(error);
+      response.status(500).send({ message: ERROR_MESSAGES.iss, error: error });
+    }
+  }
 }

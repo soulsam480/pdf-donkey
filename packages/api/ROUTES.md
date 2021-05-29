@@ -36,6 +36,12 @@ PATH : **`/donkey/v1/pdf/generate`** **||** METHOD: **`post`**
  {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/generate","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"corsMiddleware","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"}],"methods":{"post":true}}}
 ```
           
+PATH : **`/donkey/v1/pdf/:id`** **||** METHOD: **`post`** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[{"name":"id","optional":false,"offset":18}],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/:id","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"}],"methods":{"post":true}}}
+```
+          
 PATH : **`/donkey/v1/template/`** **||** METHOD: **`get`** 
 - Detailed:
 ```json

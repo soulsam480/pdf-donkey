@@ -79,6 +79,7 @@
 
 ##### Bug Fixes
 
+*  cors for pdf generation, remove template user endpoint ([c8dfba16](https://github.com/soulsam480/pdf-donkey/commit/c8dfba16057671e1a9500925b55415d2624b86b9))
 *  info banner in template test data ([b0bfc40e](https://github.com/soulsam480/pdf-donkey/commit/b0bfc40e6768b0d2f4a071c52b04f4f26f79c977))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
 *  remove index db ([eddd3439](https://github.com/soulsam480/pdf-donkey/commit/eddd3439723dca4c7b924205d9df5e286ded0a51))
