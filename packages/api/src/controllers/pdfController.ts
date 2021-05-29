@@ -1,5 +1,15 @@
 import { Response } from 'express';
-import { Body, Controller, Post, QueryParams, Req, Res, UseBefore } from 'routing-controllers';
+import {
+  Body,
+  Controller,
+  Method,
+  Param,
+  Post,
+  QueryParams,
+  Req,
+  Res,
+  UseBefore,
+} from 'routing-controllers';
 import { TemplateEntity } from 'src/entities/template';
 import { User } from 'src/entities/user';
 import { ApiKeyMiddleware } from 'src/middlewares/apiKey.middleware';
@@ -7,14 +17,20 @@ import { pdfService } from 'src/services/pdfService';
 import { PdfBody, PdfQueryParams, RequestWithUser } from 'src/types/types';
 import { ERROR_MESSAGES } from 'src/utils/constants';
 import { getRepository } from 'typeorm';
-
+import cors from 'cors';
+import { authMiddleware } from 'src/middlewares/auth.middleware';
 @Controller('/pdf')
 export class pdfController {
   private readonly userRepo = getRepository(User);
   private readonly templateRepo = getRepository(TemplateEntity);
   private readonly pdfService = new pdfService();
 
+  @UseBefore(cors({ origin: '*' }))
+  @Method('options', '/generate')
+  optons() {}
+
   @UseBefore(ApiKeyMiddleware)
+  @UseBefore(cors({ origin: '*' }))
   @Post('/generate')
   async getPdf(
     @Req() { apiKey }: RequestWithUser,
