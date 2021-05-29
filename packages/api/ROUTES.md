@@ -1,4 +1,4 @@
-## ROUTES 5/28/2021
+## ROUTES 5/29/2021
 
 PATH : **`/donkey/v1/auth/register`** **||** METHOD: **`post`** 
 - Detailed:
@@ -24,10 +24,22 @@ PATH : **`/donkey/v1/auth/google/redirect`** **||** METHOD: **`get`**
  {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/auth/google/redirect","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"authenticate","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
 ```
           
+PATH : **`/donkey/v1/pdf/generate`** **||** METHOD: **`options`** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/generate","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"options"},{"name":"corsMiddleware","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"options"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"options"}],"methods":{"options":true}}}
+```
+          
 PATH : **`/donkey/v1/pdf/generate`** **||** METHOD: **`post`** 
 - Detailed:
 ```json
- {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/generate","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"}],"methods":{"post":true}}}
+ {"name":"bound dispatch","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/generate","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"corsMiddleware","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"}],"methods":{"post":true}}}
+```
+          
+PATH : **`/donkey/v1/pdf/:id`** **||** METHOD: **`post`** 
+- Detailed:
+```json
+ {"name":"bound dispatch","keys":[{"name":"id","optional":false,"offset":18}],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/pdf/:id","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"textParser","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"post"}],"methods":{"post":true}}}
 ```
           
 PATH : **`/donkey/v1/template/`** **||** METHOD: **`get`** 
@@ -58,12 +70,6 @@ PATH : **`/donkey/v1/template/:id`** **||** METHOD: **`delete`**
 - Detailed:
 ```json
  {"name":"bound dispatch","keys":[{"name":"id","optional":false,"offset":23}],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/template/:id","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"delete"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"delete"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"delete"}],"methods":{"delete":true}}}
-```
-          
-PATH : **`/donkey/v1/template/user/:id`** **||** METHOD: **`get`** 
-- Detailed:
-```json
- {"name":"bound dispatch","keys":[{"name":"id","optional":false,"offset":29}],"regexp":{"fast_star":false,"fast_slash":false},"route":{"path":"/donkey/v1/template/user/:id","stack":[{"name":"routeGuard","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"<anonymous>","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"},{"name":"routeHandler","keys":[],"regexp":{"fast_star":false,"fast_slash":false},"method":"get"}],"methods":{"get":true}}}
 ```
           
 PATH : **`/donkey/v1/token/refresh`** **||** METHOD: **`get`** 

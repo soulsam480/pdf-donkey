@@ -9,6 +9,7 @@ import { useAlert } from 'src/store/useAlert';
 import AppModal from 'src/components/AppModal';
 import PrismHighlight from 'src/components/PrismHighlight';
 import RichTextEditor from 'src/components/RichText';
+import DownloadTemplate from 'src/components/DownloadTemplate';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -20,6 +21,7 @@ const Template: React.FC<Props> = () => {
   });
   const [renderedTemplate, setRenderTemplate] = useState('');
   const [isModal, setModal] = useState(false);
+  const [isDownloadModal, setDownloadModal] = useState(false);
   const [TemplateTestData, setTemplateTest] = useState('');
   const { width } = useScreenWidth();
   const liquid = new Liquid();
@@ -110,13 +112,19 @@ const Template: React.FC<Props> = () => {
 
   return (
     <div className="container">
+      <DownloadTemplate
+        isModal={isDownloadModal}
+        closeModal={() => setDownloadModal(false)}
+        templateId={id}
+        templateTitle={TemplateData.title}
+      ></DownloadTemplate>
       <AppModal
         closeModal={() => setModal(false)}
         heading="Add test data for template"
         isModal={isModal}
       >
-        <div className="bg-gray-200 p-3 rounded-md text-xs text-gray-700">
-          <span className="font-bold">!</span> The should be in JSON format.
+        <div className="bg-red-200 p-3 rounded-md text-xs text-gray-700 font-semibold">
+          <span className="font-bold">!</span> The data should be in JSON format.
         </div>
         <div className="py-2">
           <PrismHighlight
@@ -128,7 +136,8 @@ const Template: React.FC<Props> = () => {
         <div className="flex justify-end">
           <button
             className={classNames({
-              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ': true,
+              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ':
+                true,
               'disabled:opacity-50 cursor-not-allowed':
                 TemplateTestData === JSON.stringify(TemplateData.data),
             })}
@@ -157,13 +166,19 @@ const Template: React.FC<Props> = () => {
         </div>
         <div className="text-left lg:text-right flex flex-row justify-end">
           <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
+            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
+            onClick={() => setDownloadModal(true)}
+          >
+            Download
+          </button>
+          <button
+            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
             onClick={() => setModal(true)}
           >
             Test Data
           </button>
           <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg "
+            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
             onClick={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
           >
             {richMode !== 'rich' ? 'Rich' : 'Code'} mode

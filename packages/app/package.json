@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "build:test": "tsc && vite build --mode development"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",

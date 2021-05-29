@@ -94,12 +94,4 @@ export class userController {
       throw new InternalServerError(ERROR_MESSAGES.iss);
     }
   }
-  @Get('/user/:id')
-  async getByUser(@Param('id') id: string) {
-    try {
-      return await this.templateRepo.find({ where: { user: id } });
-    } catch (error) {
-      throw new InternalServerError(ERROR_MESSAGES.iss);
-    }
-  }
 }

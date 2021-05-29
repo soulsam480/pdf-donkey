@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-28)
+#### 0.2.1 (2021-05-29)
 
 ##### Build System / Dependencies
 
@@ -8,16 +8,14 @@
 
 ##### Chores
 
+* **release:**  bump version ([3878bf75](https://github.com/soulsam480/pdf-donkey/commit/3878bf7598dcb1519c79627c918d008fa267abd7))
 *  fix conflict ([d3a0da82](https://github.com/soulsam480/pdf-donkey/commit/d3a0da8251720958b1a8dcee46ba501e3a838103))
 *  add db to .gitignore ([18b87af4](https://github.com/soulsam480/pdf-donkey/commit/18b87af4d0353db59f18af81f2b973e9d8f39ec6))
 *  now a monorepo ([03f35633](https://github.com/soulsam480/pdf-donkey/commit/03f35633a7b5ca6a9f51ac7b7d05526845745d85))
 
 ##### Documentation Changes
 
-* **api:**
-  *  update routes ([7fabe34a](https://github.com/soulsam480/pdf-donkey/commit/7fabe34a28dc98da643bf8281038a95af23df544))
-  *  move route generator to separate file ([fd0781ac](https://github.com/soulsam480/pdf-donkey/commit/fd0781ac19481f68ce7cf6cb3cb191ab20ff18c8))
-  *  update routes ([3b25faaf](https://github.com/soulsam480/pdf-donkey/commit/3b25faaf1b8f488ec1386073c072848cdebf9d06))
+*  update readme ([69d0f1e7](https://github.com/soulsam480/pdf-donkey/commit/69d0f1e7f4f3496a6418e05b54cd236ce75d12e6))
 *  add netlify build badge ([5d1a14be](https://github.com/soulsam480/pdf-donkey/commit/5d1a14beba8d2668f17e93d3fa527624aade9520))
 *  update readme, add API routes listing ([fbaff82b](https://github.com/soulsam480/pdf-donkey/commit/fbaff82bc0c8215c538cb1f38b7aa5cf25e5e9a3))
 *  update readme ([5c8f6084](https://github.com/soulsam480/pdf-donkey/commit/5c8f60843e12326938ae01414dc17f5a7718727e))
@@ -27,6 +25,10 @@
 *  update README ([866addf2](https://github.com/soulsam480/pdf-donkey/commit/866addf2bff3653ea963ddd6ed903ded99f686fc))
 *  add small comments ([ca234008](https://github.com/soulsam480/pdf-donkey/commit/ca234008ae9b71a6bf6f5a76664a8114215db057))
 *  update ([fbe7b00c](https://github.com/soulsam480/pdf-donkey/commit/fbe7b00c45f9c59d026628c92d6698c1220ace87))
+* **api:**
+  *  update routes ([7fabe34a](https://github.com/soulsam480/pdf-donkey/commit/7fabe34a28dc98da643bf8281038a95af23df544))
+  *  move route generator to separate file ([fd0781ac](https://github.com/soulsam480/pdf-donkey/commit/fd0781ac19481f68ce7cf6cb3cb191ab20ff18c8))
+  *  update routes ([3b25faaf](https://github.com/soulsam480/pdf-donkey/commit/3b25faaf1b8f488ec1386073c072848cdebf9d06))
 
 ##### New Features
 
@@ -77,13 +79,8 @@
 
 ##### Bug Fixes
 
-* **api:**
-  *  change cors to allow all origins ([8684bcdc](https://github.com/soulsam480/pdf-donkey/commit/8684bcdc9e869fd197b6e769e8aab74cc35383f7))
-  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
-  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
-* **app:**
-  *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
-  *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
+*  cors for pdf generation, remove template user endpoint ([c8dfba16](https://github.com/soulsam480/pdf-donkey/commit/c8dfba16057671e1a9500925b55415d2624b86b9))
+*  info banner in template test data ([b0bfc40e](https://github.com/soulsam480/pdf-donkey/commit/b0bfc40e6768b0d2f4a071c52b04f4f26f79c977))
 *  token persistence WIP ([0afa3363](https://github.com/soulsam480/pdf-donkey/commit/0afa3363839cab035d9311108cd204e3218da082))
 *  remove index db ([eddd3439](https://github.com/soulsam480/pdf-donkey/commit/eddd3439723dca4c7b924205d9df5e286ded0a51))
 *  remove index db ([1fe186b4](https://github.com/soulsam480/pdf-donkey/commit/1fe186b4085f80c4ef10ea89cc60ccc1931520aa))
@@ -92,6 +89,13 @@
 *  something ([d45b32b4](https://github.com/soulsam480/pdf-donkey/commit/d45b32b4cefd8ffb5f3d320a4262017ea6090a2c))
 *  runtime errors ([ae6ebc4e](https://github.com/soulsam480/pdf-donkey/commit/ae6ebc4eac459aa7444ca1d7f2b63c1a62c9315a))
 *  store ([0e6c643b](https://github.com/soulsam480/pdf-donkey/commit/0e6c643bef5b8e16b77fc13ece8f391b58164fdf))
+* **api:**
+  *  change cors to allow all origins ([8684bcdc](https://github.com/soulsam480/pdf-donkey/commit/8684bcdc9e869fd197b6e769e8aab74cc35383f7))
+  *  don't send API key in user data ([afeb0096](https://github.com/soulsam480/pdf-donkey/commit/afeb0096f685e529eb4fbbf24c2fe4310e8e3ec3))
+  *  fix service response errors, bugs, fix(app): register handler ([4a3d78e5](https://github.com/soulsam480/pdf-donkey/commit/4a3d78e5af20615e69053f91e5b7b0c9c5c93148))
+* **app:**
+  *  close nav context when clicked on an element ([d613a624](https://github.com/soulsam480/pdf-donkey/commit/d613a6247940feddcd8d12cb61bb9d781b30d204))
+  *  avoid effect on template mount in code mode ([6356c541](https://github.com/soulsam480/pdf-donkey/commit/6356c541125577e9a1c49265d2ddc909ccc3da57))
 * **app,api:**  fix updatedAt error, scope requests to specific user ([7e9ecdf4](https://github.com/soulsam480/pdf-donkey/commit/7e9ecdf47c7f27b55c20f34365bf678b468f7a33))
 
 ##### Other Changes

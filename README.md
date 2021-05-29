@@ -4,8 +4,7 @@
 
 PDF monkey but open-souce.
 
-Purely hobby project. Don't know if it'll make it to a real server or not.
-
+<a href="https://www.producthunt.com/posts/pdf-donkey?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pdf-donkey" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=297751&theme=dark" alt="PDF Donkey - Open-source PDF Monkey alternative. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 ## Status
 

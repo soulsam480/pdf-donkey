@@ -4,16 +4,14 @@ dotenv.config({
   path: join(__dirname, '../.env'),
 });
 import {
-  Action,
   // getMetadataArgsStorage,
   useExpressServer,
 } from 'routing-controllers';
 import 'reflect-metadata';
 import { createConnection, getRepository } from 'typeorm';
 import express from 'express';
-import { verify } from 'jsonwebtoken';
 import { User } from './entities/user';
-import cors from 'cors';
+import { CorsOptions } from 'cors';
 import { Strategy } from 'passport-google-oauth2';
 require('tsconfig-paths/register');
 const PORT: string | number = process.env.PORT || 3000;
@@ -82,11 +80,6 @@ async function main() {
   });
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
-  server.use(
-    cors({
-      origin: '*',
-    }),
-  );
   server.use('/donkey/v1/auth/', limiter);
   server.use('/donkey/v1/pdf/generate', limiter);
   server.use(passport.initialize());
@@ -104,14 +97,22 @@ async function main() {
     await conn.query('PRAGMA foreign_keys=ON;');
     useExpressServer(server, {
       routePrefix: '/donkey/v1',
+      cors: {
+        origin: [
+          'http://localhost:4001',
+          'https://donkey.sambitsahoo.com',
+          'http://localhost:5000',
+        ],
+        preflightContinue: true,
+      } as CorsOptions,
       controllers: [__dirname + '/controllers/*{.ts,.js}'],
-      currentUserChecker: async (action: Action) => {
-        const accessToken = action.request.headers['access-token'].split('Bearer ')[1] as string;
-        const data = <{ userId: string }>(
-          verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
-        );
-        return conn.getRepository(User).findOne({ id: data.userId });
-      },
+      // currentUserChecker: async (action: Action) => {
+      //   const accessToken = action.request.headers['access-token'].split('Bearer ')[1] as string;
+      //   const data = <{ userId: string }>(
+      //     verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
+      //   );
+      //   return conn.getRepository(User).findOne({ id: data.userId });
+      // },
     });
     if (!process.env.PROD) {
       logApiRoutes(server._router.stack, PORT);
