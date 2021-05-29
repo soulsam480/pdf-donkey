@@ -1,4 +1,4 @@
-#### 0.1.1 (2021-05-28)
+#### 0.2.1 (2021-05-28)
 
 ##### Build System / Dependencies
 
@@ -8,6 +8,7 @@
 
 ##### Chores
 
+* **release:**  bump version ([3878bf75](https://github.com/soulsam480/pdf-donkey/commit/3878bf7598dcb1519c79627c918d008fa267abd7))
 *  fix conflict ([d3a0da82](https://github.com/soulsam480/pdf-donkey/commit/d3a0da8251720958b1a8dcee46ba501e3a838103))
 *  add db to .gitignore ([18b87af4](https://github.com/soulsam480/pdf-donkey/commit/18b87af4d0353db59f18af81f2b973e9d8f39ec6))
 *  now a monorepo ([03f35633](https://github.com/soulsam480/pdf-donkey/commit/03f35633a7b5ca6a9f51ac7b7d05526845745d85))

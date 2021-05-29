@@ -116,7 +116,7 @@ const Template: React.FC<Props> = () => {
         isModal={isModal}
       >
         <div className="bg-gray-200 p-3 rounded-md text-xs text-gray-700">
-          <span className="font-bold">!</span> The should be in JSON format.
+          <span className="font-bold">!</span> The data should be in JSON format.
         </div>
         <div className="py-2">
           <PrismHighlight
@@ -128,7 +128,8 @@ const Template: React.FC<Props> = () => {
         <div className="flex justify-end">
           <button
             className={classNames({
-              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ': true,
+              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ':
+                true,
               'disabled:opacity-50 cursor-not-allowed':
                 TemplateTestData === JSON.stringify(TemplateData.data),
             })}
