@@ -32,6 +32,11 @@
 
 ##### New Features
 
+* **app,api:**
+  *  option to generate PDF from the website ([669fdd15](https://github.com/soulsam480/pdf-donkey/commit/669fdd153fe1907309c7a500cc8e3fc49d6aa8d6))
+  *  add typeorm migrations, added rich text editor ([26549ab0](https://github.com/soulsam480/pdf-donkey/commit/26549ab0964070a1fad00fae9aaa8403282e9885))
+  *  add code splitting, change sqlite driver to better-sqlite3 ([f0c0ed48](https://github.com/soulsam480/pdf-donkey/commit/f0c0ed483e942c176ffae04845e1779dbea20bbf))
+  *  timestamps for update, username login, template editing with syntax highlighting, more UI updates ([fbe70499](https://github.com/soulsam480/pdf-donkey/commit/fbe704995d599ee041dfd99a74625aabb4af3a13))
 * **api:**
   *  added rate-limiter to pdf generation endpoint ([17294eae](https://github.com/soulsam480/pdf-donkey/commit/17294eae2f3fd653b92d39f45b9ce505bc3e9367))
   *  added pdf generation using API keys, ts types in a separate file. ([6f945edb](https://github.com/soulsam480/pdf-donkey/commit/6f945edb0a13c20bea6b81156ea83eae8d05e83a))
@@ -72,10 +77,6 @@
 *  add PWA caching ([83d5dd82](https://github.com/soulsam480/pdf-donkey/commit/83d5dd8285d640377e194e34196bf7ec806e58e8))
 *  port modal to twcss ([b2c5c8c7](https://github.com/soulsam480/pdf-donkey/commit/b2c5c8c742cb93f2f7a1b49240749030c7a893a0))
 *  add template creation ([7a869cd4](https://github.com/soulsam480/pdf-donkey/commit/7a869cd481eefe5ef09d2cbc1c95f1a2d009b886))
-* **app,api:**
-  *  add typeorm migrations, added rich text editor ([26549ab0](https://github.com/soulsam480/pdf-donkey/commit/26549ab0964070a1fad00fae9aaa8403282e9885))
-  *  add code splitting, change sqlite driver to better-sqlite3 ([f0c0ed48](https://github.com/soulsam480/pdf-donkey/commit/f0c0ed483e942c176ffae04845e1779dbea20bbf))
-  *  timestamps for update, username login, template editing with syntax highlighting, more UI updates ([fbe70499](https://github.com/soulsam480/pdf-donkey/commit/fbe704995d599ee041dfd99a74625aabb4af3a13))
 
 ##### Bug Fixes
 

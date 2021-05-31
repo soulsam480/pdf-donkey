@@ -9,7 +9,8 @@ import { useAlert } from 'src/store/useAlert';
 import AppModal from 'src/components/AppModal';
 import PrismHighlight from 'src/components/PrismHighlight';
 import RichTextEditor from 'src/components/RichText';
-import DownloadTemplate from 'src/components/DownloadTemplate';
+import DownloadTemplate from 'src/components/TemplateDownload';
+import TemplateSettings from 'src/components/TemplateSettings';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -118,36 +119,13 @@ const Template: React.FC<Props> = () => {
         templateId={id}
         templateTitle={TemplateData.title}
       ></DownloadTemplate>
-      <AppModal
-        closeModal={() => setModal(false)}
-        heading="Add test data for template"
+      <TemplateSettings
         isModal={isModal}
-      >
-        <div className="bg-red-200 p-3 rounded-md text-xs text-gray-700 font-semibold">
-          <span className="font-bold">!</span> The data should be in JSON format.
-        </div>
-        <div className="py-2">
-          <PrismHighlight
-            code={TemplateTestData}
-            language={'json'}
-            onCode={(e) => setTemplateTest(e)}
-          />
-        </div>
-        <div className="flex justify-end">
-          <button
-            className={classNames({
-              'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-3 text-white rounded-lg ':
-                true,
-              'disabled:opacity-50 cursor-not-allowed':
-                TemplateTestData === JSON.stringify(TemplateData.data),
-            })}
-            onClick={() => handleTemplateTestData()}
-            disabled={TemplateTestData === JSON.stringify(TemplateData.data)}
-          >
-            Submit
-          </button>
-        </div>
-      </AppModal>
+        setModal={() => setModal(false)}
+        handleTemplateTestData={() => handleTemplateTestData()}
+        setTemplateTest={(e) => setTemplateTest(e)}
+        templateTestData={TemplateTestData}
+      ></TemplateSettings>
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
         <div>
           <input
@@ -175,7 +153,7 @@ const Template: React.FC<Props> = () => {
             className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
             onClick={() => setModal(true)}
           >
-            Test Data
+            Settings
           </button>
           <button
             className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
