@@ -1,4 +1,4 @@
-## ROUTES 5/31/2021
+## ROUTES 6/8/2021
 
 PATH : **`/donkey/v1/auth/register`** **||** METHOD: **`post`** 
 - Detailed:

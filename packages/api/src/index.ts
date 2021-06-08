@@ -9,7 +9,7 @@ import {
 } from 'routing-controllers';
 import 'reflect-metadata';
 import { createConnection, getRepository } from 'typeorm';
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import { User } from './entities/user';
 import { CorsOptions } from 'cors';
 import { Strategy } from 'passport-google-oauth2';
@@ -78,8 +78,10 @@ async function main() {
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // limit each IP to 100 requests per windowMs
   });
-  server.use(express.json());
-  server.use(express.urlencoded({ extended: true }));
+
+  server.use(express.json() as RequestHandler);
+
+  server.use(express.urlencoded({ extended: true }) as RequestHandler);
   server.use('/donkey/v1/auth/', limiter);
   server.use('/donkey/v1/pdf/generate', limiter);
   server.use(passport.initialize());

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 interface Props {
   isModal: boolean;
@@ -8,6 +8,19 @@ interface Props {
 }
 
 const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, subheading }) => {
+  const handleModalClose = useCallback((event: KeyboardEvent) => {
+    const { key } = event;
+    if (key === 'Escape') return closeModal();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleModalClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleModalClose);
+    };
+  }, [handleModalClose]);
+
   return (
     <div>
       <div
