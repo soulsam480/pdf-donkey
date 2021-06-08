@@ -1,24 +1,32 @@
 import React from 'react';
 import { Template as TemplateModel } from 'src/utils/constants';
-import useSwr from 'swr';
 import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { NavLink } from 'react-router-dom';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { useEffect } from 'react';
+import { useLoader } from 'src/store/useLoader';
+import { useState } from 'react';
+import { useAlert } from 'src/store/useAlert';
 
 interface Props {}
 
 const TemplateCard: React.FC<Props> = () => {
-  async function fetcher(): Promise<TemplateModel[]> {
-    return new Promise((resolve, reject) => {
-      DonkeyApi.get('/template/')
-        .then((res: AxiosResponse<TemplateModel[]>) => resolve(res.data))
-        .catch((err: AxiosError) => reject(err));
-    });
+  const { setLoader } = useLoader();
+  const { setAlerts } = useAlert();
+  const [Templates, setTemplates] = useState<TemplateModel[]>([]);
+  async function getTemplates() {
+    setLoader(true);
+    await DonkeyApi.get('/template/')
+      .then((res: AxiosResponse<TemplateModel[]>) => setTemplates(res.data))
+      .catch(() => setAlerts({ type: 'error', message: 'Unable to fetch templates !' }))
+      .finally(() => setLoader(false));
   }
-  const { data: Templates } = useSwr('/template/', () => fetcher(), {
-    refreshInterval: 120000,
-    revalidateOnFocus: false,
-  });
+
+  useEffect(() => {
+    (async () => {
+      await getTemplates();
+    })();
+  }, []);
 
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pt-3">

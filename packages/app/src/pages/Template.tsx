@@ -2,20 +2,21 @@ import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { classNames, DonkeyApi, getDDMMYY } from 'src/utils/helpers';
+import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
-import AppModal from 'src/components/AppModal';
 import PrismHighlight from 'src/components/PrismHighlight';
 import RichTextEditor from 'src/components/RichText';
 import DownloadTemplate from 'src/components/TemplateDownload';
 import TemplateSettings from 'src/components/TemplateSettings';
+import { useLoader } from 'src/store/useLoader';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();
   const [code, setCode] = useState('');
+  const { setLoader } = useLoader();
   const [richMode, setRichMode] = useState<'code' | 'rich'>('code');
   const [TemplateData, setTemplateData] = useState<TemplateModel>({
     title: '',
@@ -32,14 +33,17 @@ const Template: React.FC<Props> = () => {
     return window.innerHeight - 170;
   }
   async function getTemplate() {
+    setLoader(true);
     DonkeyApi.get(`/template/${id}`)
       .then(async (res: AxiosResponse<TemplateModel>) => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
         setTemplateTest(JSON.stringify(res.data.data));
         await renderTemplate(res.data.markup as string, res.data?.data);
+        setLoader(false);
       })
       .catch((err: AxiosError) => {
+        setAlerts({ message: 'Unable to get template', type: 'error' });
         console.log(err);
       });
   }

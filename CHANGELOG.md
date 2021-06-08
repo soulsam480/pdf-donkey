@@ -1,4 +1,8 @@
-#### 0.2.1 (2021-05-31)
+#### 0.2.1 (2021-06-08)
+
+##### Chores
+
+*  update deps to latest ([a347c623](https://github.com/soulsam480/pdf-donkey/commit/a347c62335a32fec447eda8743064eed3e98d734))
 
 ##### Documentation Changes
 

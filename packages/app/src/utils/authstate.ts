@@ -27,8 +27,8 @@ export const authState = async () => {
           url: '/user',
           method: 'get',
         });
-        if (!user.data)
-          return useUser.setState({ user: {}, isLoggedIn: false });
+
+        if (!user.data) return useUser.setState({ user: {}, isLoggedIn: false });
         delete user.data.accessToken;
         delete user.data.refreshToken;
         useUser.setState({ user: user.data, isLoggedIn: true });

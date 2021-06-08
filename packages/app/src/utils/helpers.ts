@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import { Alert, useAlert } from 'src/store/useAlert';
+import { useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
-
+import {} from 'react-router-dom';
 export function getDDMMYY(date?: string) {
   const newDate = new Date(date as string);
 
@@ -23,6 +25,21 @@ export const DonkeyApi = axios.create({
 });
 
 export function registerDonkey() {
+  DonkeyApi.interceptors.response.use(
+    (res) => res,
+    (err: AxiosError<any>) => {
+      if (err.response?.status === 401) {
+        useAlert.setState({
+          alerts: [{ message: 'Unauthorized, Please Login again !', type: 'error' }],
+        });
+        localStorage.removeItem('__token');
+        useUser.setState({ user: {}, isLoggedIn: false });
+        location.reload();
+        return Promise.reject(err);
+      }
+      Promise.reject(err);
+    },
+  );
   useToken.subscribe(
     (tokenState: { token: string }) => {
       DonkeyApi.defaults.headers['access-token'] = `Bearer ${tokenState.token}`;

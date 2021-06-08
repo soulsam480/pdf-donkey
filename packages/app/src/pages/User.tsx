@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useAlert } from 'src/store/useAlert';
+import { useLoader } from 'src/store/useLoader';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
 const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
 const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
@@ -12,6 +13,7 @@ interface Props {}
 const User: React.FC<Props> = () => {
   const { user } = useUser();
   const { push } = useHistory();
+  const { setLoader } = useLoader();
   const [isModal, setModal] = useState(false);
   const [newTemplate, setTemplate] = useState({ title: '', markup: '' });
   const { setAlerts } = useAlert();
@@ -31,7 +33,8 @@ const User: React.FC<Props> = () => {
     }
   }, [isModal]);
 
-  async function cerateTemplate() {
+  async function createTemplate() {
+    setLoader(true);
     DonkeyApi.post(`/template/`, {
       ...newTemplate,
     })
@@ -43,6 +46,7 @@ const User: React.FC<Props> = () => {
             type: 'success',
           }),
           setTemplate({ markup: '', title: '' }),
+          setLoader(false),
           push(`/template/${res.data.id}`)
         ),
       )
@@ -56,7 +60,7 @@ const User: React.FC<Props> = () => {
         heading={'Create new Template'}
       >
         <form
-          onSubmit={(e) => (e.preventDefault(), cerateTemplate())}
+          onSubmit={(e) => (e.preventDefault(), createTemplate())}
           className="grid grid-cols-1 gap-6"
         >
           <input
