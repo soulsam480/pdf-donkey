@@ -1,5 +1,9 @@
 #### 0.2.1 (2021-06-08)
 
+##### Build System / Dependencies
+
+*  fix react types mismatch ([e264b4f9](https://github.com/soulsam480/pdf-donkey/commit/e264b4f96e42a8aece64b9c276e0dfb88384fc5f))
+
 ##### Chores
 
 *  update deps to latest ([a347c623](https://github.com/soulsam480/pdf-donkey/commit/a347c62335a32fec447eda8743064eed3e98d734))
