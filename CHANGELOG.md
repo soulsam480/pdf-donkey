@@ -10,6 +10,7 @@
 
 ##### New Features
 
+*  added loader in fetch ops, global 401 handler ([ae489fd5](https://github.com/soulsam480/pdf-donkey/commit/ae489fd51137fcc62d1c50433994695e40024b72))
 * **app,api:**  option to generate PDF from the website ([669fdd15](https://github.com/soulsam480/pdf-donkey/commit/669fdd153fe1907309c7a500cc8e3fc49d6aa8d6))
 
 ##### Bug Fixes
