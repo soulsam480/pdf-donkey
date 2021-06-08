@@ -10,38 +10,37 @@
     "build:test": "tsc && vite build --mode development"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.3.2",
-    "@tinymce/tinymce-react": "^3.12.5",
+    "@tailwindcss/forms": "^0.3.3",
+    "@tinymce/tinymce-react": "^3.12.6",
     "axios": "^0.21.1",
-    "highlight.js": "^10.7.2",
+    "highlight.js": "^11.0.1",
     "js-beautify": "^1.13.13",
     "liquidjs": "^9.25.0",
     "react": "^17.0.0",
-    "react-codejar": "^1.0.2",
+    "react-codejar": "^1.1.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
     "shoyo": "^0.1.4-alpha",
-    "styled-components": "^5.2.1",
-    "swr": "^0.5.5",
-    "tailwindcss": "^2.1.2",
-    "zustand": "^3.4.1"
+    "styled-components": "^5.3.0",
+    "tailwindcss": "^2.1.4",
+    "zustand": "^3.5.2"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
     "@types/js-beautify": "^1.13.1",
-    "@types/node": "^14.14.37",
+    "@types/node": "^15.12.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9",
-    "@vitejs/plugin-react-refresh": "^1.3.1",
-    "autoprefixer": "^10.2.5",
-    "eslint-plugin-react": "^7.23.2",
-    "postcss": "^8.2.14",
-    "typescript": "^4.1.2",
-    "vite": "^2.1.3",
+    "@vitejs/plugin-react-refresh": "^1.3.3",
+    "autoprefixer": "^10.2.6",
+    "eslint-plugin-react": "^7.24.0",
+    "postcss": "^8.3.0",
+    "typescript": "^4.3.2",
+    "vite": "^2.3.7",
     "vite-plugin-pwa": "^0.7.3",
-    "vite-tsconfig-paths": "^3.3.10"
+    "vite-tsconfig-paths": "^3.3.13"
   },
   "eslintConfig": {
     "extends": [

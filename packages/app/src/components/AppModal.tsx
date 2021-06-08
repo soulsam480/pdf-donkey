@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 interface Props {
   isModal: boolean;
@@ -8,6 +8,19 @@ interface Props {
 }
 
 const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, subheading }) => {
+  const handleModalClose = useCallback((event: KeyboardEvent) => {
+    const { key } = event;
+    if (key === 'Escape') return closeModal();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleModalClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleModalClose);
+    };
+  }, [handleModalClose]);
+
   return (
     <div>
       <div
@@ -22,7 +35,7 @@ const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, sub
 
         <div className="modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded-md shadow-lg z-50 overflow-y-auto">
           <div className="modal-content py-4 text-left px-6">
-            <div className="flex justify-between items-center pb-3 ">
+            <div className="flex justify-between pb-3 ">
               <div>
                 {' '}
                 <p className="text-2xl font-bold">{heading}</p>
@@ -41,7 +54,7 @@ const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, sub
                 </svg>
               </div>
             </div>
-            <div className="pt-2">{children}</div>
+            <div className="pt-0">{children}</div>
           </div>
         </div>
       </div>
