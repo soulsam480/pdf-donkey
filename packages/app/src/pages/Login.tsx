@@ -146,11 +146,7 @@ const Login: React.FC<Props> = () => {
                     title="Login with google"
                     type="button"
                     className="border-indigo-500 border-2 hover:bg-indigo-100 transition duration-200 ease-in-out p-2 text-white rounded-lg"
-                    href={
-                      import.meta.env.PROD
-                        ? 'https://apis.sambitsahoo.com/donkey/v1/auth/google'
-                        : 'http://localhost:3000/donkey/v1/auth/google'
-                    }
+                    href={import.meta.env.VITE_API + 'auth/google'}
                   >
                     <img src="/glogo.webp" className="w-6 block m-auto" alt="Google logo" />
                   </a>
@@ -205,7 +201,7 @@ const Login: React.FC<Props> = () => {
             <br />
 
             {opType === 'login' ? (
-              <p className="muted center">
+              <p className="muted text-center">
                 <small>
                   Don't have an account ?{' '}
                   <span
@@ -217,7 +213,7 @@ const Login: React.FC<Props> = () => {
                 </small>
               </p>
             ) : (
-              <p className="muted center">
+              <p className="muted text-center">
                 <small>
                   Already an user ?{' '}
                   <span
