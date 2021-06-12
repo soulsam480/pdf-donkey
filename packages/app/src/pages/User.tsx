@@ -3,8 +3,8 @@ import { useHistory } from 'react-router';
 import { useAlert } from 'src/store/useAlert';
 import { useLoader } from 'src/store/useLoader';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
-const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
-const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
+const TemplateCards = React.lazy(() => import('src/components/templates/TemplateCards'));
+const PrismHighlight = React.lazy(() => import('src/components/templates/PrismHighlight'));
 import { useUser } from 'src/store/userContext';
 import { DonkeyApi } from 'src/utils/helpers';
 

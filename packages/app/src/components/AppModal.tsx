@@ -16,9 +16,7 @@ const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, sub
   useEffect(() => {
     window.addEventListener('keydown', handleModalClose);
 
-    return () => {
-      window.removeEventListener('keydown', handleModalClose);
-    };
+    return () => window.removeEventListener('keydown', handleModalClose);
   }, [handleModalClose]);
 
   return (

@@ -6,10 +6,10 @@ import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
-import PrismHighlight from 'src/components/PrismHighlight';
-import RichTextEditor from 'src/components/RichText';
-import DownloadTemplate from 'src/components/TemplateDownload';
-import TemplateSettings from 'src/components/TemplateSettings';
+import PrismHighlight from 'src/components/templates/PrismHighlight';
+import RichTextEditor from 'src/components/templates/RichText';
+import DownloadTemplate from 'src/components/templates/TemplateDownload';
+import TemplateSettings from 'src/components/templates/TemplateSettings';
 import { useLoader } from 'src/store/useLoader';
 interface Props {}
 

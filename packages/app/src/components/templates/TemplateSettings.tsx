@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'src/utils/helpers';
 import AppModal from 'src/components/AppModal';
-import PrismHighlight from 'src/components/PrismHighlight';
+import PrismHighlight from 'src/components/templates/PrismHighlight';
 
 interface Props {
   isModal: boolean;

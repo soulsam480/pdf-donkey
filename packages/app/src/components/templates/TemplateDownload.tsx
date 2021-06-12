@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { classNames, DonkeyApi } from 'src/utils/helpers';
-import AppModal from './AppModal';
+import AppModal from 'src/components/AppModal';
 import PrismHighlight from './PrismHighlight';
 
 interface Props {
