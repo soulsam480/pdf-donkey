@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
+import { DonkeyApi } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
@@ -11,6 +11,7 @@ import RichTextEditor from 'src/components/templates/RichText';
 import DownloadTemplate from 'src/components/templates/TemplateDownload';
 import TemplateSettings from 'src/components/templates/TemplateSettings';
 import { useLoader } from 'src/store/useLoader';
+import TemplateMenu from 'src/components/templates/TemplateMenu';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
@@ -122,51 +123,23 @@ const Template: React.FC<Props> = () => {
         closeModal={() => setDownloadModal(false)}
         templateId={id}
         templateTitle={TemplateData.title}
-      ></DownloadTemplate>
+      />
       <TemplateSettings
         isModal={isModal}
         setModal={() => setModal(false)}
         handleTemplateTestData={() => handleTemplateTestData()}
         setTemplateTest={(e) => setTemplateTest(e)}
         templateTestData={TemplateTestData}
-      ></TemplateSettings>
-      <div className="grid grid-cols-1 lg:grid-cols-2  gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
-        <div>
-          <input
-            name="password"
-            type="text"
-            className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
-            value={TemplateData.title}
-            placeholder="Untitled"
-            onChange={(e) => setTemplateData({ ...TemplateData, title: e.target.value })}
-            onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
-          />{' '}
-          <p className="text-sm">
-            <span className="font-semibold">Last updated : </span>
-            {getDDMMYY(TemplateData?.updatedAt).time} , {getDDMMYY(TemplateData?.updatedAt).date}{' '}
-          </p>
-        </div>
-        <div className="text-left lg:text-right flex flex-row justify-end">
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setDownloadModal(true)}
-          >
-            Download
-          </button>
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setModal(true)}
-          >
-            Settings
-          </button>
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
-          >
-            {richMode !== 'rich' ? 'Rich' : 'Code'} mode
-          </button>
-        </div>
-      </div>
+      />
+      <TemplateMenu
+        setRichMode={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
+        TemplateData={TemplateData}
+        richMode={richMode}
+        setDownloadModal={() => setDownloadModal(true)}
+        setModal={() => setModal(true)}
+        setTemplate={() => setTemplate()}
+        setTemplateData={(val) => setTemplateData(val)}
+      />
       <div
         className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max grid-flow-row relative pt-3"
         style={{
