@@ -1,5 +1,9 @@
 #### 0.2.1.2 (2021-06-13)
 
+##### Build System / Dependencies
+
+*  remove docs package as build is failing due to duplicate types between react and vue ([803a2143](https://github.com/soulsam480/pdf-donkey/commit/803a214390dc2d76e9f4932b7db83a145fdf43cc))
+
 ##### Chores
 
 *  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))

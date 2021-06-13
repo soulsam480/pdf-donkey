@@ -21,25 +21,30 @@ Features:
 - Template CRUD
 - Rich template editing
 - Template preview
+- PDF Generation
+- Custom style
 
 Projected:
-- PDF Generation
+- UI refining
 - more..
 ### Stack
 
 api:
 - Node v14.x
 - Express
-- SQLite (Will be postgres if deployed)
+- SQLite
 - Typeorm
 - Typescript
 - Route Controllers
-- Auth (JWT)
+- Auth (JWT)/Google OAuth2
 
 app:
+- Vite
 - React 
 - React router
-- Shoyo
+- zustand
+- Typescript
+- Tailwind CSS
 
 ### Run it locally
 
