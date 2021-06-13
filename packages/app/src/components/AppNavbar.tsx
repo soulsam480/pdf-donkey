@@ -5,6 +5,7 @@ import { clickOutsideToggle } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
 import { version } from '../../../../package.json';
 import UserProfile from 'src/components/UserProfile';
+import AppIcon from 'src/components/AppIcon';
 interface Props {}
 const AppNavbar: React.FC<Props> = () => {
   const { push } = useHistory();
@@ -99,7 +100,7 @@ const AppNavbar: React.FC<Props> = () => {
                   href="https://github.com/soulsam480/pdf-donkey"
                   target="_blank"
                 >
-                  GitHub
+                  <AppIcon icon="ion:logo-github" className="text-white" size="24px" />
                 </a>
               </div>
             </div>
@@ -114,6 +115,7 @@ const AppNavbar: React.FC<Props> = () => {
                       id="user-menu-button"
                       onClick={() => setContext(!isContext)}
                     >
+                      <AppIcon icon="ion:person-outline" className="text-white pr-1" />
                       {user.name}
                     </button>
 
@@ -178,11 +180,12 @@ const AppNavbar: React.FC<Props> = () => {
       <div className={isOpen ? 'sm:hidden' : 'hidden'} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            className="hover:bg-gray-600 text-white px-3 py-2 rounded-md block font-medium"
+            className="hover:bg-gray-600 text-white px-3 py-2 rounded-md block font-medium items-center"
             href="https://github.com/soulsam480/pdf-donkey"
             target="_blank"
           >
-            GitHub
+            <AppIcon icon="ion:logo-github" className="text-white" size="24px" />{' '}
+            <span style={{ fontSize: '10px' }}>v{version}</span>{' '}
           </a>
         </div>
       </div>

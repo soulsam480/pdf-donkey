@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { User, useUser } from '../store/userContext';
 import { useToken } from 'src/store/useToken';
 import { useAlert } from 'src/store/useAlert';
+import AppIcon from 'src/components/AppIcon';
 
 interface Props {}
 
@@ -145,10 +146,10 @@ const Login: React.FC<Props> = () => {
                   <a
                     title="Login with google"
                     type="button"
-                    className="border-indigo-500 border-2 hover:bg-indigo-100 transition duration-200 ease-in-out p-2 text-white rounded-lg"
+                    className="bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 rounded-lg"
                     href={import.meta.env.VITE_API + 'auth/google'}
                   >
-                    <img src="/glogo.webp" className="w-6 block m-auto" alt="Google logo" />
+                    <AppIcon icon="ion:logo-google" className="text-white" size="24px" />
                   </a>
                 </div>
               </div>
