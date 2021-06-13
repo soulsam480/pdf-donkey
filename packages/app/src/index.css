@@ -47,3 +47,7 @@ body {
 .iconify path {
   stroke-width: 35;
 }
+label {
+  padding-bottom: 5px;
+  display: block;
+}

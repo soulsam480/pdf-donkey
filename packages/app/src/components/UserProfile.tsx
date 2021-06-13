@@ -77,36 +77,49 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
       >
         <form
           onSubmit={(e) => (e.preventDefault(), UpdateUser())}
-          className="grid grid-cols-1 gap-6"
+          className="grid grid-cols-1 gap-3"
         >
-          <input
-            name="name"
-            type="text"
-            value={updatedUser.name}
-            placeholder={user.name}
-            onChange={handleInput}
-            className="rounded-md"
-          />
-          <input
-            name="email"
-            type="text"
-            value={updatedUser.email}
-            placeholder={user.email}
-            onChange={handleInput}
-            className="rounded-md"
-          />
-          <input
-            name="username"
-            type="text"
-            value={updatedUser.username}
-            placeholder={user.username}
-            onChange={handleInput}
-            className="rounded-md"
-          />
+          <div>
+            <label htmlFor="name">Your name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={updatedUser.name}
+              placeholder={user.name}
+              onChange={handleInput}
+              className="rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Your E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              value={updatedUser.email}
+              placeholder={user.email}
+              onChange={handleInput}
+              className="rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label htmlFor="username">Your username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              value={updatedUser.username}
+              placeholder={user.username}
+              onChange={handleInput}
+              className="rounded-md w-full"
+            />
+          </div>
           <div className="flex justify-end">
             <button
               className={classNames({
-                'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ': true,
+                'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ':
+                  true,
               })}
               type="submit"
             >
@@ -118,18 +131,21 @@ const UserProfile: React.FC<Props> = ({ isUserProfile, closeModal }) => {
           <p className="text-2xl font-bold">API key</p>
           <p className="text-sm text-gray-500 "> Your donkey API key to generate PDFs. </p>
           <div className="grid grid-cols-1 gap-6 pt-2">
-            <div
+            <input
+              type="text"
               className={classNames({
                 'rounded-md border-gray-400 border-2 p-2 flex-grow': true,
                 'text-gray-500': !isKey,
               })}
-            >
-              {isKey ? isKey : 'Your API key xxxx.xxxx.xxx'}
-            </div>
+              value={isKey ? isKey : 'Your API key xxxx.xxxx.xxx'}
+              disabled
+            />
+
             <div className="flex justify-end">
               <button
                 className={classNames({
-                  'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ': true,
+                  'bg-indigo-500 hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg ':
+                    true,
                 })}
                 onClick={() => getApiKey()}
               >

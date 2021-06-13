@@ -47,6 +47,7 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
       code={code}
       onUpdate={(e) => setLocalCode(e)}
       highlight={highlight}
+      options={{ spellcheck: true, preserveIdent: true }}
     />
   );
 };

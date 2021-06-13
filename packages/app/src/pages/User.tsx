@@ -61,22 +61,28 @@ const User: React.FC<Props> = () => {
       >
         <form
           onSubmit={(e) => (e.preventDefault(), createTemplate())}
-          className="grid grid-cols-1 gap-6"
+          className="grid grid-cols-1 gap-3"
         >
-          <input
-            name="title"
-            type="text"
-            value={newTemplate.title}
-            placeholder="Title"
-            onChange={handleInput}
-            className="rounded-md"
-          />
-          <PrismHighlight
-            code={newTemplate.markup}
-            minHeight={300}
-            language={'html'}
-            onCode={(e) => setTemplate({ ...newTemplate, markup: e })}
-          />
+          <div>
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              value={newTemplate.title}
+              onChange={handleInput}
+              className="rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label>Basic template</label>
+            <PrismHighlight
+              code={newTemplate.markup}
+              minHeight={300}
+              language={'html'}
+              onCode={(e) => setTemplate({ ...newTemplate, markup: e })}
+            />
+          </div>
           <div className="flex justify-end">
             <button
               className="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white ml-1  transition duration-200 ease-in-out"

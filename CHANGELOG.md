@@ -6,7 +6,9 @@
 
 ##### New Features
 
-* **app:**  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
+* **app:**
+  *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
+  *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
 
 ##### Bug Fixes
 
