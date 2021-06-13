@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Highlight from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 import { ReactCodeJar } from 'react-codejar';
-import { html, js } from 'js-beautify';
+import { html, js, css } from 'js-beautify';
 interface Props {
   language: string;
   code: string;
   onCode: (code: string) => void;
   minHeight?: number;
+  isDebounce?: number;
 }
 
-const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) => {
+const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight, isDebounce }) => {
   const [localCode, setLocalCode] = useState(code);
   const highlight = (editor: HTMLElement): Record<string, any> => {
     let code = editor.textContent as string;
@@ -19,19 +20,33 @@ const PrismHighlight: React.FC<Props> = ({ language, code, onCode, minHeight }) 
   };
   function handleChangeCode(val: string) {
     if (val === code) return;
-    onCode(
-      language === 'html'
-        ? html(val, {
-            preserve_newlines: true,
-          })
-        : js(val, {
+    switch (language) {
+      case 'html':
+        onCode(
+          html(val, {
             preserve_newlines: true,
           }),
-    );
+        );
+        break;
+      case 'css':
+        onCode(
+          css(val, {
+            preserve_newlines: true,
+          }),
+        );
+        break;
+      default:
+        onCode(
+          js(val, {
+            preserve_newlines: true,
+          }),
+        );
+        break;
+    }
   }
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    timeout = setTimeout(() => handleChangeCode(localCode), 2000);
+    timeout = setTimeout(() => handleChangeCode(localCode), isDebounce || 2000);
     return () => clearTimeout(timeout);
   }, [localCode]);
   return (

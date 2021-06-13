@@ -7,6 +7,7 @@
 ##### New Features
 
 * **app:**
+  *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))
   *  add labels for input fields ([c25f5f04](https://github.com/soulsam480/pdf-donkey/commit/c25f5f0435f99812c4386f196aeab046f30a73e3))
   *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
   *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))

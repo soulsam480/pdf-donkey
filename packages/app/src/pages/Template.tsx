@@ -40,13 +40,13 @@ const Template: React.FC<Props> = () => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
         setTemplateTest(JSON.stringify(res.data.data));
-        await renderTemplate(res.data.markup as string, res.data?.data);
-        setLoader(false);
+        await renderTemplate(res.data);
       })
       .catch((err: AxiosError) => {
         setAlerts({ message: 'Unable to get template', type: 'error' });
         console.log(err);
-      });
+      })
+      .finally(() => setLoader(false));
   }
   async function setTemplate(
     codePayload: string = code,
@@ -62,7 +62,6 @@ const Template: React.FC<Props> = () => {
       data: data,
     })
       .then(async () => {
-        running.current = false;
         setAlerts({
           type: 'success',
           message: 'Saved successfully !',
@@ -75,12 +74,15 @@ const Template: React.FC<Props> = () => {
           type: 'error',
           message: 'Some error occured !',
         });
-      });
+      })
+      .finally(() => (running.current = false));
   }
-  async function renderTemplate(code: string, data?: Record<string, any>) {
-    return await liquid.parseAndRender(code, data).then((res) => {
-      setRenderTemplate(res);
-    });
+  async function renderTemplate(template: TemplateModel) {
+    return await liquid
+      .parseAndRender(`<style>${template.style}</style>${template.markup}`, template.data)
+      .then((res) => {
+        setRenderTemplate(res);
+      });
   }
   async function handleTemplateTestData() {
     try {
@@ -98,7 +100,7 @@ const Template: React.FC<Props> = () => {
     if (code === TemplateData.markup) return;
     let timeout: NodeJS.Timeout;
     timeout = setTimeout(async () => {
-      await renderTemplate(code)
+      await renderTemplate({ ...TemplateData, markup: code })
         .then(async () => await setTemplate(code))
         .catch(() =>
           setAlerts({
@@ -130,6 +132,9 @@ const Template: React.FC<Props> = () => {
         handleTemplateTestData={() => handleTemplateTestData()}
         setTemplateTest={(e) => setTemplateTest(e)}
         templateTestData={TemplateTestData}
+        templateCss={TemplateData.style as string}
+        setTemplateCss={(val) => setTemplateData({ ...TemplateData, style: val })}
+        setTemplate={() => setTemplate()}
       />
       <TemplateMenu
         setRichMode={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
