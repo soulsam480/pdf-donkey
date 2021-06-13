@@ -6,6 +6,7 @@
 
 ##### New Features
 
+* **docs:**  added basic docs site ([8fdd4367](https://github.com/soulsam480/pdf-donkey/commit/8fdd43672e09433043d7b9348a3ecb155356d6ff))
 * **app:**
   *  add 0 debounce to download data input ([150342ed](https://github.com/soulsam480/pdf-donkey/commit/150342ed6d1f615d4196fc5be71466af5ddf2245))
   *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
