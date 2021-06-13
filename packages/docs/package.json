@@ -1,0 +1,15 @@
+{
+  "name": "docs",
+  "description": "PDF Donkey docs",
+  "version": "0.0.0",
+  "author": "soulsam480 <soulsam480@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
+    "serve": "vitepress serve ."
+  },
+  "devDependencies": {
+    "vitepress": "^0.14.1"
+  }
+}

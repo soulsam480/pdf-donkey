@@ -6,13 +6,14 @@
 
 ##### New Features
 
-* **api:**  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 * **app:**
+  *  add 0 debounce to download data input ([150342ed](https://github.com/soulsam480/pdf-donkey/commit/150342ed6d1f615d4196fc5be71466af5ddf2245))
   *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
   *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))
   *  add labels for input fields ([c25f5f04](https://github.com/soulsam480/pdf-donkey/commit/c25f5f0435f99812c4386f196aeab046f30a73e3))
   *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
   *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
+* **api:**  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 
 ##### Bug Fixes
 
