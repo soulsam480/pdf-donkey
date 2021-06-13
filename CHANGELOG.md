@@ -6,6 +6,7 @@
 
 ##### New Features
 
+* **api:**  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 * **app:**
   *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
   *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))

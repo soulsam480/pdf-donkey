@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { classNames, DonkeyApi } from 'src/utils/helpers';
 import AppModal from 'src/components/AppModal';
-import PrismHighlight from './PrismHighlight';
+import PrismHighlight from 'src/components/templates/PrismHighlight';
 
 interface Props {
   isModal: boolean;
@@ -53,6 +53,7 @@ const DownloadTemplate: React.FC<Props> = ({ closeModal, isModal, templateId, te
             code={templateData}
             language={'json'}
             onCode={(e) => setTemplateData(e)}
+            isDebounce={0}
           />
         </div>
         <div className="flex justify-end">
