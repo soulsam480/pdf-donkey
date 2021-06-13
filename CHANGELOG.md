@@ -7,6 +7,7 @@
 ##### New Features
 
 * **app:**
+  *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
   *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))
   *  add labels for input fields ([c25f5f04](https://github.com/soulsam480/pdf-donkey/commit/c25f5f0435f99812c4386f196aeab046f30a73e3))
   *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
