@@ -41,3 +41,9 @@ body {
   flex-direction: column;
   bottom: 0;
 }
+.iconify {
+  display: inline !important;
+}
+.iconify path {
+  stroke-width: 40;
+}

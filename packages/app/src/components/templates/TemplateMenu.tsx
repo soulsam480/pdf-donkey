@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Template as TemplateModel } from 'src/utils/constants';
 import { getDDMMYY } from 'src/utils/helpers';
+import AppIcon from 'src/components/AppIcon';
 
 interface Props {
   TemplateData: TemplateModel;
@@ -21,19 +22,53 @@ const TemplateMenu: React.FC<Props> = ({
   setTemplate,
   richMode,
 }) => {
+  const [editTitle, setEditTitle] = useState(false);
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
         <div>
-          <input
-            name="password"
-            type="text"
-            className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
-            value={TemplateData.title}
-            placeholder="Untitled"
-            onChange={(e) => setTemplateData({ ...TemplateData, title: e.target.value })}
-            onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
-          />{' '}
+          {editTitle ? (
+            <div className="flex items-center mb-2">
+              <input
+                name="password"
+                type="text"
+                className="bg-gray-300 rounded-md lg:w-auto w-full flex-1 mr-2"
+                value={TemplateData.title}
+                placeholder="Untitled"
+                onChange={(e) => setTemplateData({ ...TemplateData, title: e.target.value })}
+                onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
+              />
+              <div className="flex-none">
+                <AppIcon
+                  title="Submit"
+                  icon="ion:checkmark"
+                  className="text-indigo-700 mr-1 cursor-pointer rounded-full"
+                  onClick={() => (setTemplate(), setEditTitle(false))}
+                  size="24px"
+                />
+                <AppIcon
+                  title="Cancel editing"
+                  icon="ion:close"
+                  className="text-indigo-700 mr-1 cursor-pointer rounded-full"
+                  onClick={() => setEditTitle(false)}
+                  size="24px"
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="text-xl font-bold">
+                {TemplateData.title}{' '}
+                <AppIcon
+                  title="Edit title"
+                  icon="ion:create-outline"
+                  className="text-indigo-500 cursor-pointer"
+                  onClick={() => setEditTitle(true)}
+                  size="24px"
+                />
+              </div>
+            </>
+          )}{' '}
           <p className="text-sm">
             <span className="font-semibold">Last updated : </span>
             {getDDMMYY(TemplateData?.updatedAt).time} , {getDDMMYY(TemplateData?.updatedAt).date}{' '}

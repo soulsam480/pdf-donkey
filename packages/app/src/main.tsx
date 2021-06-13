@@ -6,7 +6,7 @@ import App from './App';
 import AppNavbar from './components/AppNavbar';
 import AppLoader from './components/AppLoader';
 import AppAlertList from './components/AppAlertList';
-
+import '@purge-icons/generated';
 registerSW({
   immediate: true,
 });

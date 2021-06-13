@@ -932,6 +932,25 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@iconify/iconify@2.0.0-rc.6":
+  version "2.0.0-rc.6"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.0-rc.6.tgz#e3f5376b63b441dcb3696317784b98e2e678cf46"
+  integrity sha512-pXvLXqLPQsjpDY4qbbyh5cPEtakTfWfQCAo6SdYNhYQzat+/0fbeEhScryqaketNAG0bT4/+deKezkJZTvbuSg==
+  dependencies:
+    cross-fetch "^3.0.6"
+
+"@iconify/iconify@>=2.0.0-rc.6", "@iconify/iconify@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.1.tgz#4927812922d50b378699694b5e72e22a1acc9d2f"
+  integrity sha512-heGCmdiRc58+TQjKPiem8cmNZj7YXDG3TphRVw0UGjsz8/OKgN2ncBPy1kfFIiv5aKhUsij6WVTfOMUS7YgTbA==
+  dependencies:
+    cross-fetch "^3.0.6"
+
+"@iconify/json@^1.1.355":
+  version "1.1.355"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.355.tgz#cb2363653e4df6763e87e8716b3508eff0da3f1d"
+  integrity sha512-xHhdtI/YH8fFF/IG6YYs28Hi1SRr4ZzqRoi09wds7iX4cBvdP6RqnUxaxgiksSFSEAqF+8sZrhLDo3hkAT5v2w==
+
 "@jfonx/console-utils@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@jfonx/console-utils/-/console-utils-1.0.3.tgz#cbb7f911e4191a4a2fe1ba4807d29f100b5d099f"
@@ -983,6 +1002,24 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@purge-icons/core@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@purge-icons/core/-/core-0.7.0.tgz#097ba8d4d8b7e8d662df687bd2391eb8b83caba0"
+  integrity sha512-PaCeTFjkQUX+MzBsNg3L8x5aCZqXwaUSNw1FY3Jn7wlLqNqxRNoShw5P//a1DQAy7hLlUHvEL6IGeDoN/xf98A==
+  dependencies:
+    "@iconify/iconify" "2.0.0-rc.6"
+    axios "^0.21.1"
+    debug "^4.3.2"
+    fast-glob "^3.2.5"
+    fs-extra "^9.1.0"
+
+"@purge-icons/generated@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@purge-icons/generated/-/generated-0.7.0.tgz#d87dbb3145e8b9a64e2e12ff660aa3cb13cbeb56"
+  integrity sha512-4SHVpZnKaW5ekRTjhPY9b1pALVlF0pDuGIDRAlxAm0V+gQVOL0+Ghav6U9XqXFj2kiG1+eQ8swpvB+kd0a+tqg==
+  dependencies:
+    "@iconify/iconify" ">=2.0.0-rc.6"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
@@ -2068,6 +2105,13 @@ create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+
+cross-fetch@^3.0.6:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
+  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
+  dependencies:
+    node-fetch "2.6.1"
 
 crypto-random-string@^2.0.0:
   version "2.0.0"
@@ -3936,7 +3980,7 @@ node-emoji@^1.8.1:
   dependencies:
     lodash.toarray "^4.4.0"
 
-node-fetch@^2.6.1:
+node-fetch@2.6.1, node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
@@ -4836,6 +4880,14 @@ rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
+
+rollup-plugin-purge-icons@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-purge-icons/-/rollup-plugin-purge-icons-0.7.0.tgz#4419b810d5d75f1bba3af72a238e70b4a675f03c"
+  integrity sha512-zAff7SrjC2nA7TCm6gaOclh1cZ2IBupX1tnebn+sfvcvrezu+avS7k0BhhAC2pAtfhdOvD6G/2a+kkkm6hvpiw==
+  dependencies:
+    "@purge-icons/core" "^0.7.0"
+    "@purge-icons/generated" "^0.7.0"
 
 rollup-plugin-terser@^7.0.0:
   version "7.0.2"
@@ -5743,6 +5795,15 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+vite-plugin-purge-icons@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-purge-icons/-/vite-plugin-purge-icons-0.7.0.tgz#c460037438fd71372153360ccb9e7d97b030fb58"
+  integrity sha512-oGZUKFAL4waIZIeiCPT5KZvGbBA500AO/03oxW+ODTKUMq+0jbh9s+T8NPzfJQFC1jtE7eUb2ium82IP/gxZjA==
+  dependencies:
+    "@purge-icons/core" "^0.7.0"
+    "@purge-icons/generated" "^0.7.0"
+    rollup-plugin-purge-icons "^0.7.0"
 
 vite-plugin-pwa@^0.7.3:
   version "0.7.3"

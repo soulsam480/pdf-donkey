@@ -10,6 +10,7 @@
     "build:test": "tsc && vite build --mode development"
   },
   "dependencies": {
+    "@iconify/iconify": "^2.0.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tinymce/tinymce-react": "^3.12.6",
     "axios": "^0.21.1",
@@ -24,6 +25,7 @@
     "zustand": "^3.5.2"
   },
   "devDependencies": {
+    "@iconify/json": "^1.1.355",
     "@tailwindcss/jit": "^0.1.18",
     "@types/js-beautify": "^1.13.1",
     "@types/node": "^15.12.2",
@@ -36,6 +38,7 @@
     "postcss": "^8.3.0",
     "typescript": "^4.3.2",
     "vite": "^2.3.7",
+    "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-pwa": "^0.7.3",
     "vite-tsconfig-paths": "^3.3.13"
   },

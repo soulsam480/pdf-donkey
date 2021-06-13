@@ -10,5 +10,7 @@
 
 ##### Refactors
 
-* **app:**  codebase file struct ([ae3efee8](https://github.com/soulsam480/pdf-donkey/commit/ae3efee8448067d1cc158a1441b61e1df9371bf6))
+* **app:**
+  *  create template options menu component ([8a70013e](https://github.com/soulsam480/pdf-donkey/commit/8a70013e07524a82ee4d2d386b4d030b8562e268))
+  *  codebase file struct ([ae3efee8](https://github.com/soulsam480/pdf-donkey/commit/ae3efee8448067d1cc158a1441b61e1df9371bf6))
 
