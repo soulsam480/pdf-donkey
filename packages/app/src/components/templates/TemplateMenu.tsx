@@ -42,14 +42,14 @@ const TemplateMenu: React.FC<Props> = ({
                 <AppIcon
                   title="Submit"
                   icon="ion:checkmark"
-                  className="text-indigo-700 mr-1 cursor-pointer rounded-full"
+                  className="text-indigo-700 hover:bg-indigo-50 transition-all ease-in-out mr-1 cursor-pointer rounded-full"
                   onClick={() => (setTemplate(), setEditTitle(false))}
                   size="24px"
                 />
                 <AppIcon
                   title="Cancel editing"
                   icon="ion:close"
-                  className="text-indigo-700 mr-1 cursor-pointer rounded-full"
+                  className="text-indigo-700 hover:bg-indigo-50 transition-all ease-in-out mr-1 cursor-pointer rounded-full"
                   onClick={() => setEditTitle(false)}
                   size="24px"
                 />
@@ -62,7 +62,7 @@ const TemplateMenu: React.FC<Props> = ({
                 <AppIcon
                   title="Edit title"
                   icon="ion:create-outline"
-                  className="text-indigo-500 cursor-pointer"
+                  className="text-indigo-500 hover:bg-indigo-50 transition-all ease-in-out cursor-pointer"
                   onClick={() => setEditTitle(true)}
                   size="24px"
                 />
@@ -76,16 +76,26 @@ const TemplateMenu: React.FC<Props> = ({
         </div>
         <div className="text-left lg:text-right flex flex-row justify-end">
           <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
+            className="items-center bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out px-2 py-1 rounded-lg "
             onClick={() => setDownloadModal()}
+            title="Download"
           >
-            Download
+            <AppIcon
+              icon="ion:cloud-download-outline"
+              className="text-white transition-all ease-in-out cursor-pointer"
+              size="24px"
+            />
           </button>
           <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
+            className="items-center bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out px-2 py-1 rounded-lg "
             onClick={() => setModal()}
+            title="Settings"
           >
-            Settings
+            <AppIcon
+              icon="ion:settings-outline"
+              className="text-white transition-all ease-in-out cursor-pointer"
+              size="24px"
+            />
           </button>
           <button
             className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "

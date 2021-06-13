@@ -34,8 +34,8 @@ export function registerDonkey() {
         });
         localStorage.removeItem('__token');
         useUser.setState({ user: {}, isLoggedIn: false });
+        Promise.reject(err);
         location.reload();
-        return Promise.reject(err);
       }
       Promise.reject(err);
     },

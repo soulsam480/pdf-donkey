@@ -1,8 +1,12 @@
-#### 0.2.1.2 (2021-06-12)
+#### 0.2.1.2 (2021-06-13)
 
 ##### Chores
 
 *  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
+
+##### New Features
+
+* **app:**  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
 
 ##### Bug Fixes
 
