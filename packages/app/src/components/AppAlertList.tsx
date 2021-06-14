@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAlert } from 'src/store/useAlert';
-import AppAlerts from './AppAlerts';
+import AppAlerts from 'src/components/AppAlerts';
 
 interface Props {}
 const AppAlertList: React.FC<Props> = () => {
@@ -8,11 +8,7 @@ const AppAlertList: React.FC<Props> = () => {
   return (
     <div className="alert-list">
       {alerts.map((alert) => (
-        <AppAlerts
-          key={alert.message}
-          type={alert.type}
-          message={alert.message}
-        />
+        <AppAlerts key={alert.message} type={alert.type} message={alert.message} />
       ))}
     </div>
   );

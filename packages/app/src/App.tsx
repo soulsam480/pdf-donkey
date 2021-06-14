@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  Redirect,
-  Route,
-  RouteProps,
-  Switch,
-  useHistory,
-} from 'react-router-dom';
-import { authState } from './utils/authstate';
-import { useUser } from './store/userContext';
-import './index.css';
-import { registerDonkey } from './utils/helpers';
-import { useLoader } from './store/useLoader';
+import { Redirect, Route, RouteProps, Switch, useHistory } from 'react-router-dom';
+import { authState } from 'src/utils/authstate';
+import { useUser } from 'src/store/userContext';
+import 'src/index.css';
+import { registerDonkey } from 'src/utils/helpers';
+import { useLoader } from 'src/store/useLoader';
 const AppLoader = React.lazy(() => import('./components/AppLoader'));
 const Index = React.lazy(() => import('./pages/Index'));
 const Login = React.lazy(() => import('./pages/Login'));
@@ -48,7 +42,6 @@ const PrivateRoute = (props: PrivateRouteProps) => {
 const App: React.FC<Props> = () => {
   const userState = useUser();
   const { isLader } = useLoader();
-  const { location } = useHistory();
   return (
     <div>
       {isLader && <AppLoader />}

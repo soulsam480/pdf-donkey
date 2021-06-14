@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'src/store/useAlert';
 import { useUser } from 'src/store/userContext';
 import { classNames, diffMatcher, DonkeyApi } from 'src/utils/helpers';
-import AppModal from './AppModal';
+import AppModal from 'src/components/AppModal';
 
 interface Props {
   isUserProfile: boolean;

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Editor, IAllProps } from '@tinymce/tinymce-react';
+import { Editor } from '@tinymce/tinymce-react';
 interface Props {
   code: string;
   setRichCode: (code: string) => void;
@@ -56,8 +56,7 @@ const RichText: React.FC<Props> = ({ code, setRichCode, minHeight }) => {
             'bold italic backcolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | pagebreak',
-          content_style:
-            'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}
       />
     </div>

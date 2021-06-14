@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { User, useUser } from '../store/userContext';
+import { User, useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
 import { useAlert } from 'src/store/useAlert';
 import AppIcon from 'src/components/AppIcon';

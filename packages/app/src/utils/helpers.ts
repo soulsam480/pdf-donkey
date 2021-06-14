@@ -1,8 +1,7 @@
 import axios, { AxiosError } from 'axios';
-import { Alert, useAlert } from 'src/store/useAlert';
+import { useAlert } from 'src/store/useAlert';
 import { useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
-import {} from 'react-router-dom';
 export function getDDMMYY(date?: string) {
   const newDate = new Date(date as string);
 
