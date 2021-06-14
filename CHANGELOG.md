@@ -6,6 +6,7 @@
 
 ##### Chores
 
+* **app:**  fix paths ([7bdadbfb](https://github.com/soulsam480/pdf-donkey/commit/7bdadbfb93c9daaae12016e6dcd72cbac7b60f6a))
 *  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
 
 ##### Documentation Changes
