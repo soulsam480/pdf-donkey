@@ -45,7 +45,7 @@ const DownloadTemplate: React.FC<Props> = ({ closeModal, isModal, templateId, te
   return (
     <>
       <AppModal isModal={isModal} closeModal={() => closeModal()} heading="Generate PDF">
-        <div className="bg-red-200 p-3 rounded-md text-xs text-gray-700 font-semibold">
+        <div className="bg-red-50 px-3 py-2 rounded-md text-xs text-red-700 border border-red-200">
           <span className="font-bold">!</span> The data should be in JSON format.
         </div>
         <div className="py-2">

@@ -8,6 +8,10 @@
 
 *  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
 
+##### Documentation Changes
+
+*  update readme ([9ba6fc41](https://github.com/soulsam480/pdf-donkey/commit/9ba6fc41681de04f7407da69b6c8e2a5db8b2607))
+
 ##### New Features
 
 * **docs:**  added basic docs site ([8fdd4367](https://github.com/soulsam480/pdf-donkey/commit/8fdd43672e09433043d7b9348a3ecb155356d6ff))

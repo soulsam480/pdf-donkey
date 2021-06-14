@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Template as TemplateModel } from 'src/utils/constants';
 import { DonkeyApi } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
@@ -16,6 +16,7 @@ interface Props {}
 
 const Template: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();
+  const { push } = useHistory();
   const [code, setCode] = useState('');
   const { setLoader } = useLoader();
   const [richMode, setRichMode] = useState<'code' | 'rich'>('code');
@@ -30,6 +31,7 @@ const Template: React.FC<Props> = () => {
   const liquid = new Liquid();
   const running = useRef(false);
   const { setAlerts } = useAlert();
+
   function getHeight() {
     return window.innerHeight - 170;
   }
@@ -76,6 +78,25 @@ const Template: React.FC<Props> = () => {
         });
       })
       .finally(() => (running.current = false));
+  }
+  async function deleteTemplate() {
+    setLoader(true);
+    try {
+      await DonkeyApi.delete(`/template/${id}/`);
+      setAlerts({
+        type: 'success',
+        message: 'Template Deleted successfully !',
+      });
+      push('/');
+    } catch (error) {
+      console.log(error);
+      setAlerts({
+        type: 'error',
+        message: 'Some error occured !',
+      });
+    } finally {
+      setLoader(false);
+    }
   }
   async function renderTemplate(template: TemplateModel) {
     return await liquid
@@ -135,6 +156,8 @@ const Template: React.FC<Props> = () => {
         templateCss={TemplateData.style as string}
         setTemplateCss={(val) => setTemplateData({ ...TemplateData, style: val })}
         setTemplate={() => setTemplate()}
+        templateTitle={TemplateData.title as string}
+        deleteTemplate={() => deleteTemplate()}
       />
       <TemplateMenu
         setRichMode={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
