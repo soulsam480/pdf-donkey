@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
+import PurgeIcons from 'vite-plugin-purge-icons';
+
 import { dependencies } from './package.json';
 function renderChunks(deps: Record<string, string>) {
   let chunks = {};
@@ -58,6 +60,9 @@ export default defineConfig({
           },
         ],
       },
+    }),
+    PurgeIcons({
+      /* PurgeIcons Options */
     }),
   ],
   resolve: {

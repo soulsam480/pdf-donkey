@@ -5,6 +5,7 @@ import { clickOutsideToggle } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
 import { version } from '../../../../package.json';
 import UserProfile from 'src/components/UserProfile';
+import AppIcon from 'src/components/AppIcon';
 interface Props {}
 const AppNavbar: React.FC<Props> = () => {
   const { push } = useHistory();
@@ -99,7 +100,7 @@ const AppNavbar: React.FC<Props> = () => {
                   href="https://github.com/soulsam480/pdf-donkey"
                   target="_blank"
                 >
-                  GitHub
+                  <AppIcon icon="ion:logo-github" className="text-white" size="24px" />
                 </a>
               </div>
             </div>
@@ -129,16 +130,16 @@ const AppNavbar: React.FC<Props> = () => {
                     >
                       <NavLink
                         to="/user"
-                        className="block px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700"
+                        className="flex px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 items-center"
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
                         onClick={() => setContext(false)}
                       >
-                        Dashboard
+                        <AppIcon icon="ion:home-outline" className="pr-2" /> <span>Dashboard</span>
                       </NavLink>
                       <a
-                        className="block px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer"
+                        className="flex px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer items-center"
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"
@@ -146,16 +147,17 @@ const AppNavbar: React.FC<Props> = () => {
                           e.preventDefault(), setContext(false), setUserProfile(true)
                         )}
                       >
-                        My account
+                        <AppIcon icon="ion:person-circle-outline" className="pr-2" />{' '}
+                        <span>My account</span>
                       </a>
                       <a
-                        className="block px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer"
+                        className="flex px-4 py-2 text-sm hover:bg-indigo-100 text-gray-700 cursor-pointer items-center"
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"
                         onClick={(e) => (e.preventDefault(), setContext(false), logout())}
                       >
-                        Log out
+                        <AppIcon icon="ion:log-out-outline" className="pr-2" /> <span>Log out</span>
                       </a>
                     </div>
                   </>
@@ -178,11 +180,12 @@ const AppNavbar: React.FC<Props> = () => {
       <div className={isOpen ? 'sm:hidden' : 'hidden'} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            className="hover:bg-gray-600 text-white px-3 py-2 rounded-md block font-medium"
+            className="hover:bg-gray-600 text-white px-3 py-2 rounded-md block font-medium items-center"
             href="https://github.com/soulsam480/pdf-donkey"
             target="_blank"
           >
-            GitHub
+            <AppIcon icon="ion:logo-github" className="text-white" size="24px" />{' '}
+            <span style={{ fontSize: '10px' }}>v{version}</span>{' '}
           </a>
         </div>
       </div>

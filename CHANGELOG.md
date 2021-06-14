@@ -1,28 +1,38 @@
-#### 0.2.1 (2021-06-08)
+#### 0.2.1.2 (2021-06-14)
 
 ##### Build System / Dependencies
 
-*  fix react types mismatch ([e264b4f9](https://github.com/soulsam480/pdf-donkey/commit/e264b4f96e42a8aece64b9c276e0dfb88384fc5f))
+*  remove docs package as build is failing due to duplicate types between react and vue ([803a2143](https://github.com/soulsam480/pdf-donkey/commit/803a214390dc2d76e9f4932b7db83a145fdf43cc))
 
 ##### Chores
 
-*  update deps to latest ([a347c623](https://github.com/soulsam480/pdf-donkey/commit/a347c62335a32fec447eda8743064eed3e98d734))
+* **app:**  fix paths ([7bdadbfb](https://github.com/soulsam480/pdf-donkey/commit/7bdadbfb93c9daaae12016e6dcd72cbac7b60f6a))
+*  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
 
 ##### Documentation Changes
 
-*  update readme ([69d0f1e7](https://github.com/soulsam480/pdf-donkey/commit/69d0f1e7f4f3496a6418e05b54cd236ce75d12e6))
+*  update readme ([9ba6fc41](https://github.com/soulsam480/pdf-donkey/commit/9ba6fc41681de04f7407da69b6c8e2a5db8b2607))
 
 ##### New Features
 
-*  added loader in fetch ops, global 401 handler ([ae489fd5](https://github.com/soulsam480/pdf-donkey/commit/ae489fd51137fcc62d1c50433994695e40024b72))
-* **app,api:**  option to generate PDF from the website ([669fdd15](https://github.com/soulsam480/pdf-donkey/commit/669fdd153fe1907309c7a500cc8e3fc49d6aa8d6))
+* **app:**
+  *  add delete template support ([cbb14832](https://github.com/soulsam480/pdf-donkey/commit/cbb1483259bb84a7ede75f64b369936433e0c6f0))
+  *  add 0 debounce to download data input ([150342ed](https://github.com/soulsam480/pdf-donkey/commit/150342ed6d1f615d4196fc5be71466af5ddf2245))
+  *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
+  *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))
+  *  add labels for input fields ([c25f5f04](https://github.com/soulsam480/pdf-donkey/commit/c25f5f0435f99812c4386f196aeab046f30a73e3))
+  *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
+  *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
+* **docs:**  added basic docs site ([8fdd4367](https://github.com/soulsam480/pdf-donkey/commit/8fdd43672e09433043d7b9348a3ecb155356d6ff))
+* **api:**  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 
 ##### Bug Fixes
 
-*  cors for pdf generation, remove template user endpoint ([c8dfba16](https://github.com/soulsam480/pdf-donkey/commit/c8dfba16057671e1a9500925b55415d2624b86b9))
-*  info banner in template test data ([b0bfc40e](https://github.com/soulsam480/pdf-donkey/commit/b0bfc40e6768b0d2f4a071c52b04f4f26f79c977))
+*  Hard coded auth URL, remove styled-components,shoyo ([91a9ebcd](https://github.com/soulsam480/pdf-donkey/commit/91a9ebcd01c7b468980f9658841ea551eb62a38f))
 
 ##### Refactors
 
-* **app:**  template settings modal ([6e703a74](https://github.com/soulsam480/pdf-donkey/commit/6e703a7443a602b2e527e97ac6c75ca24923988c))
+* **app:**
+  *  create template options menu component ([8a70013e](https://github.com/soulsam480/pdf-donkey/commit/8a70013e07524a82ee4d2d386b4d030b8562e268))
+  *  codebase file struct ([ae3efee8](https://github.com/soulsam480/pdf-donkey/commit/ae3efee8448067d1cc158a1441b61e1df9371bf6))
 

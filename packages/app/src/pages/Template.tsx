@@ -1,20 +1,22 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Template as TemplateModel } from 'src/utils/constants';
-import { DonkeyApi, getDDMMYY } from 'src/utils/helpers';
+import { DonkeyApi } from 'src/utils/helpers';
 import { Liquid } from 'liquidjs';
 import { useScreenWidth } from 'src/utils/hooks';
 import { useAlert } from 'src/store/useAlert';
-import PrismHighlight from 'src/components/PrismHighlight';
-import RichTextEditor from 'src/components/RichText';
-import DownloadTemplate from 'src/components/TemplateDownload';
-import TemplateSettings from 'src/components/TemplateSettings';
+import PrismHighlight from 'src/components/templates/PrismHighlight';
+import RichTextEditor from 'src/components/templates/RichText';
+import DownloadTemplate from 'src/components/templates/TemplateDownload';
+import TemplateSettings from 'src/components/templates/TemplateSettings';
 import { useLoader } from 'src/store/useLoader';
+import TemplateMenu from 'src/components/templates/TemplateMenu';
 interface Props {}
 
 const Template: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();
+  const { push } = useHistory();
   const [code, setCode] = useState('');
   const { setLoader } = useLoader();
   const [richMode, setRichMode] = useState<'code' | 'rich'>('code');
@@ -29,6 +31,7 @@ const Template: React.FC<Props> = () => {
   const liquid = new Liquid();
   const running = useRef(false);
   const { setAlerts } = useAlert();
+
   function getHeight() {
     return window.innerHeight - 170;
   }
@@ -39,13 +42,13 @@ const Template: React.FC<Props> = () => {
         setTemplateData(res.data);
         setCode(res.data.markup as string);
         setTemplateTest(JSON.stringify(res.data.data));
-        await renderTemplate(res.data.markup as string, res.data?.data);
-        setLoader(false);
+        await renderTemplate(res.data);
       })
       .catch((err: AxiosError) => {
         setAlerts({ message: 'Unable to get template', type: 'error' });
         console.log(err);
-      });
+      })
+      .finally(() => setLoader(false));
   }
   async function setTemplate(
     codePayload: string = code,
@@ -61,7 +64,6 @@ const Template: React.FC<Props> = () => {
       data: data,
     })
       .then(async () => {
-        running.current = false;
         setAlerts({
           type: 'success',
           message: 'Saved successfully !',
@@ -74,12 +76,34 @@ const Template: React.FC<Props> = () => {
           type: 'error',
           message: 'Some error occured !',
         });
-      });
+      })
+      .finally(() => (running.current = false));
   }
-  async function renderTemplate(code: string, data?: Record<string, any>) {
-    return await liquid.parseAndRender(code, data).then((res) => {
-      setRenderTemplate(res);
-    });
+  async function deleteTemplate() {
+    setLoader(true);
+    try {
+      await DonkeyApi.delete(`/template/${id}/`);
+      setAlerts({
+        type: 'success',
+        message: 'Template Deleted successfully !',
+      });
+      push('/');
+    } catch (error) {
+      console.log(error);
+      setAlerts({
+        type: 'error',
+        message: 'Some error occured !',
+      });
+    } finally {
+      setLoader(false);
+    }
+  }
+  async function renderTemplate(template: TemplateModel) {
+    return await liquid
+      .parseAndRender(`<style>${template.style}</style>${template.markup}`, template.data)
+      .then((res) => {
+        setRenderTemplate(res);
+      });
   }
   async function handleTemplateTestData() {
     try {
@@ -97,7 +121,7 @@ const Template: React.FC<Props> = () => {
     if (code === TemplateData.markup) return;
     let timeout: NodeJS.Timeout;
     timeout = setTimeout(async () => {
-      await renderTemplate(code)
+      await renderTemplate({ ...TemplateData, markup: code })
         .then(async () => await setTemplate(code))
         .catch(() =>
           setAlerts({
@@ -122,51 +146,28 @@ const Template: React.FC<Props> = () => {
         closeModal={() => setDownloadModal(false)}
         templateId={id}
         templateTitle={TemplateData.title}
-      ></DownloadTemplate>
+      />
       <TemplateSettings
         isModal={isModal}
         setModal={() => setModal(false)}
         handleTemplateTestData={() => handleTemplateTestData()}
         setTemplateTest={(e) => setTemplateTest(e)}
         templateTestData={TemplateTestData}
-      ></TemplateSettings>
-      <div className="grid grid-cols-1 lg:grid-cols-2  gap-3 lg:grid-flow-col lg:auto-cols-max relative pt-3 items-center">
-        <div>
-          <input
-            name="password"
-            type="text"
-            className="bg-gray-300 rounded-md mb-2 lg:w-auto w-full"
-            value={TemplateData.title}
-            placeholder="Untitled"
-            onChange={(e) => setTemplateData({ ...TemplateData, title: e.target.value })}
-            onKeyDown={(e) => e.key === 'Enter' && setTemplate()}
-          />{' '}
-          <p className="text-sm">
-            <span className="font-semibold">Last updated : </span>
-            {getDDMMYY(TemplateData?.updatedAt).time} , {getDDMMYY(TemplateData?.updatedAt).date}{' '}
-          </p>
-        </div>
-        <div className="text-left lg:text-right flex flex-row justify-end">
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setDownloadModal(true)}
-          >
-            Download
-          </button>
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setModal(true)}
-          >
-            Settings
-          </button>
-          <button
-            className="bg-indigo-500 mx-1 flex-auto lg:flex-initial hover:bg-indigo-600 transition duration-200 ease-in-out p-2 text-white rounded-lg "
-            onClick={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
-          >
-            {richMode !== 'rich' ? 'Rich' : 'Code'} mode
-          </button>
-        </div>
-      </div>
+        templateCss={TemplateData.style as string}
+        setTemplateCss={(val) => setTemplateData({ ...TemplateData, style: val })}
+        setTemplate={() => setTemplate()}
+        templateTitle={TemplateData.title as string}
+        deleteTemplate={() => deleteTemplate()}
+      />
+      <TemplateMenu
+        setRichMode={() => setRichMode(richMode === 'code' ? 'rich' : 'code')}
+        TemplateData={TemplateData}
+        richMode={richMode}
+        setDownloadModal={() => setDownloadModal(true)}
+        setModal={() => setModal(true)}
+        setTemplate={() => setTemplate()}
+        setTemplateData={(val) => setTemplateData(val)}
+      />
       <div
         className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:grid-flow-col lg:auto-cols-max grid-flow-row relative pt-3"
         style={{

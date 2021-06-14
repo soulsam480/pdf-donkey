@@ -3,8 +3,8 @@ import { useHistory } from 'react-router';
 import { useAlert } from 'src/store/useAlert';
 import { useLoader } from 'src/store/useLoader';
 const AppModal = React.lazy(() => import('src/components/AppModal'));
-const TemplateCards = React.lazy(() => import('src/components/TemplateCards'));
-const PrismHighlight = React.lazy(() => import('src/components/PrismHighlight'));
+const TemplateCards = React.lazy(() => import('src/components/templates/TemplateCards'));
+const PrismHighlight = React.lazy(() => import('src/components/templates/PrismHighlight'));
 import { useUser } from 'src/store/userContext';
 import { DonkeyApi } from 'src/utils/helpers';
 
@@ -61,22 +61,28 @@ const User: React.FC<Props> = () => {
       >
         <form
           onSubmit={(e) => (e.preventDefault(), createTemplate())}
-          className="grid grid-cols-1 gap-6"
+          className="grid grid-cols-1 gap-3"
         >
-          <input
-            name="title"
-            type="text"
-            value={newTemplate.title}
-            placeholder="Title"
-            onChange={handleInput}
-            className="rounded-md"
-          />
-          <PrismHighlight
-            code={newTemplate.markup}
-            minHeight={300}
-            language={'html'}
-            onCode={(e) => setTemplate({ ...newTemplate, markup: e })}
-          />
+          <div>
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              value={newTemplate.title}
+              onChange={handleInput}
+              className="rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label>Basic template</label>
+            <PrismHighlight
+              code={newTemplate.markup}
+              minHeight={300}
+              language={'html'}
+              onCode={(e) => setTemplate({ ...newTemplate, markup: e })}
+            />
+          </div>
           <div className="flex justify-end">
             <button
               className="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white ml-1  transition duration-200 ease-in-out"

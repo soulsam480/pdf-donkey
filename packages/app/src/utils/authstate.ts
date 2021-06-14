@@ -1,7 +1,7 @@
 import { User, useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
 import Axios, { AxiosResponse } from 'axios';
-import { DonkeyApi } from './helpers';
+import { DonkeyApi } from 'src/utils/helpers';
 import { useLoader } from 'src/store/useLoader';
 
 export const authState = async () => {

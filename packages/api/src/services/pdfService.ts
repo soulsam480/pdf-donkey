@@ -14,8 +14,12 @@ export class pdfService {
   ): Promise<ReadStream> {
     return new Promise(async (resolve, reject) => {
       try {
-        const { markup } = template;
-        const renderedTemplate = await this.engine.parseAndRender(markup, { ...data }, renderOpts);
+        const { markup, style } = template;
+        const renderedTemplate = await this.engine.parseAndRender(
+          `<style>${style}</style>${markup}`,
+          { ...data },
+          renderOpts,
+        );
         create(renderedTemplate, pdfOpts).toStream((err, stream) => {
           if (err) return reject(err);
           resolve(stream);
