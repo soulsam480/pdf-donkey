@@ -1,0 +1,32 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "author": "soulsam480 <soulsam480@hotmail.com>",
+  "repository": {
+    "directory": "docs",
+    "type": "git",
+    "url": "git@github.com-soulsam480:soulsam480/pdf-donkey.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev content",
+    "docs:build": "vitepress build content",
+    "docs:serve": "vitepress serve content"
+  },
+  "devDependencies": {
+    "vitepress": "^0.15.3"
+  },
+  "workspaces": {
+    "nohoist": [
+      "**/vitepress",
+      "**/vitepress/**",
+      "**/vue",
+      "**/vue/**",
+      "**/react",
+      "**/react/**",
+      "**/react-dom",
+      "**/react-dom/**"
+    ]
+  }
+}

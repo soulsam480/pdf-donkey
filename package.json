@@ -15,11 +15,22 @@
     "build": "concurrently --kill-others-on-fail \"yarn build:client\"  \"yarn build:server\"",
     "start:server": "yarn workspace @pdf-donkey/api start",
     "start:client": " yarn workspace @pdf-donkey/app serve",
-    "changelog": "node ./changelog.js"
+    "changelog": "node ./changelog.js",
+    "dev:docs": "yarn workspace docs docs:dev",
+    "build:docs": "yarn workspace docs docs:build",
+    "start:docs": "yarn workspace docs docs:serve"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/vitepress",
+      "**/vitepress/**",
+      "**/vue",
+      "**/vue/**"
+    ]
+  },
   "dependencies": {
     "concurrently": "^6.0.2"
   },

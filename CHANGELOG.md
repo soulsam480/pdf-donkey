@@ -1,4 +1,4 @@
-#### 0.2.1.2 (2021-06-14)
+#### 0.2.1.3 (2021-06-14)
 
 ##### Build System / Dependencies
 
@@ -6,6 +6,7 @@
 
 ##### Chores
 
+* **release:**  release v0.2.0-alpha.3 ([66b18bac](https://github.com/soulsam480/pdf-donkey/commit/66b18bacf192747d44c4cf51e02cba6f1796b942))
 * **app:**  fix paths ([7bdadbfb](https://github.com/soulsam480/pdf-donkey/commit/7bdadbfb93c9daaae12016e6dcd72cbac7b60f6a))
 *  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
 
