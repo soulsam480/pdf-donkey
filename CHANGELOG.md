@@ -1,4 +1,4 @@
-#### 0.2.1.3 (2021-06-14)
+#### 0.2.1.3 (2021-06-15)
 
 ##### Build System / Dependencies
 
@@ -12,6 +12,7 @@
 
 ##### Documentation Changes
 
+*  added basic docs ([85685eb1](https://github.com/soulsam480/pdf-donkey/commit/85685eb1466c295089bb07d45041c0cfa459b70f))
 *  update readme ([9ba6fc41](https://github.com/soulsam480/pdf-donkey/commit/9ba6fc41681de04f7407da69b6c8e2a5db8b2607))
 
 ##### New Features

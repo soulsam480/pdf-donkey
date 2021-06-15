@@ -23,12 +23,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/vitepress",
-      "**/vitepress/**",
-      "**/vue",
-      "**/vue/**"
     ]
   },
   "dependencies": {

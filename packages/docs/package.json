@@ -22,11 +22,7 @@
       "**/vitepress",
       "**/vitepress/**",
       "**/vue",
-      "**/vue/**",
-      "**/react",
-      "**/react/**",
-      "**/react-dom",
-      "**/react-dom/**"
+      "**/vue/**"
     ]
   }
 }
