@@ -30,6 +30,7 @@
 
 ##### Bug Fixes
 
+* **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
 *  Hard coded auth URL, remove styled-components,shoyo ([91a9ebcd](https://github.com/soulsam480/pdf-donkey/commit/91a9ebcd01c7b468980f9658841ea551eb62a38f))
 
 ##### Refactors
