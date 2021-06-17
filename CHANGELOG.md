@@ -1,4 +1,4 @@
-#### 0.2.1.3 (2021-06-15)
+#### 0.2.1.3 (2021-06-17)
 
 ##### Build System / Dependencies
 
@@ -17,6 +17,9 @@
 
 ##### New Features
 
+* **api:**
+  *  migrate to postgres ([315a3e07](https://github.com/soulsam480/pdf-donkey/commit/315a3e072ff106e8012ae79703081d600410f468))
+  *  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 * **app:**
   *  add delete template support ([cbb14832](https://github.com/soulsam480/pdf-donkey/commit/cbb1483259bb84a7ede75f64b369936433e0c6f0))
   *  add 0 debounce to download data input ([150342ed](https://github.com/soulsam480/pdf-donkey/commit/150342ed6d1f615d4196fc5be71466af5ddf2245))
@@ -26,10 +29,10 @@
   *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
   *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
 * **docs:**  added basic docs site ([8fdd4367](https://github.com/soulsam480/pdf-donkey/commit/8fdd43672e09433043d7b9348a3ecb155356d6ff))
-* **api:**  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
 
 ##### Bug Fixes
 
+* **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
 *  Hard coded auth URL, remove styled-components,shoyo ([91a9ebcd](https://github.com/soulsam480/pdf-donkey/commit/91a9ebcd01c7b468980f9658841ea551eb62a38f))
 
 ##### Refactors

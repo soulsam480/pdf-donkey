@@ -23,18 +23,18 @@ export class TemplateEntity extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   style: string;
 
-  @Column({ type: 'simple-json', nullable: true, default: '{}' })
+  @Column({ type: 'jsonb', nullable: true, default: '{}' })
   data: string;
 
-  @Column({ type: 'simple-json', nullable: true, default: '{}' })
+  @Column({ type: 'jsonb', nullable: true, default: '{}' })
   meta: string;
 
   @ManyToOne(() => User, (user) => user.templates)
   user: User;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt?: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt?: Date;
 }
