@@ -25,12 +25,7 @@ import { logApiRoutes } from './utils';
 // const { defaultMetadataStorage } = require('class-transformer/cjs/storage');
 // import * as swaggerUiExpress from 'swagger-ui-express';
 // import { version } from '../../../package.json';
-console.log(
-  process.env.PGRES_USER,
-  process.env.PGRES_PASS,
-  process.env.PGRES_HOST,
-  process.env.PGRES_DB,
-);
+
 passport.use(
   new Strategy(
     {
