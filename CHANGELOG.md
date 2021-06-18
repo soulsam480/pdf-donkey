@@ -1,45 +1,23 @@
-#### 0.2.1.3 (2021-06-17)
-
-##### Build System / Dependencies
-
-*  remove docs package as build is failing due to duplicate types between react and vue ([803a2143](https://github.com/soulsam480/pdf-donkey/commit/803a214390dc2d76e9f4932b7db83a145fdf43cc))
-
-##### Chores
-
-* **release:**  release v0.2.0-alpha.3 ([66b18bac](https://github.com/soulsam480/pdf-donkey/commit/66b18bacf192747d44c4cf51e02cba6f1796b942))
-* **app:**  fix paths ([7bdadbfb](https://github.com/soulsam480/pdf-donkey/commit/7bdadbfb93c9daaae12016e6dcd72cbac7b60f6a))
-*  bump version to match github release ([fc970632](https://github.com/soulsam480/pdf-donkey/commit/fc97063286f0577759f30c1196421f6467860a7c))
+#### 0.2.1.3 (2021-06-18)
 
 ##### Documentation Changes
 
+*  updated styles, paths, sidebar, config ([3fe94862](https://github.com/soulsam480/pdf-donkey/commit/3fe9486227f515d167689a3929b2755a67787cc7))
 *  update readme ([17d272c5](https://github.com/soulsam480/pdf-donkey/commit/17d272c588c25eb06a72d0a1c25cafc757850ff2))
 *  added basic docs ([85685eb1](https://github.com/soulsam480/pdf-donkey/commit/85685eb1466c295089bb07d45041c0cfa459b70f))
-*  update readme ([9ba6fc41](https://github.com/soulsam480/pdf-donkey/commit/9ba6fc41681de04f7407da69b6c8e2a5db8b2607))
 
 ##### New Features
 
-* **api:**
-  *  migrate to postgres ([315a3e07](https://github.com/soulsam480/pdf-donkey/commit/315a3e072ff106e8012ae79703081d600410f468))
-  *  added custom css support to pdf generation ([19eb5e45](https://github.com/soulsam480/pdf-donkey/commit/19eb5e45bf41ed95cf0ad7d6fb069a47a9574398))
-* **app:**
-  *  add delete template support ([cbb14832](https://github.com/soulsam480/pdf-donkey/commit/cbb1483259bb84a7ede75f64b369936433e0c6f0))
-  *  add 0 debounce to download data input ([150342ed](https://github.com/soulsam480/pdf-donkey/commit/150342ed6d1f615d4196fc5be71466af5ddf2245))
-  *  icons, css highlighting, custom debounce value, custom css support for templates ([05557c71](https://github.com/soulsam480/pdf-donkey/commit/05557c7122b23db9e551df012b6d0f5f339cb175))
-  *  added icons ([1f512f26](https://github.com/soulsam480/pdf-donkey/commit/1f512f2647c72053691f2d06442f4a16e712a43f))
-  *  add labels for input fields ([c25f5f04](https://github.com/soulsam480/pdf-donkey/commit/c25f5f0435f99812c4386f196aeab046f30a73e3))
-  *  add icons to template menu ([598409ed](https://github.com/soulsam480/pdf-donkey/commit/598409edc588813fd865d33caf735f9a43e9abc6))
-  *  Click to edit template title ([b640dbf1](https://github.com/soulsam480/pdf-donkey/commit/b640dbf124fccbd79f711f294ecbeb73c55e41f3))
-* **docs:**  added basic docs site ([8fdd4367](https://github.com/soulsam480/pdf-donkey/commit/8fdd43672e09433043d7b9348a3ecb155356d6ff))
+* **api:**  migrate to postgres ([315a3e07](https://github.com/soulsam480/pdf-donkey/commit/315a3e072ff106e8012ae79703081d600410f468))
 
 ##### Bug Fixes
 
 *  rmeove logs ([9f3fb4bd](https://github.com/soulsam480/pdf-donkey/commit/9f3fb4bda3a1ca12de0e36895b486578d55ecb23))
-*  Hard coded auth URL, remove styled-components,shoyo ([91a9ebcd](https://github.com/soulsam480/pdf-donkey/commit/91a9ebcd01c7b468980f9658841ea551eb62a38f))
 * **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
 
-##### Refactors
+##### Other Changes
 
-* **app:**
-  *  create template options menu component ([8a70013e](https://github.com/soulsam480/pdf-donkey/commit/8a70013e07524a82ee4d2d386b4d030b8562e268))
-  *  codebase file struct ([ae3efee8](https://github.com/soulsam480/pdf-donkey/commit/ae3efee8448067d1cc158a1441b61e1df9371bf6))
+* soulsam480/pdf-donkey into dev merge ([601f6dc8](https://github.com/soulsam480/pdf-donkey/commit/601f6dc843c15948fa1a80552886454efe7e1d3f))
+* dev' into dev ([2910062f](https://github.com/soulsam480/pdf-donkey/commit/2910062f0a79a3ccdbe64abd79fe60ec80e900e6))
+*  introduction ([537f5de6](https://github.com/soulsam480/pdf-donkey/commit/537f5de62bff7aead4bf2d0377852576af7fc6bb))
 
