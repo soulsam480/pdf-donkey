@@ -12,6 +12,7 @@
 
 ##### Documentation Changes
 
+*  update readme ([17d272c5](https://github.com/soulsam480/pdf-donkey/commit/17d272c588c25eb06a72d0a1c25cafc757850ff2))
 *  added basic docs ([85685eb1](https://github.com/soulsam480/pdf-donkey/commit/85685eb1466c295089bb07d45041c0cfa459b70f))
 *  update readme ([9ba6fc41](https://github.com/soulsam480/pdf-donkey/commit/9ba6fc41681de04f7407da69b6c8e2a5db8b2607))
 
@@ -32,8 +33,9 @@
 
 ##### Bug Fixes
 
-* **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
+*  rmeove logs ([9f3fb4bd](https://github.com/soulsam480/pdf-donkey/commit/9f3fb4bda3a1ca12de0e36895b486578d55ecb23))
 *  Hard coded auth URL, remove styled-components,shoyo ([91a9ebcd](https://github.com/soulsam480/pdf-donkey/commit/91a9ebcd01c7b468980f9658841ea551eb62a38f))
+* **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
 
 ##### Refactors
 

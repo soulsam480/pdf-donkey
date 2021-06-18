@@ -1,3 +1,21 @@
-.main {
-  color: red;
+.theme .nav-bar .nav-bar-title .logo {
+  width: 30px !important;
+  height: auto;
+  margin-right: 0;
+}
+.theme .nav-bar .nav-bar-title {
+  color: var(--rengoku);
+}
+
+@media (min-width: 720px) {
+  .theme .nav-bar .nav .nav-links .item:hover,
+  .theme .nav-bar .nav .nav-links .item.active {
+    border-bottom-color: var(--rengoku);
+    color: var(--c-text) !important;
+  }
+}
+:root {
+  --c-brand: #c1221c;
+  --c-brand-light: #cc3630;
+  --rengoku: #dda20a;
 }
