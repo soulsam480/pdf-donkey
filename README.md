@@ -74,6 +74,9 @@ createdb db_name # or your db name must be same with linux user name
 # needed to create extensions
 grant all privileges on database db_name to user_name 
 
+# change user password for new postgres user
+alter user user_name with password 'new_password'
+
 # to use postgres properly in ubuntu we need to add a user 
 sudo adduser user_name # or your username, should be same with postgres user-role and db name
 

@@ -1,5 +1,9 @@
 #### 0.2.1.3 (2021-06-18)
 
+##### Build System / Dependencies
+
+* **docs:**  add netlify.toml config for docs site ([8156e1dd](https://github.com/soulsam480/pdf-donkey/commit/8156e1dd6e5bc5aee1ba39e72f495950d631a9c4))
+
 ##### Documentation Changes
 
 *  updated styles, paths, sidebar, config ([3fe94862](https://github.com/soulsam480/pdf-donkey/commit/3fe9486227f515d167689a3929b2755a67787cc7))
