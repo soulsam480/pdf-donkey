@@ -1,6 +1,6 @@
 ---
 title: Introduction
-
+description: An introduction on getting started with PDF Donkey.
 ---
 # Introduction
 The generation of PDF is a necessity for all businesses, to send contracts, reports, invoices etc. to multiple clients. Writing this everytime for each client is quite a hectic job.
