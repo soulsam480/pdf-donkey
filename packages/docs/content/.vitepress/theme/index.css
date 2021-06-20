@@ -4,18 +4,18 @@
   margin-right: 0;
 }
 .theme .nav-bar .nav-bar-title {
-  color: var(--rengoku);
+  color: var(--donkey);
 }
 
 @media (min-width: 720px) {
   .theme .nav-bar .nav .nav-links .item:hover,
   .theme .nav-bar .nav .nav-links .item.active {
-    border-bottom-color: var(--rengoku);
+    border-bottom-color: var(--c-brand);
     color: var(--c-text) !important;
   }
 }
 :root {
-  --c-brand: #c1221c;
-  --c-brand-light: #cc3630;
-  --rengoku: #dda20a;
+  --c-brand: #7fa9d6;
+  --c-brand-light: #87b2e0;
+  --donkey: #6c95c0;
 }
