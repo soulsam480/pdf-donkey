@@ -7,7 +7,60 @@
   color: var(--donkey);
 }
 
+.sidebar
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > a.sidebar-link-item.active,
+.sidebar
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > a.sidebar-link-item.active:hover {
+  border-left-color: transparent;
+  font-weight: bold;
+  background-color: var(--donkey-active-bg);
+  border-radius: 5px;
+  color: var(--c-brand);
+}
+
+.sidebar
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > a.sidebar-link-item:hover {
+  background-color: var(--donkey-active-bg);
+  border-radius: 5px;
+  color: var(--c-text);
+}
+
+.sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link:not(:first-child) {
+  margin-top: 2px;
+}
+@media (max-width: 720px) {
+  .sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > .sidebar-link-item {
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  }
+  .sidebar > .sidebar-links > .sidebar-link > .sidebar-link-item {
+    padding: 0.35rem 0.5rem 0.35rem 0.25rem;
+  }
+}
+
+.sidebar-link-item {
+  border-left: none;
+}
+
+.sidebar > .sidebar-links {
+  padding: 0.75rem 1rem 5rem 1.25rem;
+}
+
 @media (min-width: 720px) {
+  .sidebar > .sidebar-links {
+    padding: 1.5rem 1.5rem 1.5rem 1rem;
+  }
   .theme .nav-bar .nav .nav-links .item:hover,
   .theme .nav-bar .nav .nav-links .item.active {
     border-bottom-color: var(--c-brand);
@@ -18,4 +71,5 @@
   --c-brand: #7fa9d6;
   --c-brand-light: #87b2e0;
   --donkey: #6c95c0;
+  --donkey-active-bg: #edededf0;
 }

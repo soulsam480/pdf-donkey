@@ -6,6 +6,7 @@
 
 ##### Documentation Changes
 
+*  update style ([d4d534e2](https://github.com/soulsam480/pdf-donkey/commit/d4d534e2920a89566a071b16aee2313d0eaa946c))
 *  add backend reference ([e8563d1d](https://github.com/soulsam480/pdf-donkey/commit/e8563d1d185688152729b7c8d50261ab190dd4d3))
 *  update readme ([145eadc9](https://github.com/soulsam480/pdf-donkey/commit/145eadc92754cfbc1c03208848780d5d05ed556d))
 *  updated styles, paths, sidebar, config ([3fe94862](https://github.com/soulsam480/pdf-donkey/commit/3fe9486227f515d167689a3929b2755a67787cc7))
