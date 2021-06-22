@@ -31,7 +31,7 @@ const AppModal: React.FC<Props> = ({ isModal, closeModal, heading, children, sub
           onClick={() => closeModal()}
         ></div>
 
-        <div className="modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded-md shadow-lg z-50 overflow-y-auto">
+        <div className="modal-container bg-white w-11/12 max-h-4/5 md:max-w-2xl mx-auto rounded-md shadow-lg z-50 overflow-y-auto">
           <div className="modal-content py-4 text-left px-6">
             <div className="flex justify-between pb-3 ">
               <div>
