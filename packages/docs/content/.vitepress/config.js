@@ -22,13 +22,18 @@ module.exports = {
     nav: [
       { text: 'Guide', link: '/guide/index.html', activeMatch: '^/guide/' },
       {
+        text: 'Advanced',
+        link: '/advanced/backend.html',
+        activeMatch: '^/advanced/',
+      },
+      {
         text: 'Release Notes',
         link: 'https://github.com/soulsam480/pdf-donkey/releases',
       },
     ],
     sidebar: {
-      '/guide/': getSidebar(),
       '/': getSidebar(),
+      '/guide/': getSidebar(),
     },
   },
 };
@@ -42,6 +47,10 @@ function getSidebar() {
         { text: 'Create new template', link: '/guide/create-new-template' },
         { text: 'Dynamic Data Templating', link: '/guide/dynamic-data-templating' },
       ],
+    },
+    {
+      text: 'Advanced',
+      children: [{ text: 'Backend', link: '/advanced/backend' }],
     },
   ];
 }

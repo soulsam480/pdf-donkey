@@ -6,12 +6,14 @@ heroText: PDF Donkey
 tagline: The intelligence of a donkey at your fingertips, seriously!
 actionText: Get Started
 actionLink: /guide/
+altActionText: Visit now
+altActionLink: https://donkey.sambitsahoo.com/login
 features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
+  - title: Open-source
+    details: Completely open-source and free for everyone to use, modify and improve.
+  - title: Feature rich
+    details: Generate PDFs on the fly with fully customizable templates, Rich editing experience and template variables. 
   - title: Performant
-    details: VitePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-footer: MIT Licensed | Copyright © 2021-present Sambit Sahoo & Contributors
+    details: With a very lightweigh UI and fast page loading, donkey is extremely performant. Uses PWA caching under-the-hood.
+footer: MIT Licensed | Copyright © 2021-present Sambit Sahoo & Contributors.
 ---
