@@ -45,7 +45,8 @@ function getSidebar() {
       children: [
         { text: 'Getting started', link: '/guide/' },
         { text: 'Create new template', link: '/guide/create-new-template' },
-        { text: 'Dynamic Data Templating', link: '/guide/dynamic-data-templating' },
+        { text: 'Dynamic data templating', link: '/guide/dynamic-data-templating' },
+        { text: 'Conditions for data', link: '/guide/conditions-for-data' },
       ],
     },
     {
