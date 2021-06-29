@@ -43,8 +43,7 @@ function getSidebar() {
     {
       text: 'Introduction',
       children: [
-        { text: 'Getting started', link: '/guide/' },
-        { text: 'Create new template', link: '/guide/create-new-template' },
+        { text: 'Guide', link: '/guide/introduction' },
       ],
     },
     {
