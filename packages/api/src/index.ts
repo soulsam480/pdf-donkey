@@ -25,6 +25,7 @@ import { logApiRoutes } from './utils';
 // const { defaultMetadataStorage } = require('class-transformer/cjs/storage');
 // import * as swaggerUiExpress from 'swagger-ui-express';
 // import { version } from '../../../package.json';
+
 passport.use(
   new Strategy(
     {
@@ -86,78 +87,86 @@ async function main() {
   server.use('/donkey/v1/pdf/generate', limiter);
   server.use(passport.initialize());
   await createConnection({
-    database: join(__dirname, '../db.sqlite'),
-    type: 'better-sqlite3',
+    // database: join(__dirname, '../db.sqlite'),
+    // type: 'better-sqlite3',
+    type: 'postgres',
+    username: process.env.PGRES_USER,
+    password: process.env.PGRES_PASS,
+    host: process.env.PGRES_HOST,
+    database: process.env.PGRES_DB,
+    port: 5432,
     entities: [join(__dirname, './entities/*')],
     migrations: [join(__dirname, './migrations/*')],
     logger: /*process.env.PROD ? undefined : */ 'advanced-console',
     logging: /*process.env.PROD ? false :*/ true,
     synchronize: false,
-  }).then(async (conn) => {
-    await conn.query('PRAGMA foreign_keys=OFF;');
-    await conn.runMigrations();
-    await conn.query('PRAGMA foreign_keys=ON;');
-    useExpressServer(server, {
-      routePrefix: '/donkey/v1',
-      cors: {
-        origin: [
-          'http://localhost:4001',
-          'https://donkey.sambitsahoo.com',
-          'http://localhost:5000',
-        ],
-        preflightContinue: true,
-      } as CorsOptions,
-      controllers: [__dirname + '/controllers/*{.ts,.js}'],
-      // currentUserChecker: async (action: Action) => {
-      //   const accessToken = action.request.headers['access-token'].split('Bearer ')[1] as string;
-      //   const data = <{ userId: string }>(
-      //     verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
-      //   );
-      //   return conn.getRepository(User).findOne({ id: data.userId });
-      // },
-    });
-    if (!process.env.PROD) {
-      logApiRoutes(server._router.stack, PORT);
-      // const schemas = validationMetadatasToSchemas({
-      //   classTransformerMetadataStorage: defaultMetadataStorage,
-      //   refPointerPrefix: '#/components/schemas/',
-      // });
-      // const storage = getMetadataArgsStorage();
-      // const spec = routingControllersToSpec(
-      //   storage,
-      //   {
-      //     routePrefix: '/donkey/v1',
-      //     controllers: [__dirname + '/controllers/*{.ts,.js}'],
-      //   },
-      //   {
-      //     components: {
-      //       schemas,
-      //       securitySchemes: {
-      //         basicAuth: {
-      //           scheme: 'Api Key',
-      //           type: 'apiKey',
-      //         },
-      //       },
-      //     },
-      //     info: {
-      //       description: 'Generated with `routing-controllers-openapi`',
-      //       title: 'PDF Donkey API',
-      //       version: version,
-      //       license: {
-      //         name: 'MIT',
-      //       },
-      //       contact: {
-      //         email: 'soulsam480@hotmail.com',
-      //         name: 'Sambit Sahoo',
-      //         url: 'https://sambitsahoo.com',
-      //       },
-      //     },
-      //   },
-      // );
-      // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
-    }
-    server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
-  });
+  })
+    .then(async (conn) => {
+      // await conn.query('PRAGMA foreign_keys=OFF;');
+      await conn.runMigrations();
+      // await conn.query('PRAGMA foreign_keys=ON;');
+      useExpressServer(server, {
+        routePrefix: '/donkey/v1',
+        cors: {
+          origin: [
+            'http://localhost:4001',
+            'https://donkey.sambitsahoo.com',
+            'http://localhost:5000',
+          ],
+          preflightContinue: true,
+        } as CorsOptions,
+        controllers: [__dirname + '/controllers/*{.ts,.js}'],
+        // currentUserChecker: async (action: Action) => {
+        //   const accessToken = action.request.headers['access-token'].split('Bearer ')[1] as string;
+        //   const data = <{ userId: string }>(
+        //     verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
+        //   );
+        //   return conn.getRepository(User).findOne({ id: data.userId });
+        // },
+      });
+      if (!process.env.PROD) {
+        logApiRoutes(server._router.stack, PORT);
+        // const schemas = validationMetadatasToSchemas({
+        //   classTransformerMetadataStorage: defaultMetadataStorage,
+        //   refPointerPrefix: '#/components/schemas/',
+        // });
+        // const storage = getMetadataArgsStorage();
+        // const spec = routingControllersToSpec(
+        //   storage,
+        //   {
+        //     routePrefix: '/donkey/v1',
+        //     controllers: [__dirname + '/controllers/*{.ts,.js}'],
+        //   },
+        //   {
+        //     components: {
+        //       schemas,
+        //       securitySchemes: {
+        //         basicAuth: {
+        //           scheme: 'Api Key',
+        //           type: 'apiKey',
+        //         },
+        //       },
+        //     },
+        //     info: {
+        //       description: 'Generated with `routing-controllers-openapi`',
+        //       title: 'PDF Donkey API',
+        //       version: version,
+        //       license: {
+        //         name: 'MIT',
+        //       },
+        //       contact: {
+        //         email: 'soulsam480@hotmail.com',
+        //         name: 'Sambit Sahoo',
+        //         url: 'https://sambitsahoo.com',
+        //       },
+        //     },
+        //   },
+        // );
+        // server.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
+      }
+      server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+    })
+    .catch((err) => console.log(err));
 }
 
 main();

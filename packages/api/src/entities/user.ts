@@ -37,6 +37,6 @@ export class User extends BaseEntity {
   @Column({ type: 'text', nullable: true, unique: true })
   api_key: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 }

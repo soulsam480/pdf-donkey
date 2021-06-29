@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      maxHeight: {
+        '4/5': '80%',
+      },
     },
   },
   variants: {},

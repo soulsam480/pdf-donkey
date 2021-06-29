@@ -57,13 +57,49 @@ app:
 - install deps
 ```bash
 yarn
+```
+- Install postgres and add `.env` variables.
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
 
+sudo -u postgres createuser --interactive
+# name: username
+# password: userpassword
+# hit yes on all questions
+
+createdb db_name # or your db name must be same with linux user name
+# or sudo -u postgres createdb your_db_name
+
+# needed to create extensions
+grant all privileges on database db_name to user_name 
+
+# change user password for new postgres user
+alter user user_name with password 'new_password'
+
+# to use postgres properly in ubuntu we need to add a user 
+sudo adduser user_name # or your username, should be same with postgres user-role and db name
+
+sudo -u user_name psql # log in to postgres with username
+
+# install uuid extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+```
+- Add .env variables
+```bash
+PGRES_USER=
+PGRES_PASS=
+PGRES_HOST=
+PGRES_DB=
+```
+- Run it
+```bash
 # start server
-yarn start
+yarn serve # starts both app and api
 
 # build for deployment
 yarn build
-
 ```
 
 Any contributions are welcome. Reach me on [soulsam480@hotmail.com](mailto:soulsam480@hotmail.com)
