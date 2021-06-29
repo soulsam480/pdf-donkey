@@ -3,6 +3,7 @@
 ##### Build System / Dependencies
 
 * **docs:**
+  *  remove toml config ([58d6ef8a](https://github.com/soulsam480/pdf-donkey/commit/58d6ef8a7ac317472d20fdc5e90f050686d54004))
   *  fix path ([6917673c](https://github.com/soulsam480/pdf-donkey/commit/6917673c3ebae4ef5d6e7083056293dc89d040d8))
   *  add netlify.toml config for docs site ([8156e1dd](https://github.com/soulsam480/pdf-donkey/commit/8156e1dd6e5bc5aee1ba39e72f495950d631a9c4))
 
