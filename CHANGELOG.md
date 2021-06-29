@@ -1,4 +1,4 @@
-#### 0.2.1.3 (2021-06-21)
+#### 0.2.1.3 (2021-06-26)
 
 ##### Build System / Dependencies
 
@@ -16,10 +16,12 @@
 
 ##### New Features
 
+* **app:**  private board read,update, board services ([736d5c48](https://github.com/soulsam480/pdf-donkey/commit/736d5c480ef13309ca8824005e7a7b585098e3e6))
 * **api:**  migrate to postgres ([315a3e07](https://github.com/soulsam480/pdf-donkey/commit/315a3e072ff106e8012ae79703081d600410f468))
 
 ##### Bug Fixes
 
+* **app:**  modal max-height ([1c8201b1](https://github.com/soulsam480/pdf-donkey/commit/1c8201b183b8887f1fda637ff61c5b1fe2c63085))
 *  rmeove logs ([9f3fb4bd](https://github.com/soulsam480/pdf-donkey/commit/9f3fb4bda3a1ca12de0e36895b486578d55ecb23))
 * **docs:**  nohoist for vitepress and ve ([df9c5688](https://github.com/soulsam480/pdf-donkey/commit/df9c5688399b81a83da55610d3f5e5ce620628d1))
 

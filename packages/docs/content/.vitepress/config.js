@@ -43,7 +43,8 @@ function getSidebar() {
     {
       text: 'Introduction',
       children: [
-        { text: 'Guide', link: '/guide/introduction' },
+        { text: 'Getting started', link: '/guide/introduction' },
+        { text: 'Syntax and Formatting', link: '/guide/syntax' },
       ],
     },
     {
