@@ -8,7 +8,11 @@ PDF monkey but open-souce.
 
 ## Status
 
-> Donkey is pre-alpha.
+> ### Donkey API has been shut down
+
+> ### The web app is still running
+
+> ### If you want to use it please see [run it locally](#run-it-locally)
 
 [Changelogs](./CHANGELOG.md)
 
