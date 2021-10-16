@@ -6,6 +6,7 @@ import { useAlert } from 'src/store/useAlert';
 import { useLoader } from 'src/store/useLoader';
 import { User, useUser } from 'src/store/userContext';
 import { useToken } from 'src/store/useToken';
+import AppIcon from 'src/components/AppIcon';
 const AppFooter = React.lazy(() => import('../components/AppFooter'));
 
 interface Props {}
@@ -69,6 +70,13 @@ const Index: React.FC<Props> = () => {
   }, []);
   return (
     <div>
+      <div className="bg-red-100 px-4 py-3 rounded-md text-lg text-red-900 border border-red-200 flex space-x-2 items-center justify-center">
+        <AppIcon icon="ion:warning" size="30px" />{' '}
+        <span>
+          Donkey server has been shut down, please self host as per your needs, Thank you !
+        </span>
+        <AppIcon icon="ion:warning" size="30px" />{' '}
+      </div>
       <div className="flex flex-col-reverse lg:flex-row items-center lg:py-48">
         <div className="w-full lg:w-1/2">
           <div className="lg:text-6xl text-5xl text-center lg:text-left font-extrabold pb-4 font-sans">
